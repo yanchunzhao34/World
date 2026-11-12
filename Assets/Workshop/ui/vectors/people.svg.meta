@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "character_count": {
+            "type": "size_t",
+            "value": 381
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "7fb3457f326d30ed"
+        },
+        "encoding": {
+            "type": "string",
+            "value": "ascii"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".svg"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/ui/vectors/people.svg"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 381
+        },
+        "file_type": {
+            "type": "string",
+            "value": "text"
+        },
+        "guid": {
+            "type": "string",
+            "value": "b82862d75877b30ec07445cc632348f0"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": true
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1793286938"
+        },
+        "line_count": {
+            "type": "size_t",
+            "value": 1
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultText"
+        }
+    }
+}

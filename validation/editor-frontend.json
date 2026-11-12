@@ -1,0 +1,6 @@
+{
+  "script_preflight": 24,
+  "isolated_imports": 24,
+  "binary_bridge": "all 256 byte values round-trip",
+  "passed": true
+}

@@ -1,0 +1,45 @@
+{
+  "engine": "Godot 4.7 .NET / Vulkan / NVIDIA RTX 5070 Ti",
+  "frames": 12,
+  "paused": false,
+  "width": 1536,
+  "height": 864,
+  "files": [
+    {
+      "map": "lab",
+      "sha256": "8f5faee6b04ab8686b26eac91c2925eb7972b000b12f57f4ccd9e3463619941b"
+    },
+    {
+      "map": "cave",
+      "sha256": "da0773a9aef911ae1a025addaa86170b85760591a9fe71374427f1e041d85da0"
+    },
+    {
+      "map": "volcano",
+      "sha256": "53a322f94af68684ed21d853dae3015aa6f6d51fe5228a0d3aab860be4113327"
+    },
+    {
+      "map": "gallery",
+      "sha256": "2b53ed6a073e4afddbf0e2c989358496fbdfa410a2e3c3afbfc8ff48777067a3"
+    },
+    {
+      "map": "optics",
+      "sha256": "ddaf8bb3666ae386b8e9a99870096e30a73d0913f2d83f2d9260aa4af94d3738"
+    },
+    {
+      "map": "energy",
+      "sha256": "6a18850a35fc6f3ef20dbdcc66ed28c14a77bc6fd6eb07866777c514c27b0042"
+    },
+    {
+      "map": "cover",
+      "sha256": "481be40be9656f1f59b84e9fb7f36fdee953e7bbe4bf058d13451de7929cf968"
+    },
+    {
+      "map": "empty",
+      "sha256": "7cf1a9951223f83c1660a458a36497499e6e1775881371e09cf682fa31f9c005"
+    },
+    {
+      "map": "titlelab",
+      "sha256": "8dc6c612e4fb61d272f13c1241ebe2dc0b78d27e78ced07e9a6ec7d1e615fb8a"
+    }
+  ]
+}

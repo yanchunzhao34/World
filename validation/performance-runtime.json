@@ -1,0 +1,18 @@
+{
+  "context": "normal real-time background worker, lab, 1536x864, no editor presentation; 5-second startup excluded",
+  "samples": 111,
+  "new_frames_per_second": 18.495842428870404,
+  "simulation_ticks_per_second": 36.99168485774081,
+  "frame_compute_ms": {
+    "mean": 56.412702702735196,
+    "median": 54.32040000232519,
+    "p95": 56.87179999949876,
+    "max": 341.89300000070943
+  },
+  "observed_frame_interval_ms": {
+    "mean": 54.06620454546514,
+    "median": 54.55649999930756,
+    "p95": 57.045300000027055,
+    "max": 66.44950000190875
+  }
+}

@@ -1,0 +1,323 @@
+{
+  "source": "ElementWorkshop/web/assets/index-COHhkJFR.js",
+  "shaders": [
+    {
+      "path": "bodies/body_claim.wgsl",
+      "bundle_symbol": "n",
+      "bytes": 4009,
+      "sha256": "89f539d4b9496214718aa4bf4b5d79787f47497e820a9b22d3c4f59463a17688"
+    },
+    {
+      "path": "bodies/body_dead.wgsl",
+      "bundle_symbol": "r",
+      "bytes": 2138,
+      "sha256": "e17e6c70b49e8bbcbcf740d3b6e450dfb093e76e79477e6eb9f15f7173c64fa3"
+    },
+    {
+      "path": "bodies/body_displace.wgsl",
+      "bundle_symbol": "i",
+      "bytes": 12648,
+      "sha256": "1701557459e305226bb71310f80dc5bb7f2023ba36db4ecb1445fd4279be9e1a"
+    },
+    {
+      "path": "bodies/body_erase.wgsl",
+      "bundle_symbol": "a",
+      "bytes": 7909,
+      "sha256": "dfddf38922f2c36e9f8773ca6119c15e1195cf626ff75e5131391b4544f4e588"
+    },
+    {
+      "path": "bodies/body_occ.wgsl",
+      "bundle_symbol": "o",
+      "bytes": 3118,
+      "sha256": "b9862e82ff0d930892af49cffde0e64443683cf3d0b59612627c4d15f9357eb2"
+    },
+    {
+      "path": "bodies/body_owner.wgsl",
+      "bundle_symbol": "s",
+      "bytes": 1069,
+      "sha256": "26b24ff576bcfbccb87b6579fde2987b22dafd4e01261e94fa6d293cd281e6c8"
+    },
+    {
+      "path": "bodies/body_stamp.wgsl",
+      "bundle_symbol": "c",
+      "bytes": 11331,
+      "sha256": "c25fcf35a8b56d796cf0237c2b48416b7cabff3f13af3a0a9798cf7e3d338aec"
+    },
+    {
+      "path": "fluid/advect.wgsl",
+      "bundle_symbol": "l",
+      "bytes": 7172,
+      "sha256": "36a2bc62c7e7ef66af1a9bd7658105506dda1c443053f3a71e01ac1b7ac76a11"
+    },
+    {
+      "path": "fluid/divergence.wgsl",
+      "bundle_symbol": "u",
+      "bytes": 2223,
+      "sha256": "be1a24e3ffe4b23f4cb81f0f254741ea188a5009ecfb319cccf7fc9b6964da36"
+    },
+    {
+      "path": "fluid/fluid_inject.wgsl",
+      "bundle_symbol": "d",
+      "bytes": 11806,
+      "sha256": "f33cb7c9a1fc0e4ca08df829061b0cbf4410eac658057d4280df02035659da14"
+    },
+    {
+      "path": "fluid/medium.wgsl",
+      "bundle_symbol": "f",
+      "bytes": 5386,
+      "sha256": "cba93ff5a5badcc1e05c21bd1525577ffa127960329a69d24089e3237e3d7688"
+    },
+    {
+      "path": "fluid/pressure.wgsl",
+      "bundle_symbol": "p",
+      "bytes": 3478,
+      "sha256": "fff96a2bee9f8507eced1587d7ac25528b7b833d89a6d759c885d9698d83a013"
+    },
+    {
+      "path": "fluid/pressure_solve.wgsl",
+      "bundle_symbol": "m",
+      "bytes": 10078,
+      "sha256": "eb0ee22b42162ff849492b0a61d812634906cb59eda4d4568ef95539981dd31d"
+    },
+    {
+      "path": "fluid/project.wgsl",
+      "bundle_symbol": "h",
+      "bytes": 4198,
+      "sha256": "91e83690e7559ecfe9b218848febed51281c124e0beafaaa8a759f314adb65c0"
+    },
+    {
+      "path": "net/net_chunks.wgsl",
+      "bundle_symbol": "g",
+      "bytes": 16219,
+      "sha256": "3e6a38b0a6d787be93d0aa1e48022070a9e41f38b0bdb15c22a8c3b4f955745e"
+    },
+    {
+      "path": "net/state_hash.wgsl",
+      "bundle_symbol": "_",
+      "bytes": 5945,
+      "sha256": "ff7f6c352f255742c134032032b54f2493c41b07463699dd89c9eb454c21562f"
+    },
+    {
+      "path": "render/beam_blur.wgsl",
+      "bundle_symbol": "v",
+      "bytes": 5004,
+      "sha256": "97a7af83954bcafd610dfabc8b866f2339bd8a6e0f72484c5d6ffeaa5d0f2c36"
+    },
+    {
+      "path": "render/beam_probe.wgsl",
+      "bundle_symbol": "y",
+      "bytes": 39195,
+      "sha256": "f5bc2a478ade90b4774dd6be232cb37fdec4d4d7ad14cb3a5714d340177bef41"
+    },
+    {
+      "path": "render/beam_waves.wgsl",
+      "bundle_symbol": "b",
+      "bytes": 87283,
+      "sha256": "f840fc3ae62d9558261b8e2416acfb419d97feb979ace8e0b0510b8aac2b9a43"
+    },
+    {
+      "path": "render/bloom_down.wgsl",
+      "bundle_symbol": "ee",
+      "bytes": 8401,
+      "sha256": "1e456188571c5f1534b14e59944fee16d267d24c2287ee3960dad3ab17f6389f"
+    },
+    {
+      "path": "render/bloom_up.wgsl",
+      "bundle_symbol": "x",
+      "bytes": 2909,
+      "sha256": "e8eca5277d478b3d431666f775f5e3f048537605c13609b9c11d3a60efea656b"
+    },
+    {
+      "path": "render/composite.wgsl",
+      "bundle_symbol": "te",
+      "bytes": 46074,
+      "sha256": "175401950313105f1f829b0f2d0a9371c32b04dcecc8a4bbb6992153ea34383a"
+    },
+    {
+      "path": "render/daylight.wgsl",
+      "bundle_symbol": "ne",
+      "bytes": 13593,
+      "sha256": "6d2bccba23eee97605ba646da748bf61f022927ce9138e5eec2b782854ee935d"
+    },
+    {
+      "path": "render/debug_view.wgsl",
+      "bundle_symbol": "re",
+      "bytes": 10896,
+      "sha256": "62352a1ad485d46ae0b37d55a9ef49544fba879c948194ac1e0f74a12b245abc"
+    },
+    {
+      "path": "render/dof.wgsl",
+      "bundle_symbol": "ie",
+      "bytes": 3061,
+      "sha256": "275af3e592bf485e45ab205628311379445e65f45885fe8988beb3118ebcf16f"
+    },
+    {
+      "path": "render/downsample.wgsl",
+      "bundle_symbol": "ae",
+      "bytes": 1241,
+      "sha256": "677c88467a13770778b75a353a04526e8bec0857b43c02fcbdaa176aa005657c"
+    },
+    {
+      "path": "render/exposure.wgsl",
+      "bundle_symbol": "oe",
+      "bytes": 5879,
+      "sha256": "7dcf8cf844bdc46b922f544c8843dfd33e1590941a1f1482671e652b5574e22b"
+    },
+    {
+      "path": "render/fog_backlight.wgsl",
+      "bundle_symbol": "se",
+      "bytes": 2597,
+      "sha256": "32f615f43d0b44531776ff47352aa0f59eb17384f091380254553d1aa6de50b3"
+    },
+    {
+      "path": "render/front_fog.wgsl",
+      "bundle_symbol": "ce",
+      "bytes": 9935,
+      "sha256": "1b7ca3b31e228a04234262e94198a61a26ca95b1d6d61106e6b0da75a2eee8ed"
+    },
+    {
+      "path": "render/gbuffer.wgsl",
+      "bundle_symbol": "le",
+      "bytes": 59984,
+      "sha256": "178c186cc36a088f0ba28eb445afb71596a3e83f61c47e6be36bb5f232edbfd2"
+    },
+    {
+      "path": "render/godrays.wgsl",
+      "bundle_symbol": "ue",
+      "bytes": 6672,
+      "sha256": "74e8609120b49542c2c2a5bc4c39faf11db4398bab167b756dd578e76b6f4af1"
+    },
+    {
+      "path": "render/light_prep.wgsl",
+      "bundle_symbol": "de",
+      "bytes": 3692,
+      "sha256": "02d25cce5c57143943329743175338fb4eda83108994eec0681d3bf57806aa65"
+    },
+    {
+      "path": "render/occ_field.wgsl",
+      "bundle_symbol": "fe",
+      "bytes": 7326,
+      "sha256": "7991fe77be5519edfddae5fd6ff56f4c9fd9ad069cfa1aab3fa8813e6409489d"
+    },
+    {
+      "path": "render/rc_avg.wgsl",
+      "bundle_symbol": "pe",
+      "bytes": 2317,
+      "sha256": "7e5203f08b7387f67d73058b8973ef15ff83ba5d310bcd3cc227ddeb5950540a"
+    },
+    {
+      "path": "render/rc_cascade.wgsl",
+      "bundle_symbol": "me",
+      "bytes": 18999,
+      "sha256": "e07942e4481021daf70da6d0d405d75ad5d526eb2d047fe995ee8430f1e71028"
+    },
+    {
+      "path": "render/rc_empty.wgsl",
+      "bundle_symbol": "he",
+      "bytes": 3578,
+      "sha256": "a5dc3c114655897921a31d799641e7c129db7eb0095828ebefc143436d8380d0"
+    },
+    {
+      "path": "render/rc_mips.wgsl",
+      "bundle_symbol": "ge",
+      "bytes": 3139,
+      "sha256": "421e31ec852b7999a205f2b542a444f5bca2082dc77aae303752ccb81ba41c0b"
+    },
+    {
+      "path": "render/rc_occ.wgsl",
+      "bundle_symbol": "_e",
+      "bytes": 3642,
+      "sha256": "a308eb11a7eded0fec5ad5775d1b1b00ba999915effb5fb24605366325099da9"
+    },
+    {
+      "path": "render/rc_resolve.wgsl",
+      "bundle_symbol": "ve",
+      "bytes": 10704,
+      "sha256": "63f9e322b7f8cd9873b7f5b108f8f84489bcdbddc75bb1207bcb09a4ace912e0"
+    },
+    {
+      "path": "render/subsurface.wgsl",
+      "bundle_symbol": "ye",
+      "bytes": 8082,
+      "sha256": "2d82c916b00aad4bb6a92b481b09f14b0001ac91889d8ff92655cba2519b0c41"
+    },
+    {
+      "path": "render/tonemap.wgsl",
+      "bundle_symbol": "be",
+      "bytes": 9903,
+      "sha256": "89bcaed346df843a494b314ffad4df6a28a9c5d052cb446d8399ac2a50514be5"
+    },
+    {
+      "path": "render/view3d.wgsl",
+      "bundle_symbol": "xe",
+      "bytes": 183714,
+      "sha256": "cdbb91c4d3fb002da7a078866687704af9cbea6ce52e1d949aaeb1341c798d47"
+    },
+    {
+      "path": "render/view_cells.wgsl",
+      "bundle_symbol": "Se",
+      "bytes": 65174,
+      "sha256": "415bd1d35b13f36e25a1bd8d1841fabab59bf07e55e90735af66045894bbc78e"
+    },
+    {
+      "path": "render/window_shafts.wgsl",
+      "bundle_symbol": "Ce",
+      "bytes": 8038,
+      "sha256": "1dfded7f9639a02061d20842f426d7b832bb1fc840775c81c0366e5cd509c344"
+    },
+    {
+      "path": "sim/apply_commands.wgsl",
+      "bundle_symbol": "we",
+      "bytes": 28563,
+      "sha256": "f431f122173e2693793cabb27eb2c822a16fcef910c164b3630ea87035655eaa"
+    },
+    {
+      "path": "sim/explosion.wgsl",
+      "bundle_symbol": "Te",
+      "bytes": 21960,
+      "sha256": "8f4075b512ff6216992af3e3798402d0c0432b95023021051dc7a552147e9b01"
+    },
+    {
+      "path": "sim/explosion_gather.wgsl",
+      "bundle_symbol": "Ee",
+      "bytes": 7173,
+      "sha256": "a654319e75a1536f6ca80f5fc580632336e6186464aa2fafc9f280a8a2b425e6"
+    },
+    {
+      "path": "sim/heat.wgsl",
+      "bundle_symbol": "De",
+      "bytes": 10978,
+      "sha256": "7e9afd760141610c60616706a7efa94448f6259f517e1682da957127d7cbbd81"
+    },
+    {
+      "path": "sim/liquid_spread.wgsl",
+      "bundle_symbol": "Oe",
+      "bytes": 16400,
+      "sha256": "5b8d7a2e88f90a7e7c59f6417eb0ff08a9ca07df7319b69c80aef4b21457f573"
+    },
+    {
+      "path": "sim/margolus_fused.wgsl",
+      "bundle_symbol": "ke",
+      "bytes": 43029,
+      "sha256": "0a0fc6b4bcfce70ac07cfd5a6be0a4ab4689bd0975e41e7b442db5818f56c55d"
+    },
+    {
+      "path": "sim/margolus_move.wgsl",
+      "bundle_symbol": "Ae",
+      "bytes": 40005,
+      "sha256": "02078d72bfdd6e08b5a6ee5b14b752bd9daf2aa65b1c1cd38fdc7d7cb3861b9b"
+    },
+    {
+      "path": "sim/reactions.wgsl",
+      "bundle_symbol": "je",
+      "bytes": 40712,
+      "sha256": "0d688713fa3eef9b8eeba296f475b24c8a8970222a54f34ce46dd6faaac337ee"
+    },
+    {
+      "path": "sim/unary.wgsl",
+      "bundle_symbol": "Me",
+      "bytes": 39342,
+      "sha256": "0bf7cc789231eb6bf44aaee7d2cfa555cbb7e1b15f79c2a7cbb4cade22521d1b"
+    }
+  ]
+}

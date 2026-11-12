@@ -1,0 +1,48 @@
+{
+    "metadata": {
+        "binary_type": {
+            "type": "string",
+            "value": "archive"
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "5441ed9fb0cc01f4"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".gz"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/maps/showcase_phase.bg.gz"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 589824
+        },
+        "file_type": {
+            "type": "string",
+            "value": "binary"
+        },
+        "guid": {
+            "type": "string",
+            "value": "e196f8b2a2bfb63482660971e0290a54"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": false
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1793287468"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultBinary"
+        },
+        "size_category": {
+            "type": "string",
+            "value": "small"
+        }
+    }
+}

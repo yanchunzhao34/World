@@ -1,0 +1,124 @@
+{
+    "metadata": {
+        "aniso_level": {
+            "type": "int",
+            "value": -1
+        },
+        "artifact_depth": {
+            "type": "int",
+            "value": 1
+        },
+        "artifact_dimension": {
+            "type": "string",
+            "value": "2d"
+        },
+        "artifact_format": {
+            "type": "string",
+            "value": "bc1_rgba_srgb"
+        },
+        "artifact_height": {
+            "type": "int",
+            "value": 180
+        },
+        "artifact_mip_count": {
+            "type": "int",
+            "value": 9
+        },
+        "artifact_srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "artifact_width": {
+            "type": "int",
+            "value": 320
+        },
+        "channels": {
+            "type": "int",
+            "value": 3
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "d7fdbe5f5786515a"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".jpg"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/thumbs/volcano.jpg"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 9246
+        },
+        "file_type": {
+            "type": "string",
+            "value": "texture"
+        },
+        "filter_mode": {
+            "type": "string",
+            "value": "linear"
+        },
+        "generate_mipmaps": {
+            "type": "bool",
+            "value": true
+        },
+        "guid": {
+            "type": "string",
+            "value": "72af0cf38b51b4ab5dbd9484b8c3642e"
+        },
+        "height": {
+            "type": "int",
+            "value": 180
+        },
+        "is_binary": {
+            "type": "bool",
+            "value": true
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1792831000"
+        },
+        "max_size": {
+            "type": "int",
+            "value": 2048
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Texture"
+        },
+        "source_container": {
+            "type": "string",
+            "value": "JPEG"
+        },
+        "srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "texture_compression": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_compression_quality": {
+            "type": "string",
+            "value": "normal"
+        },
+        "texture_format": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_type": {
+            "type": "string",
+            "value": "default"
+        },
+        "width": {
+            "type": "int",
+            "value": 320
+        },
+        "wrap_mode": {
+            "type": "string",
+            "value": "repeat"
+        }
+    }
+}

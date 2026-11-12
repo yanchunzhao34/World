@@ -1,0 +1,41 @@
+{
+  "project": "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-project-8d3dcbb0",
+  "cycles": 2,
+  "captures": [
+    "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-window-1.png",
+    "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-window-2.png"
+  ],
+  "performance_cycles": [
+    {
+      "seconds": 5.997092399993562,
+      "samples": 261,
+      "produced_fps": 43.35434284792395,
+      "engine_fps": 43.687837792907985,
+      "presentation_fps_cap": 120.0,
+      "displayed_new_frames_per_second": 43.35434284792395,
+      "mean_compute_ms": 19.19653218412831,
+      "mean_interval_ms": 23.06573999997524,
+      "p95_interval_ms": 26.716899999883026,
+      "maximum_interval_ms": 30.01070000755135
+    },
+    {
+      "seconds": 5.980213599992567,
+      "samples": 289,
+      "produced_fps": 48.158814929346,
+      "engine_fps": 48.158814929346,
+      "presentation_fps_cap": 120.0,
+      "displayed_new_frames_per_second": 48.158814929346,
+      "mean_compute_ms": 17.245628720016065,
+      "mean_interval_ms": 20.764630555529745,
+      "p95_interval_ms": 22.475400008261204,
+      "maximum_interval_ms": 25.498399991192855
+    }
+  ],
+  "audio_enabled": true,
+  "viewport": [
+    1312,
+    738
+  ],
+  "pointer_pause_button": true,
+  "passed": true
+}

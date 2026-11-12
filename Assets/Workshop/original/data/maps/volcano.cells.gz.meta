@@ -1,0 +1,48 @@
+{
+    "metadata": {
+        "binary_type": {
+            "type": "string",
+            "value": "archive"
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "a15f44a728e864e2"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".gz"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/maps/volcano.cells.gz"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 2359296
+        },
+        "file_type": {
+            "type": "string",
+            "value": "binary"
+        },
+        "guid": {
+            "type": "string",
+            "value": "b2c227107e50aa5f8177d55fcd0d345c"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": false
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1792830141"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultBinary"
+        },
+        "size_category": {
+            "type": "string",
+            "value": "medium"
+        }
+    }
+}

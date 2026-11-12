@@ -1,0 +1,42 @@
+# Local engine installation, Python environment and generated engine resources.
+/.runtime/
+/.infernux/
+/Library/
+/Cache/
+/Logs/
+/Packages/infernux/
+/.infernux-engine-lock*
+
+# Python build products and virtual environments.
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+/build/
+/dist/
+
+# Player data and machine-specific editor state.
+/UserData/
+*.ewsave
+/.vscode/
+/ProjectSettings/EditorSettings.json
+/ProjectSettings/GameView.ini
+/ProjectSettings/InxPlugins.json
+/ProjectSettings/InxPackages.lock.json
+/ProjectSettings/mcp_capabilities.json
+.env
+.env.*
+!.env.example
+
+# Keep rendering fixtures and compact reports, omit generated captures and dumps.
+/validation/*
+!/validation/reference/
+!/validation/godot-lab-reference.png
+!/validation/*.json
+!/validation/lighting/
+/validation/lighting/*
+!/validation/lighting/*.json
+
+# Local project-reading notes.
+/ProjectAnalysis_*/

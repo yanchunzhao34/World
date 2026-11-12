@@ -1,0 +1,1195 @@
+{
+  "source": "D:\\godot_project\\元素工坊",
+  "files": [
+    {
+      "source": "original/shader-manifest.json",
+      "file": "Assets/Workshop/original/shader-manifest.json",
+      "sha256": "669ce51f2918669f8fe96cc29b0d81caab41cb71c3b1590af9e023d14f513c90"
+    },
+    {
+      "source": "original/data/game.json",
+      "file": "Assets/Workshop/original/data/game.json",
+      "sha256": "6e055b6e7938ece7810a4851bdfba53741e9a144cc3776f8cff06e022f2c5b29"
+    },
+    {
+      "source": "original/data/lut.bin",
+      "file": "Assets/Workshop/original/data/lut.bin",
+      "sha256": "a2b3fe69e0fc7b69dd2ef6af9194fb280a273388555124f838256b72380b3c72"
+    },
+    {
+      "source": "original/data/materials.bin",
+      "file": "Assets/Workshop/original/data/materials.bin",
+      "sha256": "2d8c44ff2dc4aa143db0ea59ec9aa618448e8a8bdbdc5b049ca766512447e0f0"
+    },
+    {
+      "source": "original/data/reactions.bin",
+      "file": "Assets/Workshop/original/data/reactions.bin",
+      "sha256": "1c024153ada1c1113bcf4d851cbf6d664bae42385307d2b814097c0202e1f3b6"
+    },
+    {
+      "source": "original/fonts/ui.ttf",
+      "file": "Assets/Workshop/original/fonts/ui.ttf",
+      "sha256": "cea86f9bb754c6965910efee958d9376a88b13e895df072bb90839e33fbbeac3"
+    },
+    {
+      "source": "original/fonts/ui.woff2",
+      "file": "Assets/Workshop/original/fonts/ui.woff2",
+      "sha256": "49e3364ce903840551e3f6feceeed1745ae5c625aeb443edccde6a3dff3be575"
+    },
+    {
+      "source": "original/thumbs/cave.jpg",
+      "file": "Assets/Workshop/original/thumbs/cave.jpg",
+      "sha256": "73aa58a917d8e52e48707fcdaf8a14f883fda5661d6a9a0e709b16fe84019a89"
+    },
+    {
+      "source": "original/thumbs/cover.jpg",
+      "file": "Assets/Workshop/original/thumbs/cover.jpg",
+      "sha256": "67319ad1e27ab4ceb4c953d9a2cdb72cc4d0750a2e79d1d8eab8fa5774b40fa0"
+    },
+    {
+      "source": "original/thumbs/empty.jpg",
+      "file": "Assets/Workshop/original/thumbs/empty.jpg",
+      "sha256": "63719f64b619be750be399b2b905aa71cb452feb28ec6109ba14bab7ea286572"
+    },
+    {
+      "source": "original/thumbs/energy.jpg",
+      "file": "Assets/Workshop/original/thumbs/energy.jpg",
+      "sha256": "65e3b5c7f6cdc45ec887efb5a6cec19d20964f5eb76873d436f8330f18bde2d6"
+    },
+    {
+      "source": "original/thumbs/gallery.jpg",
+      "file": "Assets/Workshop/original/thumbs/gallery.jpg",
+      "sha256": "431b51e41a9716f0667618713dd5c3531e9b0b4f87f2d78b20ce43c0f5c67c3d"
+    },
+    {
+      "source": "original/thumbs/lab.jpg",
+      "file": "Assets/Workshop/original/thumbs/lab.jpg",
+      "sha256": "15eced465a6b1b75968cb4b4b7580d60f839a9705244498f6f50063f7584f1d5"
+    },
+    {
+      "source": "original/thumbs/optics.jpg",
+      "file": "Assets/Workshop/original/thumbs/optics.jpg",
+      "sha256": "9e622bfd5ae4f13a2a3851d8d2c44d0b111bf6ccc0879cf5b9e998307551d33e"
+    },
+    {
+      "source": "original/thumbs/volcano.jpg",
+      "file": "Assets/Workshop/original/thumbs/volcano.jpg",
+      "sha256": "95aade1082bd5bd73b42337cd42b834a534b29fb188c344fb8e78f83a632e92a"
+    },
+    {
+      "source": "original/shaders/bodies/body_claim.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_claim.wgsl",
+      "sha256": "89f539d4b9496214718aa4bf4b5d79787f47497e820a9b22d3c4f59463a17688"
+    },
+    {
+      "source": "original/shaders/bodies/body_dead.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_dead.wgsl",
+      "sha256": "e17e6c70b49e8bbcbcf740d3b6e450dfb093e76e79477e6eb9f15f7173c64fa3"
+    },
+    {
+      "source": "original/shaders/bodies/body_displace.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_displace.wgsl",
+      "sha256": "1701557459e305226bb71310f80dc5bb7f2023ba36db4ecb1445fd4279be9e1a"
+    },
+    {
+      "source": "original/shaders/bodies/body_erase.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_erase.wgsl",
+      "sha256": "dfddf38922f2c36e9f8773ca6119c15e1195cf626ff75e5131391b4544f4e588"
+    },
+    {
+      "source": "original/shaders/bodies/body_occ.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_occ.wgsl",
+      "sha256": "b9862e82ff0d930892af49cffde0e64443683cf3d0b59612627c4d15f9357eb2"
+    },
+    {
+      "source": "original/shaders/bodies/body_owner.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_owner.wgsl",
+      "sha256": "26b24ff576bcfbccb87b6579fde2987b22dafd4e01261e94fa6d293cd281e6c8"
+    },
+    {
+      "source": "original/shaders/bodies/body_stamp.wgsl",
+      "file": "Assets/Workshop/original/shaders/bodies/body_stamp.wgsl",
+      "sha256": "c25fcf35a8b56d796cf0237c2b48416b7cabff3f13af3a0a9798cf7e3d338aec"
+    },
+    {
+      "source": "original/shaders/fluid/advect.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/advect.wgsl",
+      "sha256": "36a2bc62c7e7ef66af1a9bd7658105506dda1c443053f3a71e01ac1b7ac76a11"
+    },
+    {
+      "source": "original/shaders/fluid/divergence.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/divergence.wgsl",
+      "sha256": "be1a24e3ffe4b23f4cb81f0f254741ea188a5009ecfb319cccf7fc9b6964da36"
+    },
+    {
+      "source": "original/shaders/fluid/fluid_inject.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/fluid_inject.wgsl",
+      "sha256": "f33cb7c9a1fc0e4ca08df829061b0cbf4410eac658057d4280df02035659da14"
+    },
+    {
+      "source": "original/shaders/fluid/medium.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/medium.wgsl",
+      "sha256": "cba93ff5a5badcc1e05c21bd1525577ffa127960329a69d24089e3237e3d7688"
+    },
+    {
+      "source": "original/shaders/fluid/pressure.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/pressure.wgsl",
+      "sha256": "fff96a2bee9f8507eced1587d7ac25528b7b833d89a6d759c885d9698d83a013"
+    },
+    {
+      "source": "original/shaders/fluid/pressure_solve.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/pressure_solve.wgsl",
+      "sha256": "eb0ee22b42162ff849492b0a61d812634906cb59eda4d4568ef95539981dd31d"
+    },
+    {
+      "source": "original/shaders/fluid/project.wgsl",
+      "file": "Assets/Workshop/original/shaders/fluid/project.wgsl",
+      "sha256": "91e83690e7559ecfe9b218848febed51281c124e0beafaaa8a759f314adb65c0"
+    },
+    {
+      "source": "original/shaders/net/net_chunks.wgsl",
+      "file": "Assets/Workshop/original/shaders/net/net_chunks.wgsl",
+      "sha256": "3e6a38b0a6d787be93d0aa1e48022070a9e41f38b0bdb15c22a8c3b4f955745e"
+    },
+    {
+      "source": "original/shaders/net/state_hash.wgsl",
+      "file": "Assets/Workshop/original/shaders/net/state_hash.wgsl",
+      "sha256": "ff7f6c352f255742c134032032b54f2493c41b07463699dd89c9eb454c21562f"
+    },
+    {
+      "source": "original/shaders/render/beam_blur.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/beam_blur.wgsl",
+      "sha256": "97a7af83954bcafd610dfabc8b866f2339bd8a6e0f72484c5d6ffeaa5d0f2c36"
+    },
+    {
+      "source": "original/shaders/render/beam_probe.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/beam_probe.wgsl",
+      "sha256": "f5bc2a478ade90b4774dd6be232cb37fdec4d4d7ad14cb3a5714d340177bef41"
+    },
+    {
+      "source": "original/shaders/render/beam_waves.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/beam_waves.wgsl",
+      "sha256": "f840fc3ae62d9558261b8e2416acfb419d97feb979ace8e0b0510b8aac2b9a43"
+    },
+    {
+      "source": "original/shaders/render/bloom_down.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/bloom_down.wgsl",
+      "sha256": "1e456188571c5f1534b14e59944fee16d267d24c2287ee3960dad3ab17f6389f"
+    },
+    {
+      "source": "original/shaders/render/bloom_up.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/bloom_up.wgsl",
+      "sha256": "e8eca5277d478b3d431666f775f5e3f048537605c13609b9c11d3a60efea656b"
+    },
+    {
+      "source": "original/shaders/render/composite.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/composite.wgsl",
+      "sha256": "175401950313105f1f829b0f2d0a9371c32b04dcecc8a4bbb6992153ea34383a"
+    },
+    {
+      "source": "original/shaders/render/daylight.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/daylight.wgsl",
+      "sha256": "6d2bccba23eee97605ba646da748bf61f022927ce9138e5eec2b782854ee935d"
+    },
+    {
+      "source": "original/shaders/render/debug_view.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/debug_view.wgsl",
+      "sha256": "62352a1ad485d46ae0b37d55a9ef49544fba879c948194ac1e0f74a12b245abc"
+    },
+    {
+      "source": "original/shaders/render/dof.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/dof.wgsl",
+      "sha256": "275af3e592bf485e45ab205628311379445e65f45885fe8988beb3118ebcf16f"
+    },
+    {
+      "source": "original/shaders/render/downsample.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/downsample.wgsl",
+      "sha256": "677c88467a13770778b75a353a04526e8bec0857b43c02fcbdaa176aa005657c"
+    },
+    {
+      "source": "original/shaders/render/exposure.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/exposure.wgsl",
+      "sha256": "7dcf8cf844bdc46b922f544c8843dfd33e1590941a1f1482671e652b5574e22b"
+    },
+    {
+      "source": "original/shaders/render/fog_backlight.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/fog_backlight.wgsl",
+      "sha256": "32f615f43d0b44531776ff47352aa0f59eb17384f091380254553d1aa6de50b3"
+    },
+    {
+      "source": "original/shaders/render/front_fog.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/front_fog.wgsl",
+      "sha256": "1b7ca3b31e228a04234262e94198a61a26ca95b1d6d61106e6b0da75a2eee8ed"
+    },
+    {
+      "source": "original/shaders/render/gbuffer.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/gbuffer.wgsl",
+      "sha256": "178c186cc36a088f0ba28eb445afb71596a3e83f61c47e6be36bb5f232edbfd2"
+    },
+    {
+      "source": "original/shaders/render/godrays.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/godrays.wgsl",
+      "sha256": "74e8609120b49542c2c2a5bc4c39faf11db4398bab167b756dd578e76b6f4af1"
+    },
+    {
+      "source": "original/shaders/render/light_prep.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/light_prep.wgsl",
+      "sha256": "02d25cce5c57143943329743175338fb4eda83108994eec0681d3bf57806aa65"
+    },
+    {
+      "source": "original/shaders/render/occ_field.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/occ_field.wgsl",
+      "sha256": "7991fe77be5519edfddae5fd6ff56f4c9fd9ad069cfa1aab3fa8813e6409489d"
+    },
+    {
+      "source": "original/shaders/render/rc_avg.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_avg.wgsl",
+      "sha256": "7e5203f08b7387f67d73058b8973ef15ff83ba5d310bcd3cc227ddeb5950540a"
+    },
+    {
+      "source": "original/shaders/render/rc_cascade.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_cascade.wgsl",
+      "sha256": "e07942e4481021daf70da6d0d405d75ad5d526eb2d047fe995ee8430f1e71028"
+    },
+    {
+      "source": "original/shaders/render/rc_empty.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_empty.wgsl",
+      "sha256": "a5dc3c114655897921a31d799641e7c129db7eb0095828ebefc143436d8380d0"
+    },
+    {
+      "source": "original/shaders/render/rc_mips.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_mips.wgsl",
+      "sha256": "421e31ec852b7999a205f2b542a444f5bca2082dc77aae303752ccb81ba41c0b"
+    },
+    {
+      "source": "original/shaders/render/rc_occ.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_occ.wgsl",
+      "sha256": "a308eb11a7eded0fec5ad5775d1b1b00ba999915effb5fb24605366325099da9"
+    },
+    {
+      "source": "original/shaders/render/rc_resolve.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/rc_resolve.wgsl",
+      "sha256": "63f9e322b7f8cd9873b7f5b108f8f84489bcdbddc75bb1207bcb09a4ace912e0"
+    },
+    {
+      "source": "original/shaders/render/subsurface.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/subsurface.wgsl",
+      "sha256": "2d82c916b00aad4bb6a92b481b09f14b0001ac91889d8ff92655cba2519b0c41"
+    },
+    {
+      "source": "original/shaders/render/tonemap.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/tonemap.wgsl",
+      "sha256": "89bcaed346df843a494b314ffad4df6a28a9c5d052cb446d8399ac2a50514be5"
+    },
+    {
+      "source": "original/shaders/render/view3d.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/view3d.wgsl",
+      "sha256": "cdbb91c4d3fb002da7a078866687704af9cbea6ce52e1d949aaeb1341c798d47"
+    },
+    {
+      "source": "original/shaders/render/view_cells.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/view_cells.wgsl",
+      "sha256": "415bd1d35b13f36e25a1bd8d1841fabab59bf07e55e90735af66045894bbc78e"
+    },
+    {
+      "source": "original/shaders/render/window_shafts.wgsl",
+      "file": "Assets/Workshop/original/shaders/render/window_shafts.wgsl",
+      "sha256": "1dfded7f9639a02061d20842f426d7b832bb1fc840775c81c0366e5cd509c344"
+    },
+    {
+      "source": "original/shaders/sim/apply_commands.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/apply_commands.wgsl",
+      "sha256": "f431f122173e2693793cabb27eb2c822a16fcef910c164b3630ea87035655eaa"
+    },
+    {
+      "source": "original/shaders/sim/explosion.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/explosion.wgsl",
+      "sha256": "8f4075b512ff6216992af3e3798402d0c0432b95023021051dc7a552147e9b01"
+    },
+    {
+      "source": "original/shaders/sim/explosion_gather.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/explosion_gather.wgsl",
+      "sha256": "a654319e75a1536f6ca80f5fc580632336e6186464aa2fafc9f280a8a2b425e6"
+    },
+    {
+      "source": "original/shaders/sim/heat.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/heat.wgsl",
+      "sha256": "7e9afd760141610c60616706a7efa94448f6259f517e1682da957127d7cbbd81"
+    },
+    {
+      "source": "original/shaders/sim/liquid_spread.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/liquid_spread.wgsl",
+      "sha256": "5b8d7a2e88f90a7e7c59f6417eb0ff08a9ca07df7319b69c80aef4b21457f573"
+    },
+    {
+      "source": "original/shaders/sim/margolus_fused.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/margolus_fused.wgsl",
+      "sha256": "0a0fc6b4bcfce70ac07cfd5a6be0a4ab4689bd0975e41e7b442db5818f56c55d"
+    },
+    {
+      "source": "original/shaders/sim/margolus_move.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/margolus_move.wgsl",
+      "sha256": "02078d72bfdd6e08b5a6ee5b14b752bd9daf2aa65b1c1cd38fdc7d7cb3861b9b"
+    },
+    {
+      "source": "original/shaders/sim/reactions.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/reactions.wgsl",
+      "sha256": "0d688713fa3eef9b8eeba296f475b24c8a8970222a54f34ce46dd6faaac337ee"
+    },
+    {
+      "source": "original/shaders/sim/unary.wgsl",
+      "file": "Assets/Workshop/original/shaders/sim/unary.wgsl",
+      "sha256": "0bf7cc789231eb6bf44aaee7d2cfa555cbb7e1b15f79c2a7cbb4cade22521d1b"
+    },
+    {
+      "source": "original/data/maps/cave.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/cave.bg.gz",
+      "sha256": "3ce42fd1f09a9220ed59dd0ddae1a620ba38090cfc5b6ba03afc0420a98290fa"
+    },
+    {
+      "source": "original/data/maps/cave.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/cave.cells.gz",
+      "sha256": "bc88fd925ad0349e0ee05c6a644c12b9a2f5f744cef2fb13fe15a8a332eaf0fa"
+    },
+    {
+      "source": "original/data/maps/cover.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/cover.bg.gz",
+      "sha256": "2d515594e278a557b9c35390c5e41932b64c9771015565287937d6ba5a03d87f"
+    },
+    {
+      "source": "original/data/maps/cover.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/cover.cells.gz",
+      "sha256": "164a4f5b84bec469e3cf0fd6478f7a9a55fafb56ab8f96dae3fc93596cf7d8c6"
+    },
+    {
+      "source": "original/data/maps/empty.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/empty.bg.gz",
+      "sha256": "648ba33a30f1af1593fd13519141e156df57d6714342a432c2360454b485b9da"
+    },
+    {
+      "source": "original/data/maps/empty.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/empty.cells.gz",
+      "sha256": "78bbf058e896bea6af8c0ab896f5373a24070c9e7ead4a6ae4326dfcbee26d54"
+    },
+    {
+      "source": "original/data/maps/energy.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/energy.bg.gz",
+      "sha256": "78916dd06f531a3b4556cb47739c943f8ef15a3fc1d84e5ef92c6a20186c65d8"
+    },
+    {
+      "source": "original/data/maps/energy.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/energy.cells.gz",
+      "sha256": "ebbd16bd053f938cee6625077304aa718944d6f72422a02d817bfd13e45f4ab4"
+    },
+    {
+      "source": "original/data/maps/gallery.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/gallery.bg.gz",
+      "sha256": "32aae3bd688432e7575bd03953cd9c04d7e0edf7f23a6c2b1465fd7091293c02"
+    },
+    {
+      "source": "original/data/maps/gallery.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/gallery.cells.gz",
+      "sha256": "d92a01dd4786de55e40f90b33208bbc3b1c3d4b6db3f82bf638ab0fc5c432508"
+    },
+    {
+      "source": "original/data/maps/lab.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/lab.bg.gz",
+      "sha256": "9801c8cfea74ee0560a541b81ca3080aea07e24d8e3a9d1543e2de00b39e1bc8"
+    },
+    {
+      "source": "original/data/maps/lab.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/lab.cells.gz",
+      "sha256": "28065f58f917fc075e581bd742141a62b073705da79ac67aad85c69db1ed53c5"
+    },
+    {
+      "source": "original/data/maps/optics.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/optics.bg.gz",
+      "sha256": "be14836a585d31dbe8e74f553d34657776294894335ce1f9502d6893797271fa"
+    },
+    {
+      "source": "original/data/maps/optics.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/optics.cells.gz",
+      "sha256": "0413bc75e6c8eaf3c290c4d7649de51a693c40a3f8554533a7ab8b6966662c32"
+    },
+    {
+      "source": "original/data/maps/showcase_acid.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_acid.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_acid.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_acid.cells.gz",
+      "sha256": "a6b30398f934895912da7acc20f66ee97e668f1771e04e732a296ab5b43bf880"
+    },
+    {
+      "source": "original/data/maps/showcase_cold.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_cold.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_cold.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_cold.cells.gz",
+      "sha256": "5b64fcd1bccbcc3204b7d4706d4bea4d7fa89b902a98cbdf8d037702d98fbd6e"
+    },
+    {
+      "source": "original/data/maps/showcase_combustion.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_combustion.bg.gz",
+      "sha256": "d558f2e37af0871e66c9372d96b9ae5e35e6117ede7a694e933a3164ac2bfe79"
+    },
+    {
+      "source": "original/data/maps/showcase_combustion.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_combustion.cells.gz",
+      "sha256": "d8ad428464c300f30aa5aae06222218074931f0a19c3e000cf904c3a87beb395"
+    },
+    {
+      "source": "original/data/maps/showcase_density.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_density.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_density.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_density.cells.gz",
+      "sha256": "e14ea470c574c7dff5a6d4ac04cfa0b8a5a235db5794277dc063fa6cbf4f9c26"
+    },
+    {
+      "source": "original/data/maps/showcase_explosion.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_explosion.bg.gz",
+      "sha256": "d558f2e37af0871e66c9372d96b9ae5e35e6117ede7a694e933a3164ac2bfe79"
+    },
+    {
+      "source": "original/data/maps/showcase_explosion.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_explosion.cells.gz",
+      "sha256": "74236ce1eb49452bf64f50b78eeaffba5705ab9e64bc0e2630d63a51235f9c19"
+    },
+    {
+      "source": "original/data/maps/showcase_flames.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_flames.bg.gz",
+      "sha256": "d558f2e37af0871e66c9372d96b9ae5e35e6117ede7a694e933a3164ac2bfe79"
+    },
+    {
+      "source": "original/data/maps/showcase_flames.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_flames.cells.gz",
+      "sha256": "5c43ededd7adc2734142f767f57790c23db9e88b9730bbdf378f05f27905c44c"
+    },
+    {
+      "source": "original/data/maps/showcase_mirrors.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_mirrors.bg.gz",
+      "sha256": "d78a68bcca6e5871669d39f163f0749aab85dd6ccba074389d54eb358736e104"
+    },
+    {
+      "source": "original/data/maps/showcase_mirrors.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_mirrors.cells.gz",
+      "sha256": "80d7365dca78f162baf12395ed8b55320f54eeb09908efc8f36b9d2568b7eb11"
+    },
+    {
+      "source": "original/data/maps/showcase_phase.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_phase.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_phase.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_phase.cells.gz",
+      "sha256": "b3088dd3bf8352a43e2b75d00ebf66e021370479b1fdb355db7600b1251661ec"
+    },
+    {
+      "source": "original/data/maps/showcase_reactions.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_reactions.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_reactions.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_reactions.cells.gz",
+      "sha256": "83ab402b76159d7fc04d732d19050b4d773e8309df575490fef2401283af01ab"
+    },
+    {
+      "source": "original/data/maps/showcase_rigid.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_rigid.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_rigid.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_rigid.cells.gz",
+      "sha256": "a76a4ef07b1c3177e0a298ea0fee432785b39977177b0f8f56021e872f1a115f"
+    },
+    {
+      "source": "original/data/maps/showcase_stained.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_stained.bg.gz",
+      "sha256": "583d8017c69f07ca32120723819a47ac29579ed9ac65f84d0be402ca04451df1"
+    },
+    {
+      "source": "original/data/maps/showcase_stained.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/showcase_stained.cells.gz",
+      "sha256": "32397e30e48afc1ba4929d218fbc2b635644b9d84451c0de8321ed1a967b62c3"
+    },
+    {
+      "source": "original/data/maps/titlelab.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/titlelab.bg.gz",
+      "sha256": "1ceaa0a3ca13b96baf8ddb969708c7237a18df944d4a8f77e7b8f24886bb87d9"
+    },
+    {
+      "source": "original/data/maps/titlelab.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/titlelab.cells.gz",
+      "sha256": "ee2ee0361eb7e66c71a2ae6a0c96db6efe3554727f0d78261918720c56e2b84e"
+    },
+    {
+      "source": "original/data/maps/volcano.bg.gz",
+      "file": "Assets/Workshop/original/data/maps/volcano.bg.gz",
+      "sha256": "2c55d50eff7bdc564c72669773dc2f9e4af7ab8cf6ce82152fce83745b863ce5"
+    },
+    {
+      "source": "original/data/maps/volcano.cells.gz",
+      "file": "Assets/Workshop/original/data/maps/volcano.cells.gz",
+      "sha256": "f219b4540ee96856b9d87cba6aa8ce7d62aa07192cc726d1e5ba223e11540407"
+    },
+    {
+      "source": "runtime/demos.js",
+      "file": "Assets/Workshop/runtime/demos.js",
+      "sha256": "0771e3398a76afba36a43ab7f46253ba45176d2f0a5ae4be31a82ec113de6b9e"
+    },
+    {
+      "source": "runtime/game.js",
+      "file": "Assets/Workshop/runtime/game.js",
+      "sha256": "5945550dad4b80cec0367c4616a9e9af3a5a9ba2b252b097480a1cc51b7607dd"
+    },
+    {
+      "source": "runtime/original_core.js",
+      "file": "Assets/Workshop/runtime/original_core.js",
+      "sha256": "a4c74ef354de73999916dde69ec45bfb48bbface7bd021bd1ac143a17e5eb844"
+    },
+    {
+      "source": "runtime/platform.js",
+      "file": "Assets/Workshop/runtime/platform.js",
+      "sha256": "cc135249f4f69887cf24a09f49ee9c0ca47081dd74f3f75766e73884af2a160b"
+    },
+    {
+      "source": "runtime/present.wgsl",
+      "file": "Assets/Workshop/runtime/present.wgsl",
+      "sha256": "2e99276c2a48b88d2167dd1e155faef6aa34903f81a81c7d192ddfb8589fa661"
+    },
+    {
+      "source": "runtime/world_observation.js",
+      "file": "Assets/Workshop/runtime/world_observation.js",
+      "sha256": "1044fe707ee333dff3c22ac38dba427ecabcdc9514b0fc79c17eed602bcc893d"
+    },
+    {
+      "source": "ui/demos.json",
+      "file": "Assets/Workshop/ui/demos.json",
+      "sha256": "9d9d45daeb5a4fca0632857971e17fce6e121be43bfd73e15a8bb90205dad632"
+    },
+    {
+      "source": "ui/material_names.json",
+      "file": "Assets/Workshop/ui/material_names.json",
+      "sha256": "fda5dc9fb1c9af3ee154f9f6923a7a9b9cd8f44533c42f4e83f03443d9647f13"
+    },
+    {
+      "source": "ui/title_copy.json",
+      "file": "Assets/Workshop/ui/title_copy.json",
+      "sha256": "36966ce4d6184d9502fa9f1c21c89967c5c7ff3f1471289f662380fe8b757020"
+    },
+    {
+      "source": "ui/icons/acid.png",
+      "file": "Assets/Workshop/ui/icons/acid.png",
+      "sha256": "2950691dfcf187a7bb822dce2260647f2fa47a34b5a0baaac4e885f1b2484122"
+    },
+    {
+      "source": "ui/icons/air.png",
+      "file": "Assets/Workshop/ui/icons/air.png",
+      "sha256": "5cbb9624e3a87af74b9ee366915a245e7611fe5b405683f8b7efe38db7de7263"
+    },
+    {
+      "source": "ui/icons/alcohol.png",
+      "file": "Assets/Workshop/ui/icons/alcohol.png",
+      "sha256": "b2bb1c0994fcac18cd00ade738a1bb7ab00bd7d8133b0ddfdb87327f5a9c412c"
+    },
+    {
+      "source": "ui/icons/amber_glass.png",
+      "file": "Assets/Workshop/ui/icons/amber_glass.png",
+      "sha256": "8806f85095cd852be2976222742aeb3f4f056cedc5385038be11181264aa5695"
+    },
+    {
+      "source": "ui/icons/arc.png",
+      "file": "Assets/Workshop/ui/icons/arc.png",
+      "sha256": "651c7a811dc6e15c6e36a99acc2cdbca10520a8792b86cef0038218a2001ba96"
+    },
+    {
+      "source": "ui/icons/ash.png",
+      "file": "Assets/Workshop/ui/icons/ash.png",
+      "sha256": "521ddbcaae6ca6d91cf70406aef873b49cabeacddf08e00fca4e3ba0466ec6b8"
+    },
+    {
+      "source": "ui/icons/block_black.png",
+      "file": "Assets/Workshop/ui/icons/block_black.png",
+      "sha256": "ad1e911624bc19f9849f20d1c559e3fe4db74cb1c1fa8c7fe22ebd4eae242a6b"
+    },
+    {
+      "source": "ui/icons/block_blue.png",
+      "file": "Assets/Workshop/ui/icons/block_blue.png",
+      "sha256": "12a0a4ed74e2f86f5abbc02048b120c59e45fa51fc93a0ce870f20df24a0879f"
+    },
+    {
+      "source": "ui/icons/block_brown.png",
+      "file": "Assets/Workshop/ui/icons/block_brown.png",
+      "sha256": "f5863a10e9c4e3315f482881cbe0bec17500efdcd38883c4c6e4b37033d6fa87"
+    },
+    {
+      "source": "ui/icons/block_cyan.png",
+      "file": "Assets/Workshop/ui/icons/block_cyan.png",
+      "sha256": "55c2fb68166f67493c6bf43725ec45e6b24b1e22a171df80cd6329f5a4cf4832"
+    },
+    {
+      "source": "ui/icons/block_green.png",
+      "file": "Assets/Workshop/ui/icons/block_green.png",
+      "sha256": "563c51131c60e20218c89ebf1ef6fa7997c8478653b85108844a5339a1b354a0"
+    },
+    {
+      "source": "ui/icons/block_grey.png",
+      "file": "Assets/Workshop/ui/icons/block_grey.png",
+      "sha256": "154bdbb86fa006b4c225fc78abe81addfac0eac7568a05d6bee827238b55bb8a"
+    },
+    {
+      "source": "ui/icons/block_orange.png",
+      "file": "Assets/Workshop/ui/icons/block_orange.png",
+      "sha256": "6752e09783512690f5883fd9c3413fe6c477481adf9a62a61a90453098c70893"
+    },
+    {
+      "source": "ui/icons/block_pink.png",
+      "file": "Assets/Workshop/ui/icons/block_pink.png",
+      "sha256": "29e365767d27aca3fac2947b88c5f875270422a94957d8131aa40d98a1d66661"
+    },
+    {
+      "source": "ui/icons/block_purple.png",
+      "file": "Assets/Workshop/ui/icons/block_purple.png",
+      "sha256": "95a55d376233b54beb2f6f9f77b6891e7d5f4a329274a5aefc6c43d219c10b28"
+    },
+    {
+      "source": "ui/icons/block_red.png",
+      "file": "Assets/Workshop/ui/icons/block_red.png",
+      "sha256": "c83959945dff586b3e0a5f1e76330d2aa52fe4ebab49139356405800f9486d62"
+    },
+    {
+      "source": "ui/icons/block_white.png",
+      "file": "Assets/Workshop/ui/icons/block_white.png",
+      "sha256": "a50bf7d75d9bad054f7798233f4ef46023d3dd7d3756e017f89fb718e83fd127"
+    },
+    {
+      "source": "ui/icons/block_yellow.png",
+      "file": "Assets/Workshop/ui/icons/block_yellow.png",
+      "sha256": "778bc17d6e864f1d7ff61fb21b6f9779be077b07e8317cdafd22542a2ab10766"
+    },
+    {
+      "source": "ui/icons/blue_glass.png",
+      "file": "Assets/Workshop/ui/icons/blue_glass.png",
+      "sha256": "82ba092db994167ce50bc0e6474bde268b37e73bfd207be084444123ea80b73f"
+    },
+    {
+      "source": "ui/icons/brush.png",
+      "file": "Assets/Workshop/ui/icons/brush.png",
+      "sha256": "b7a65401de76554b99340952549b60aee5bb0799cf4e3f9b8f07775dc4ca9515"
+    },
+    {
+      "source": "ui/icons/chlorine.png",
+      "file": "Assets/Workshop/ui/icons/chlorine.png",
+      "sha256": "e6f30ded8901f1005fbde21239b115e3b630d91150ef573e8da7eb23535888bc"
+    },
+    {
+      "source": "ui/icons/co2.png",
+      "file": "Assets/Workshop/ui/icons/co2.png",
+      "sha256": "466698e142432e2d4a9ee2adc717422e49cf454a4dbbaefb92922cfbb8fd9f7c"
+    },
+    {
+      "source": "ui/icons/coal.png",
+      "file": "Assets/Workshop/ui/icons/coal.png",
+      "sha256": "a2d124bbb1d17f030a41bf9dc46e35b0af1a2f2ff5c1adbd7d1237ad5e6e9073"
+    },
+    {
+      "source": "ui/icons/cold_flame.png",
+      "file": "Assets/Workshop/ui/icons/cold_flame.png",
+      "sha256": "784b66cfc81480936cdb8761c7735f3fab4b40a701d50fb50dda5452e050c54a"
+    },
+    {
+      "source": "ui/icons/cool.png",
+      "file": "Assets/Workshop/ui/icons/cool.png",
+      "sha256": "60c5c92f0ae1d68d9e0700cc1caa402957176ec9fda6844266fa3a755b0297f5"
+    },
+    {
+      "source": "ui/icons/copper.png",
+      "file": "Assets/Workshop/ui/icons/copper.png",
+      "sha256": "96ddc2cfcb222a183a47e11d1370834fc1d355b7f0e8a2cbb2aad75d04589f5a"
+    },
+    {
+      "source": "ui/icons/crystal.png",
+      "file": "Assets/Workshop/ui/icons/crystal.png",
+      "sha256": "828a4cb359890193e71707a134ae0d45191dcadfef8f1fc22b9425a63654ca69"
+    },
+    {
+      "source": "ui/icons/dry_ice.png",
+      "file": "Assets/Workshop/ui/icons/dry_ice.png",
+      "sha256": "4fc7306dce6f2e4e8ee53095ed679c5ef89850ed18cd90d628129ceab342395e"
+    },
+    {
+      "source": "ui/icons/eraser.png",
+      "file": "Assets/Workshop/ui/icons/eraser.png",
+      "sha256": "d5b2e077e76036e36bf429b2501831a92f2748a1ce74cc5d1812415113b334eb"
+    },
+    {
+      "source": "ui/icons/explode.png",
+      "file": "Assets/Workshop/ui/icons/explode.png",
+      "sha256": "cce7e88e6a9cb65c174f1f3130539af846fa6c742c1297515fb7170b931df65a"
+    },
+    {
+      "source": "ui/icons/fire.png",
+      "file": "Assets/Workshop/ui/icons/fire.png",
+      "sha256": "aa44047fb573e1942ee1f9c9db5cd3c223d5575a4f99a1a444206e27185e86ac"
+    },
+    {
+      "source": "ui/icons/flask.png",
+      "file": "Assets/Workshop/ui/icons/flask.png",
+      "sha256": "f7a8758d12f50290fe11464df557e11a7b0230fa6a7314b95f73fd2da2227d70"
+    },
+    {
+      "source": "ui/icons/gel.png",
+      "file": "Assets/Workshop/ui/icons/gel.png",
+      "sha256": "eb97534f025988a148dac5d34917edb2d769ede3d9f2f266ec84810fbaf0aaad"
+    },
+    {
+      "source": "ui/icons/glass.png",
+      "file": "Assets/Workshop/ui/icons/glass.png",
+      "sha256": "51c8e4ed1f8f80b8208f5a1e6f40076f19c4b7aeb677dea48ac2a1fde24ca390"
+    },
+    {
+      "source": "ui/icons/glow_liquid.png",
+      "file": "Assets/Workshop/ui/icons/glow_liquid.png",
+      "sha256": "8169b7b9c6d7ae6e5fad21abf2fabd61935bf9cad718acf08ed15a19b271345a"
+    },
+    {
+      "source": "ui/icons/glow_stick.png",
+      "file": "Assets/Workshop/ui/icons/glow_stick.png",
+      "sha256": "4523d876b94b44a054c7604ced6e3153d62a951ae08570acc3674953234512c2"
+    },
+    {
+      "source": "ui/icons/gold.png",
+      "file": "Assets/Workshop/ui/icons/gold.png",
+      "sha256": "33199147a6da4a0408910fc43e57d1b9f0eb39043538bd033093d421e59bc797"
+    },
+    {
+      "source": "ui/icons/green_glass.png",
+      "file": "Assets/Workshop/ui/icons/green_glass.png",
+      "sha256": "b2ab10cbe607f8eccde9c476ab607bfd89305e55422a25ac3f6e5775fc3a2803"
+    },
+    {
+      "source": "ui/icons/gunpowder.png",
+      "file": "Assets/Workshop/ui/icons/gunpowder.png",
+      "sha256": "9473e26c7ac0e16ce98184f11017ed005e3e33fb7ec6ab9fd063b0bdc6ff3504"
+    },
+    {
+      "source": "ui/icons/h2o2.png",
+      "file": "Assets/Workshop/ui/icons/h2o2.png",
+      "sha256": "403c19fe7fee6250b5dff25df7d345f7283f2fb0f1ddd70abed38a617d5673ca"
+    },
+    {
+      "source": "ui/icons/heat.png",
+      "file": "Assets/Workshop/ui/icons/heat.png",
+      "sha256": "0eeb4bfb0611731420dcb26d9cb562332a4fb5fe7b8fda2f52b4352230949a0d"
+    },
+    {
+      "source": "ui/icons/hydrogen.png",
+      "file": "Assets/Workshop/ui/icons/hydrogen.png",
+      "sha256": "da7163cfa549d0edce3c41f7994cb32c9bcd7235053be43adba9ba5bfb7d6f25"
+    },
+    {
+      "source": "ui/icons/ice.png",
+      "file": "Assets/Workshop/ui/icons/ice.png",
+      "sha256": "9343c083e8fc66ba6267ff2d7088f3f691bb4021c238c82c15a60cff17964ed6"
+    },
+    {
+      "source": "ui/icons/ignite.png",
+      "file": "Assets/Workshop/ui/icons/ignite.png",
+      "sha256": "347aa098c519b80f9607cfd9dfc0deb7e94d14232fd0a16bf31264c93e77e5bf"
+    },
+    {
+      "source": "ui/icons/iron.png",
+      "file": "Assets/Workshop/ui/icons/iron.png",
+      "sha256": "7817247f17eaf6eacf7692188fbc8b53adb6e8ba4fa3186ef013d89bcaed505b"
+    },
+    {
+      "source": "ui/icons/jelly.png",
+      "file": "Assets/Workshop/ui/icons/jelly.png",
+      "sha256": "af0014857fd2ea7ab4b9d170ca8ee5239fb2298fc435da3b89647f4aef207bb9"
+    },
+    {
+      "source": "ui/icons/lamp.png",
+      "file": "Assets/Workshop/ui/icons/lamp.png",
+      "sha256": "514dc4834569795e48f98cd64824e8f06b29669fd5a54dac3f32c630ca103cab"
+    },
+    {
+      "source": "ui/icons/lava.png",
+      "file": "Assets/Workshop/ui/icons/lava.png",
+      "sha256": "3ee91f980b5e804933468cd747909187dfc6b4eb20f4afef1dea4f451baa2143"
+    },
+    {
+      "source": "ui/icons/lead.png",
+      "file": "Assets/Workshop/ui/icons/lead.png",
+      "sha256": "67483ef3083abdba81feb655d7a147a671edb57acd79a2fb59794b600abedd49"
+    },
+    {
+      "source": "ui/icons/liquid_nitrogen.png",
+      "file": "Assets/Workshop/ui/icons/liquid_nitrogen.png",
+      "sha256": "2fb15359eb1baab34e32c83f815ad9516d11b1530bf0897cab9834f05d86e7cf"
+    },
+    {
+      "source": "ui/icons/liquid_wax.png",
+      "file": "Assets/Workshop/ui/icons/liquid_wax.png",
+      "sha256": "78513d71a4bb94a63eac5dacc251713cab6489c7dd8e165c3cba5d3e43882757"
+    },
+    {
+      "source": "ui/icons/luminol.png",
+      "file": "Assets/Workshop/ui/icons/luminol.png",
+      "sha256": "f4e706081ba1302b6599d2dbc5ce82f69eb96c06bef3b094bc24cdfbb267c7a0"
+    },
+    {
+      "source": "ui/icons/lye.png",
+      "file": "Assets/Workshop/ui/icons/lye.png",
+      "sha256": "05335386828bdc5a91cfdc245decd40981eada5b6e439835a5b44d8f94c23369"
+    },
+    {
+      "source": "ui/icons/magnesia.png",
+      "file": "Assets/Workshop/ui/icons/magnesia.png",
+      "sha256": "d0e723fc01b4de01c7ea6e20ac0c8fe26e1d40efc64580ef720ea86ad16722e4"
+    },
+    {
+      "source": "ui/icons/magnesium.png",
+      "file": "Assets/Workshop/ui/icons/magnesium.png",
+      "sha256": "888df4149490dc4720e437441e46309bbbb9e83448873eb13fb59e7fcfa1e198"
+    },
+    {
+      "source": "ui/icons/methane.png",
+      "file": "Assets/Workshop/ui/icons/methane.png",
+      "sha256": "1d350bdaf4a7dae7f005d68d26fea0b476faae211eb87037b8565e87d9db895f"
+    },
+    {
+      "source": "ui/icons/mirror.png",
+      "file": "Assets/Workshop/ui/icons/mirror.png",
+      "sha256": "572e7f7c17d5c06ac3d01727c878a601fb87f4520963ef77818993323f2803ad"
+    },
+    {
+      "source": "ui/icons/molten_glass.png",
+      "file": "Assets/Workshop/ui/icons/molten_glass.png",
+      "sha256": "43f9c3ceb851d669ee4be98a7d4629f53235ee46e655f90ebb1c2b1d88782076"
+    },
+    {
+      "source": "ui/icons/molten_gold.png",
+      "file": "Assets/Workshop/ui/icons/molten_gold.png",
+      "sha256": "3eda856e21790d2671b707d50ba945a3c1a83394fedb883cf66691c4c9a6a7e4"
+    },
+    {
+      "source": "ui/icons/molten_iron.png",
+      "file": "Assets/Workshop/ui/icons/molten_iron.png",
+      "sha256": "77546ae5c8d0dbe51a2c10bde12c4dec25f05c3b3a36ecb4ca43a227f8630fed"
+    },
+    {
+      "source": "ui/icons/molten_lead.png",
+      "file": "Assets/Workshop/ui/icons/molten_lead.png",
+      "sha256": "e7aa964d30081d8610d11ab67d9d0258b9297006f987fc2e00b030013d1b3cd5"
+    },
+    {
+      "source": "ui/icons/nitrogen.png",
+      "file": "Assets/Workshop/ui/icons/nitrogen.png",
+      "sha256": "56f97ad66ab6728195db972948ab12a83a3c59cf88cb511dc2989215ecacce21"
+    },
+    {
+      "source": "ui/icons/obsidian.png",
+      "file": "Assets/Workshop/ui/icons/obsidian.png",
+      "sha256": "fe23170fa58378491c41e885644f4d9f7149542ce9981b58974fccd920f8743b"
+    },
+    {
+      "source": "ui/icons/oil.png",
+      "file": "Assets/Workshop/ui/icons/oil.png",
+      "sha256": "6569c2d0499a14b20f555a3b63477c44a5069649c619e9b6a4826d6004b017b5"
+    },
+    {
+      "source": "ui/icons/oxygen.png",
+      "file": "Assets/Workshop/ui/icons/oxygen.png",
+      "sha256": "b6118d95e0ac60f4cb93522919ca2a5c511d527afd107a77f72f0717fee4aba3"
+    },
+    {
+      "source": "ui/icons/pause.png",
+      "file": "Assets/Workshop/ui/icons/pause.png",
+      "sha256": "ffe74ec170e8fd1f856f32dfd1d7c0cf20ea6982dca706b23a051b1f3abb76d6"
+    },
+    {
+      "source": "ui/icons/phosphor.png",
+      "file": "Assets/Workshop/ui/icons/phosphor.png",
+      "sha256": "a121f97aa5849dcbdbca6831bf981aff59870a0197dc51351ab833216615da2a"
+    },
+    {
+      "source": "ui/icons/plasma.png",
+      "file": "Assets/Workshop/ui/icons/plasma.png",
+      "sha256": "c474cf98b801551c1ab519350d7c13ff6bb45512e35f0221f0ee620428dde896"
+    },
+    {
+      "source": "ui/icons/play.png",
+      "file": "Assets/Workshop/ui/icons/play.png",
+      "sha256": "484b3983c10a8b1a6b8471e67d9f6180138e8e8302d6256cc49639a8104d0a4a"
+    },
+    {
+      "source": "ui/icons/radium.png",
+      "file": "Assets/Workshop/ui/icons/radium.png",
+      "sha256": "0569caa7942452089eecda4da578e0248fc244a919d1da6ba6c70c54198454da"
+    },
+    {
+      "source": "ui/icons/red_glass.png",
+      "file": "Assets/Workshop/ui/icons/red_glass.png",
+      "sha256": "39124575cb0834b11d3566074bbd9726db16dd24ee59f62271890214b14a40ca"
+    },
+    {
+      "source": "ui/icons/rust.png",
+      "file": "Assets/Workshop/ui/icons/rust.png",
+      "sha256": "bb4f71d1a826a62615087d4b14efa561206c5f05dd98694085620c5e49e6cb77"
+    },
+    {
+      "source": "ui/icons/salt.png",
+      "file": "Assets/Workshop/ui/icons/salt.png",
+      "sha256": "86145f083cd76f21775c76d2b5dfe1a1c394874c552af5548cbf3fbb274ea29e"
+    },
+    {
+      "source": "ui/icons/saltwater.png",
+      "file": "Assets/Workshop/ui/icons/saltwater.png",
+      "sha256": "c259884984cc9bc2d8922a15163815ff6d8828a4dc2b4b6bae501d29d8df182b"
+    },
+    {
+      "source": "ui/icons/sand.png",
+      "file": "Assets/Workshop/ui/icons/sand.png",
+      "sha256": "fd058879dc74a49f204db47a30316b1d1dff8b2f8c1f94988c76db1fcd6b6fe9"
+    },
+    {
+      "source": "ui/icons/so2.png",
+      "file": "Assets/Workshop/ui/icons/so2.png",
+      "sha256": "11f5626a6e1f914d92631435fc0a4ac724294e3b17662bf5a9555d049cadd352"
+    },
+    {
+      "source": "ui/icons/sodium.png",
+      "file": "Assets/Workshop/ui/icons/sodium.png",
+      "sha256": "4b4a8e690c763e836058f4234168b9b8fbe822e516462a9e739986228042cd9e"
+    },
+    {
+      "source": "ui/icons/spark.png",
+      "file": "Assets/Workshop/ui/icons/spark.png",
+      "sha256": "31d770f31705dc454f75f6deb9a883466f4ce3fa5531c1ee547c48c478413de2"
+    },
+    {
+      "source": "ui/icons/spent_crystal.png",
+      "file": "Assets/Workshop/ui/icons/spent_crystal.png",
+      "sha256": "3d2f097bd607d6c1f35a67f3b7bf330bb0dbdd73ad0b53f771e67f1cfc5a85b6"
+    },
+    {
+      "source": "ui/icons/spent_glow_stick.png",
+      "file": "Assets/Workshop/ui/icons/spent_glow_stick.png",
+      "sha256": "6246b78d1d5539423ba5596f7165161e8a14edc88948e5fb135d9ed80dfd7399"
+    },
+    {
+      "source": "ui/icons/spent_phosphor.png",
+      "file": "Assets/Workshop/ui/icons/spent_phosphor.png",
+      "sha256": "26c88c765bfef9e04f4f9e1a391718ffa95cbb6e00ac6986d8bd6388f597a1b8"
+    },
+    {
+      "source": "ui/icons/spray.png",
+      "file": "Assets/Workshop/ui/icons/spray.png",
+      "sha256": "412ea15a28355eee1938c17a5239e7e591bfd300dde9d6adea66f3715d33a70a"
+    },
+    {
+      "source": "ui/icons/steam.png",
+      "file": "Assets/Workshop/ui/icons/steam.png",
+      "sha256": "2a2f0d6488c0b167c0d181e14e0659f004075349bbcc5fef555a41ce9cde8542"
+    },
+    {
+      "source": "ui/icons/step.png",
+      "file": "Assets/Workshop/ui/icons/step.png",
+      "sha256": "d0eaab6213f5c6373a5357d759b4fd6a2a00eb9ea9d30e045dd1da3a5db53248"
+    },
+    {
+      "source": "ui/icons/stone.png",
+      "file": "Assets/Workshop/ui/icons/stone.png",
+      "sha256": "dc0a702b54b240dabc52ccaa8da59f0cef2aaac9956f38e3c557dc53846728c3"
+    },
+    {
+      "source": "ui/icons/sulfur.png",
+      "file": "Assets/Workshop/ui/icons/sulfur.png",
+      "sha256": "602cb2976982d8f8ef7daaf097d67bfafa0748e9c584ff5d6439f6614a52980e"
+    },
+    {
+      "source": "ui/icons/thermite.png",
+      "file": "Assets/Workshop/ui/icons/thermite.png",
+      "sha256": "b4fbf1ecdcc6f66ea16a9c3d75823e2264b8b6d76b65cd8a53129cfb0333d4fa"
+    },
+    {
+      "source": "ui/icons/toy_blue.png",
+      "file": "Assets/Workshop/ui/icons/toy_blue.png",
+      "sha256": "08e1646f94734d904e284aba24a0daa155f33abd24c19f53c8dbfe372577450b"
+    },
+    {
+      "source": "ui/icons/toy_green.png",
+      "file": "Assets/Workshop/ui/icons/toy_green.png",
+      "sha256": "283d9d869107104c44f1b896c7d63f79630a9fb32556e18d58f524bb9a7f6fe6"
+    },
+    {
+      "source": "ui/icons/toy_orange.png",
+      "file": "Assets/Workshop/ui/icons/toy_orange.png",
+      "sha256": "a6eec07b3147e1724c5b53baf21ea448c7e57fe33a18d8f256be9ef256d198a3"
+    },
+    {
+      "source": "ui/icons/toy_purple.png",
+      "file": "Assets/Workshop/ui/icons/toy_purple.png",
+      "sha256": "9d257118354e31dae90556a0605d3a632bafc185e070fc717dbb8e571c9d2f18"
+    },
+    {
+      "source": "ui/icons/toy_red.png",
+      "file": "Assets/Workshop/ui/icons/toy_red.png",
+      "sha256": "c86d902a3e44bf8312f997c7e1274f9b3e0d628570ed5f3b4f26fb13afc26d8c"
+    },
+    {
+      "source": "ui/icons/toy_white.png",
+      "file": "Assets/Workshop/ui/icons/toy_white.png",
+      "sha256": "dbc4486e4cd77812749cbfee4617a27e6239afcaece3ccefa188b8838b18753a"
+    },
+    {
+      "source": "ui/icons/toy_wood.png",
+      "file": "Assets/Workshop/ui/icons/toy_wood.png",
+      "sha256": "fc706f33a5312aefe442217ea5d773b472937e2ab36be693706b97badf22f879"
+    },
+    {
+      "source": "ui/icons/toy_yellow.png",
+      "file": "Assets/Workshop/ui/icons/toy_yellow.png",
+      "sha256": "f9025c2caba6706427f587981f98673c352ccb544834a792c36b601789ad159a"
+    },
+    {
+      "source": "ui/icons/tungsten.png",
+      "file": "Assets/Workshop/ui/icons/tungsten.png",
+      "sha256": "368821b37ddf0613bc8154ca6f66ad6db8c8e8c329343fe80dfe81b518c81dc1"
+    },
+    {
+      "source": "ui/icons/violet_glass.png",
+      "file": "Assets/Workshop/ui/icons/violet_glass.png",
+      "sha256": "15d8a25ae6b8269343243885b2421ab24c9d7edcb1631801c313a4325cf18e20"
+    },
+    {
+      "source": "ui/icons/water.png",
+      "file": "Assets/Workshop/ui/icons/water.png",
+      "sha256": "c664ecbe2966e170b95a639037207404a4f30e06f849938663ae76a484c5889c"
+    },
+    {
+      "source": "ui/icons/wax.png",
+      "file": "Assets/Workshop/ui/icons/wax.png",
+      "sha256": "874d9f778a3c88d5a69ef8934db91ae7627f47eebf2455dd9a77cc158c9e92aa"
+    },
+    {
+      "source": "ui/icons/white_phosphorus.png",
+      "file": "Assets/Workshop/ui/icons/white_phosphorus.png",
+      "sha256": "680b2ccd69d0338b384eb8abbec13738c797544e938d793eb6496dd271eb67cd"
+    },
+    {
+      "source": "ui/icons/wood.png",
+      "file": "Assets/Workshop/ui/icons/wood.png",
+      "sha256": "229d3ff44fdf4dd25d573e663a8f4cf0748ed0f6937cbf9a5162250362cdbde9"
+    },
+    {
+      "source": "ui/vectors/chev.svg",
+      "file": "Assets/Workshop/ui/vectors/chev.svg",
+      "sha256": "2c124a45bdbc9004a1a49f0b99ee8f18696780d506ae61f062a320cde667066c"
+    },
+    {
+      "source": "ui/vectors/close.svg",
+      "file": "Assets/Workshop/ui/vectors/close.svg",
+      "sha256": "b816f2d496791a943b4bde5791882520805cd8e2bd6b67f5efaa5eaf3855f8f2"
+    },
+    {
+      "source": "ui/vectors/full.svg",
+      "file": "Assets/Workshop/ui/vectors/full.svg",
+      "sha256": "4906f0767773b8eccafe82a70e0cfa8c0d173eece0b6298e7615d2a295027ee0"
+    },
+    {
+      "source": "ui/vectors/gear.svg",
+      "file": "Assets/Workshop/ui/vectors/gear.svg",
+      "sha256": "ce39808317332ee9174aeae63eb1b4c45e429d4c23dd9aa51632f3539bea91dd"
+    },
+    {
+      "source": "ui/vectors/globe.svg",
+      "file": "Assets/Workshop/ui/vectors/globe.svg",
+      "sha256": "dc1ae942a9515e853519c64cb57dfd52e7835f2e7f2d4605651e5d068f521244"
+    },
+    {
+      "source": "ui/vectors/help.svg",
+      "file": "Assets/Workshop/ui/vectors/help.svg",
+      "sha256": "8f2d9d81ad07eecc844e59405890cf9ab8f008a3bb52b996761013dd1b707087"
+    },
+    {
+      "source": "ui/vectors/library.svg",
+      "file": "Assets/Workshop/ui/vectors/library.svg",
+      "sha256": "595dafeac9f6250be50572aff8f63da1d59bd054c97ead7d1bd1db8d77143197"
+    },
+    {
+      "source": "ui/vectors/menu.svg",
+      "file": "Assets/Workshop/ui/vectors/menu.svg",
+      "sha256": "fb4a425d303191ca4f36d549e95d0007f6bf826f7b139af36ba5b0baaa013488"
+    },
+    {
+      "source": "ui/vectors/moon.svg",
+      "file": "Assets/Workshop/ui/vectors/moon.svg",
+      "sha256": "1c9fa78c16de27a1f266ce1be73687fb5e8491b38ba8a83ca8238fc82566634d"
+    },
+    {
+      "source": "ui/vectors/pause.svg",
+      "file": "Assets/Workshop/ui/vectors/pause.svg",
+      "sha256": "2aad22eeaa71bd2cabaaf58d2f248ab63ed6cdd797ccbb2d30c93b84e6df6250"
+    },
+    {
+      "source": "ui/vectors/pause_white.svg",
+      "file": "Assets/Workshop/ui/vectors/pause_white.svg",
+      "sha256": "474bed044652b4da03e4f8f7fd43a7a5237082a40a5445e025b06759a538cf85"
+    },
+    {
+      "source": "ui/vectors/people.svg",
+      "file": "Assets/Workshop/ui/vectors/people.svg",
+      "sha256": "e69ec0b34c0d45674d5f76d4f0ec5ca915df7fdb732213f82af28cc52148222e"
+    },
+    {
+      "source": "ui/vectors/play.svg",
+      "file": "Assets/Workshop/ui/vectors/play.svg",
+      "sha256": "67589ab47e3c260511929388c7ff6740dd7112b17690253352d84b0bb207f1cf"
+    },
+    {
+      "source": "ui/vectors/play_white.svg",
+      "file": "Assets/Workshop/ui/vectors/play_white.svg",
+      "sha256": "bb5a3496a5722f566d65fd1cab3418433e2ec7ee8a9a57f4de06bf4a5f9f716b"
+    },
+    {
+      "source": "ui/vectors/slider_knob.svg",
+      "file": "Assets/Workshop/ui/vectors/slider_knob.svg",
+      "sha256": "9c691df73fbea71b301048c61e9400513b9350b3a777f70fa03e42d368636be4"
+    },
+    {
+      "source": "ui/vectors/step.svg",
+      "file": "Assets/Workshop/ui/vectors/step.svg",
+      "sha256": "2f5cd538c1895e8a2f2ced89ef369e4a20036294b0e93066f62582815928fed2"
+    },
+    {
+      "source": "ui/vectors/sun.svg",
+      "file": "Assets/Workshop/ui/vectors/sun.svg",
+      "sha256": "85d334b6ab4425f27d95517b97f3c2c90611ee40e01c2bbcfa4c3538e6f75187"
+    },
+    {
+      "source": "ui/vectors/toggle_off.svg",
+      "file": "Assets/Workshop/ui/vectors/toggle_off.svg",
+      "sha256": "7cc1d4790431e006cc5c9ba5b3de88afd4e7439a3bec5041404bcb23e8026a90"
+    },
+    {
+      "source": "ui/vectors/toggle_on.svg",
+      "file": "Assets/Workshop/ui/vectors/toggle_on.svg",
+      "sha256": "baca1fa908bff8954f4c82369d002ea628a296200b1eeeee50380dc4b67b6dd9"
+    },
+    {
+      "source": "ui/vectors/unfull.svg",
+      "file": "Assets/Workshop/ui/vectors/unfull.svg",
+      "sha256": "b8e6629e5061a9055142fe02b06208d26f18951016670c120cbbc115cb10c28c"
+    }
+  ]
+}

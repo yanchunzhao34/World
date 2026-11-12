@@ -1,0 +1,4 @@
+quickjs-ng==0.17.0.2
+wgpu==0.31.1
+numpy>=2.2
+Pillow>=11

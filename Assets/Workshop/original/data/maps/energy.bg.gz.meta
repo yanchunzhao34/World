@@ -1,0 +1,48 @@
+{
+    "metadata": {
+        "binary_type": {
+            "type": "string",
+            "value": "archive"
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "7d3b569b8dc00ea5"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".gz"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/maps/energy.bg.gz"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 589824
+        },
+        "file_type": {
+            "type": "string",
+            "value": "binary"
+        },
+        "guid": {
+            "type": "string",
+            "value": "b70de43e31b9fe3f13d37af4d587cc88"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": false
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1792830127"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultBinary"
+        },
+        "size_category": {
+            "type": "string",
+            "value": "small"
+        }
+    }
+}

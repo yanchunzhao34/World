@@ -1,0 +1,6 @@
+{
+  "binary_bridge": "all byte values, empty/odd/large lengths, typed subviews and DataView",
+  "rigid_equivalence": "24 updates match original occupancy, physics state and GPU packets",
+  "gpu_readback": "unaligned rows, 3D, buffer growth, direct-read equality, immutable bytes, write invalidation",
+  "passed": true
+}

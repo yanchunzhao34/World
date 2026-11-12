@@ -1,0 +1,3 @@
+# The original-source manifest hashes bytes, including mixed line endings.
+# Preserve source files and fixtures exactly across Windows and Linux clones.
+* -text

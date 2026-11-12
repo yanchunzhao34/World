@@ -1,0 +1,124 @@
+{
+    "metadata": {
+        "aniso_level": {
+            "type": "int",
+            "value": -1
+        },
+        "artifact_depth": {
+            "type": "int",
+            "value": 1
+        },
+        "artifact_dimension": {
+            "type": "string",
+            "value": "2d"
+        },
+        "artifact_format": {
+            "type": "string",
+            "value": "bc3_srgb"
+        },
+        "artifact_height": {
+            "type": "int",
+            "value": 8
+        },
+        "artifact_mip_count": {
+            "type": "int",
+            "value": 4
+        },
+        "artifact_srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "artifact_width": {
+            "type": "int",
+            "value": 8
+        },
+        "channels": {
+            "type": "int",
+            "value": 4
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "38d9e7d97085eefd"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".png"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/ui/icons/sulfur.png"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 295
+        },
+        "file_type": {
+            "type": "string",
+            "value": "texture"
+        },
+        "filter_mode": {
+            "type": "string",
+            "value": "linear"
+        },
+        "generate_mipmaps": {
+            "type": "bool",
+            "value": true
+        },
+        "guid": {
+            "type": "string",
+            "value": "c24b4ba9fb18a6afee092a4f9851759b"
+        },
+        "height": {
+            "type": "int",
+            "value": 8
+        },
+        "is_binary": {
+            "type": "bool",
+            "value": true
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1793204515"
+        },
+        "max_size": {
+            "type": "int",
+            "value": 2048
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Texture"
+        },
+        "source_container": {
+            "type": "string",
+            "value": "PNG"
+        },
+        "srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "texture_compression": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_compression_quality": {
+            "type": "string",
+            "value": "normal"
+        },
+        "texture_format": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_type": {
+            "type": "string",
+            "value": "default"
+        },
+        "width": {
+            "type": "int",
+            "value": 8
+        },
+        "wrap_mode": {
+            "type": "string",
+            "value": "repeat"
+        }
+    }
+}

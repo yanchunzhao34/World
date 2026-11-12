@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "cause": "Unoccluded spatial bloom and front-fog gathers were added after the original occluded lighting pass.",
+  "correction": "Material visibility before bloom interpolation; shadowed irradiance reused for volume scattering; no changes to simulation or archived source assets.",
+  "implementation_sha256": {
+    "Assets/Scripts/native/game_runtime.py": "634cc238169a99f05c33da63ec8760e9637a20d4a3aab64fb5f955c167b45e01",
+    "Assets/Scripts/native/gpu_host.py": "ec63e55cc239140522ad7560e8c0931a271016849b3681b4ef887d9747163f3f",
+    "Assets/Scripts/native/gpu_host_shaders.py": "25fc6c38a855cd02fa5a22e2304bbdb583853e9cea419ca8fc1a583bec8fa627",
+    "Assets/Scripts/native/lighting_shaders.py": "8d3bccf82e88daca00073c0a1e960940653cacddd8e0a8f8fcfe85adb2b4ca96",
+    "Assets/Workshop/runtime/lighting.js": "0f79f89f31317b3f0905891e24aaab116ec7d96feced96740d7edbbadd727714",
+    "Assets/Workshop/shaders/occlusion.wgsl": "1a8a1b75f07ac01582cc62380024fe605ff349143af2ee0ab5a7614ffc9436f5",
+    "Assets/Workshop/shaders/bloom_visibility.wgsl": "f5dcd51de349c64d0ea08d3ac2e5ee85f2946b0befe681c6dadda1c215e7a9bf"
+  },
+  "source_files_unchanged": 238,
+  "original_renderer_pixel_match": true,
+  "light_fields_unchanged": true,
+  "free_space_bloom_energy_ratio": 0.9997495412826538,
+  "occlusion": {
+    "thin": {
+      "fog_ratio": 0.0,
+      "bloom_ratio": 2.6835235555828762e-05
+    },
+    "stone": {
+      "fog_ratio": 0.0,
+      "bloom_ratio": 0.0
+    },
+    "iron": {
+      "fog_ratio": 0.0,
+      "bloom_ratio": 0.0
+    },
+    "diagonal": {
+      "fog_ratio": 0.0,
+      "bloom_ratio": 2.703854589097784e-07
+    },
+    "sodium": {
+      "fog_ratio": 0.0,
+      "bloom_ratio": 0.0
+    },
+    "zoom": {
+      "bloom_ratio": 0.0
+    },
+    "flat": {
+      "bloom_ratio": 0.0
+    },
+    "voxel": {
+      "bloom_ratio": 0.0
+    }
+  },
+  "editor": {
+    "project": "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-project-7dccd503",
+    "cycles": 2,
+    "captures": [
+      "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-window-1.png",
+      "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-window-2.png"
+    ],
+    "performance_cycles": [
+      {
+        "seconds": 6.004136999996263,
+        "samples": 327,
+        "produced_fps": 54.29589631285944,
+        "engine_fps": 54.29589631285944,
+        "presentation_fps_cap": 120.0,
+        "displayed_new_frames_per_second": 54.29589631285944,
+        "mean_compute_ms": 15.243668501412735,
+        "mean_interval_ms": 18.41759815949774,
+        "p95_interval_ms": 20.090300007723272,
+        "maximum_interval_ms": 21.418699994683266
+      },
+      {
+        "seconds": 6.0049980000039795,
+        "samples": 331,
+        "produced_fps": 54.95422313209452,
+        "engine_fps": 54.95422313209452,
+        "presentation_fps_cap": 120.0,
+        "displayed_new_frames_per_second": 54.95422313209452,
+        "mean_compute_ms": 15.31833987859791,
+        "mean_interval_ms": 18.196963636375695,
+        "p95_interval_ms": 19.68009999836795,
+        "maximum_interval_ms": 21.12969999143388
+      }
+    ],
+    "audio_enabled": true,
+    "viewport": [
+      1312,
+      738
+    ],
+    "pointer_pause_button": true,
+    "passed": true
+  },
+  "standalone_performance": {
+    "map": "lab",
+    "adapter": {
+      "vendor": "NVIDIA",
+      "architecture": "",
+      "device": "NVIDIA GeForce RTX 5070 Ti",
+      "description": "610.88",
+      "stackgroup_min_size": 4,
+      "stackgroup_max_size": 128,
+      "vendor_id": 4318,
+      "device_id": 11269,
+      "adapter_type": "DiscreteGPU",
+      "backend_type": "Vulkan"
+    },
+    "fixed_step": {
+      "samples": 80,
+      "frame_ms": {
+        "mean": 14.926701249896723,
+        "median": 15.55709999956889,
+        "p95": 17.317899997578934,
+        "maximum": 19.648000001325272
+      }
+    },
+    "realtime": {
+      "samples": 181,
+      "seconds": 3.00039580000157,
+      "new_frames_per_second": 59.9920850442151,
+      "simulation_ticks_per_second": 59.9920850442151,
+      "frame_ms": {
+        "mean": 15.17357292785425,
+        "median": 15.839400002732873,
+        "p95": 17.900000006193295,
+        "maximum": 19.11130000371486
+      },
+      "interval_ms": {
+        "mean": 16.668865555564278,
+        "median": 16.69939999555936,
+        "p95": 21.399399993242696,
+        "maximum": 22.989699995378032
+      }
+    }
+  },
+  "verification": {
+    "lighting": "validation/lighting/report.json",
+    "port": "validation/lighting/occlusion-corrected-port-report.json",
+    "original_renderer": "validation/lighting/original-port-report.json",
+    "editor": "validation/editor-play.json",
+    "frontend": "validation/editor-frontend.json"
+  }
+}

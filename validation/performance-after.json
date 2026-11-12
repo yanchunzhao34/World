@@ -1,0 +1,42 @@
+{
+  "map": "lab",
+  "adapter": {
+    "vendor": "NVIDIA",
+    "architecture": "",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "description": "610.88",
+    "stackgroup_min_size": 4,
+    "stackgroup_max_size": 128,
+    "vendor_id": 4318,
+    "device_id": 11269,
+    "adapter_type": "DiscreteGPU",
+    "backend_type": "Vulkan"
+  },
+  "fixed_step": {
+    "samples": 120,
+    "frame_ms": {
+      "mean": 10.04876499994983,
+      "median": 10.002549999626353,
+      "p95": 10.87059999917983,
+      "maximum": 12.616199997864896
+    }
+  },
+  "realtime": {
+    "samples": 301,
+    "seconds": 4.999806600000738,
+    "new_frames_per_second": 60.002320889763155,
+    "simulation_ticks_per_second": 60.002320889763155,
+    "frame_ms": {
+      "mean": 10.502272425275013,
+      "median": 10.427199998957803,
+      "p95": 11.143799998535542,
+      "maximum": 18.65909999833093
+    },
+    "interval_ms": {
+      "mean": 16.66602200000246,
+      "median": 16.67154999813647,
+      "p95": 17.849800002295524,
+      "maximum": 26.075799996760907
+    }
+  }
+}

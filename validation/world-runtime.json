@@ -1,0 +1,9 @@
+{
+  "capacity_two": true,
+  "same_frame_shared_observation": true,
+  "immutable_copy": true,
+  "epoch_and_held_snapshot": true,
+  "cancel_does_not_resurrect": true,
+  "stopped_rejects_requests": true,
+  "audio_pcm_generation": true
+}

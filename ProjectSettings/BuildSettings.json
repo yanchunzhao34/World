@@ -1,0 +1,11 @@
+{
+  "game_name": "元素工坊",
+  "scene_guids": [
+    "36c78d407f30845eba0dd74ba4cca4ba"
+  ],
+  "debug_mode": false,
+  "icon_guid": "",
+  "output_dir": "",
+  "platform_options": {},
+  "splash_items": []
+}

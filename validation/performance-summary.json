@@ -1,0 +1,88 @@
+{
+  "scene": "lab",
+  "adapter": "NVIDIA GeForce RTX 5070 Ti",
+  "before": {
+    "samples": 90,
+    "seconds": 4.947335099997872,
+    "new_frames_per_second": 17.989482863216256,
+    "simulation_ticks_per_second": 35.97896572643251,
+    "frame_ms": {
+      "mean": 55.19522666691046,
+      "median": 55.039200000464916,
+      "p95": 57.67510000077891,
+      "maximum": 67.60330000179238
+    },
+    "interval_ms": {
+      "mean": 55.588034831436765,
+      "median": 55.39900000076159,
+      "p95": 58.044599998538615,
+      "maximum": 67.97240000014426
+    }
+  },
+  "after": {
+    "samples": 301,
+    "seconds": 4.999806600000738,
+    "new_frames_per_second": 60.002320889763155,
+    "simulation_ticks_per_second": 60.002320889763155,
+    "frame_ms": {
+      "mean": 10.502272425275013,
+      "median": 10.427199998957803,
+      "p95": 11.143799998535542,
+      "maximum": 18.65909999833093
+    },
+    "interval_ms": {
+      "mean": 16.66602200000246,
+      "median": 16.67154999813647,
+      "p95": 17.849800002295524,
+      "maximum": 26.075799996760907
+    }
+  },
+  "editor_with_audio": [
+    {
+      "seconds": 5.978166700002475,
+      "samples": 330,
+      "produced_fps": 55.033594161879726,
+      "engine_fps": 55.033594161879726,
+      "presentation_fps_cap": 120.0,
+      "displayed_new_frames_per_second": 55.033594161879726,
+      "mean_compute_ms": 14.321605757669948,
+      "mean_interval_ms": 18.170719452895064,
+      "p95_interval_ms": 20.8877000004577,
+      "maximum_interval_ms": 26.451199999428354
+    },
+    {
+      "seconds": 5.993857800000114,
+      "samples": 334,
+      "produced_fps": 55.55687357147406,
+      "engine_fps": 55.55687357147406,
+      "presentation_fps_cap": 120.0,
+      "displayed_new_frames_per_second": 55.55687357147406,
+      "mean_compute_ms": 13.71155718568375,
+      "mean_interval_ms": 17.999572972973315,
+      "p95_interval_ms": 22.986600000876933,
+      "maximum_interval_ms": 32.36480000123265
+    }
+  ],
+  "validation": {
+    "original_assets_unchanged": 238,
+    "dynamic_maps_pixel_identical": 9,
+    "paused_lab_rgb_max_error": 0,
+    "editor_play_stop_cycles": 2,
+    "editor_strict_imports": 23,
+    "binary_rigid_readback_equivalence": true,
+    "world_runtime": true
+  },
+  "implementation_sha256": {
+    "Assets/Scripts/Workshop.py": "133c70fb030e0670c179a2aae53fd6102ad717c097403ac79c30ca258c87c346",
+    "Assets/Scripts/native/game_runtime.py": "2983fb3e197c5455602022ce2e00a3770768121bd07fe7569ca15d7206f71ed0",
+    "Assets/Scripts/native/gpu_host.py": "6376586bc55806d2003e098b115f7798338680509f992e7519668ce03c2a3fa7",
+    "Assets/Scripts/native/gpu_host_shaders.py": "9a95c6650e34123c82a47839c0505aa3cec9afbd0dd2f0cc8146433ce44b9eb6",
+    "Assets/Scripts/native/gpu_readback.py": "5a01e1d6acbc8e20a75e4838d749cd15a0378672fd8b0d3bdef69a1ac7009574",
+    "Assets/Scripts/native/presentation.py": "03b619b349cebd6dad7053b58140e1bf5bd79aff1bd2ce4ba425eb31fd7afe2b",
+    "Assets/Scripts/ui/workshop_ui.py": "86d894db1e30cf1f50ee254dde4713379676376c386ef6ca8fb2c057598052af",
+    "Packages/workshop/runtime/library/dependencies.py": "41057d6ec891a8e502d9f65e6e771123e454bbafb444111afe9405724105c850",
+    "tools/verify_editor.py": "e40882346e42e2c68a54fe9e865bd4626392db67c38be05da4a10f11260e1f5f",
+    "tools/verify_optimizations.py": "1dc0828cb627f693a081cd42e71ab5ce663ac305ae78adc5cf2d8186dba93f5f",
+    "tools/measure_performance.py": "81396175644defeab94dc1fd7f96073a6f6f7106a374679f23fbe0b42ec87aa8"
+  }
+}

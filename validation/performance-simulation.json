@@ -1,0 +1,24 @@
+{
+  "context": "simulation only, editor site-packages, lab, 1536x864, 1 simulation tick per frame",
+  "sample_count": 120,
+  "frame_ms": {
+    "mean": 49.8744208331118,
+    "median": 48.88520000167773,
+    "p95": 54.831899997225264,
+    "max": 63.42199999926379
+  },
+  "calls_per_frame": {
+    "dispatch": 84.75,
+    "flush": 4,
+    "upload_buffer": 1,
+    "read_buffer": 2,
+    "read_texture": 1
+  },
+  "inclusive_ms_per_frame": {
+    "dispatch": 2.549892500307275,
+    "flush": 0.4826149999644258,
+    "upload_buffer": 0.49751999986256124,
+    "read_buffer": 5.538388333419182,
+    "read_texture": 4.322863333284961
+  }
+}

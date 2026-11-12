@@ -1,0 +1,2775 @@
+{
+  "ok": true,
+  "data": {
+    "revision": 140,
+    "total": 105,
+    "offset": 0,
+    "operations": [
+      {
+        "id": "infernux.asset.create",
+        "kind": "command",
+        "summary": "Create a project asset through the same transaction as the Project panel.",
+        "thread": "owner",
+        "side_effects": [
+          "Creates and imports a project asset with Undo support."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "create",
+          "import",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.create.kinds",
+        "kind": "query",
+        "summary": "List asset kinds accepted by the project creation service.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "asset",
+          "create",
+          "schema"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.asset.delete",
+        "kind": "command",
+        "summary": "Delete project assets addressed by GUID through asset history.",
+        "thread": "owner",
+        "side_effects": [
+          "Deletes asset files and metadata with Undo support."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "delete",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.inspect",
+        "kind": "query",
+        "summary": "Inspect one project asset addressed by GUID.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "inspect",
+          "metadata"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.asset.list",
+        "kind": "query",
+        "summary": "List project assets with stable GUID identities.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "list",
+          "search"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.asset.mesh.save-copy",
+        "kind": "command",
+        "summary": "Save the current mesh geometry as an independent static asset with Undo/Redo.",
+        "thread": "owner",
+        "side_effects": [
+          "Creates and imports a new .inxmesh asset; never overwrites an existing path."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "mesh",
+          "save",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.model.inspect",
+        "kind": "query",
+        "summary": "Read the imported source hierarchy, material slots and animation inventory of a model.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "asset",
+          "model",
+          "hierarchy",
+          "rig",
+          "animation",
+          "material"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.asset.model.material.extract",
+        "kind": "command",
+        "summary": "Extract a current imported material slot to an independent .mat asset; does not remap the model.",
+        "thread": "owner",
+        "side_effects": [
+          "Creates and imports a new .mat asset; never overwrites an existing path."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "model",
+          "material",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.move",
+        "kind": "command",
+        "summary": "Move or rename one GUID-addressed asset inside the project.",
+        "thread": "owner",
+        "side_effects": [
+          "Moves an asset while preserving its GUID and records Undo."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "move",
+          "rename",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.refresh",
+        "kind": "command",
+        "summary": "Refresh the authoritative AssetDatabase catalog.",
+        "thread": "owner",
+        "side_effects": [
+          "Scans project asset roots and imports changed assets."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "database",
+          "refresh",
+          "import"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.asset.text.read",
+        "kind": "query",
+        "summary": "Read one UTF-8 project text asset addressed by GUID.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "text",
+          "read"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.asset.text.set",
+        "kind": "command",
+        "summary": "Replace one UTF-8 project text asset through Project history.",
+        "thread": "owner",
+        "side_effects": [
+          "Replaces and reimports a text asset with Undo support."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "asset",
+          "guid",
+          "text",
+          "write",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.camera.editor.focus",
+        "kind": "command",
+        "summary": "Focus the editor camera on a world-space point.",
+        "thread": "mixed",
+        "side_effects": [
+          "Moves the editor Scene-view camera."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "camera.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "camera",
+          "editor",
+          "focus",
+          "scene-view"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.camera.editor.inspect",
+        "kind": "query",
+        "summary": "Read the editor Scene-view camera state.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "camera.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "camera",
+          "editor",
+          "scene-view",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.camera.editor.state.set",
+        "kind": "command",
+        "summary": "Restore the complete editor Scene-view camera state.",
+        "thread": "mixed",
+        "side_effects": [
+          "Moves the editor Scene-view camera."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "camera.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "camera",
+          "editor",
+          "scene-view",
+          "move"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.camera.game.inspect",
+        "kind": "query",
+        "summary": "Read the effective game Camera component document.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "camera.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "camera",
+          "game",
+          "runtime",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.capture.cancel",
+        "kind": "command",
+        "summary": "Cancel an unfinished engine render-target capture.",
+        "thread": "mixed",
+        "side_effects": [
+          "Cancels a pending GPU readback request."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "capture.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "capture",
+          "cancel",
+          "render-target"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.capture.request",
+        "kind": "command",
+        "summary": "Request an asynchronous Scene, Game, complete Editor, or Camera target_texture PNG for human review.",
+        "thread": "mixed",
+        "side_effects": [
+          "Queues GPU readback and writes a session review artifact."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "capture.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "capture",
+          "render-target",
+          "scene",
+          "game",
+          "editor",
+          "camera",
+          "png"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.capture.scene-pick.request",
+        "kind": "command",
+        "summary": "Request an asynchronous GPU object-ID pick from the Scene target.",
+        "thread": "mixed",
+        "side_effects": [
+          "Queues one GPU object-ID readback without changing selection."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "capture.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "capture",
+          "scene",
+          "gpu-pick",
+          "object-id"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.capture.scene-pick.status",
+        "kind": "query",
+        "summary": "Poll one Scene GPU object-ID pick.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "capture.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "capture",
+          "scene",
+          "gpu-pick",
+          "status"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.capture.status",
+        "kind": "query",
+        "summary": "Poll an engine render-target capture without returning pixels.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "capture.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "capture",
+          "render-target",
+          "status"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.console.read",
+        "kind": "query",
+        "summary": "Read a bounded Editor Console snapshot with status-bar data separated.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "console.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "console",
+          "logs",
+          "debug",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.data_asset.inspect",
+        "kind": "query",
+        "summary": "Read one DataAsset's canonical document by asset GUID.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "data-asset",
+          "asset",
+          "guid",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.data_asset.property.set",
+        "kind": "command",
+        "summary": "Set an existing DataAsset field through the engine document transaction.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes and durably saves a DataAsset through editor history."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "asset.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "data-asset",
+          "asset",
+          "guid",
+          "property",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.data_asset.schema",
+        "kind": "query",
+        "summary": "Describe one DataAsset's authoritative serialized fields by asset GUID.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "asset.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "data-asset",
+          "asset",
+          "guid",
+          "schema"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.docs.read",
+        "kind": "query",
+        "summary": "Read one concise Infernux MCP guide by ID.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "docs.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "docs",
+          "help",
+          "guide"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.docs.search",
+        "kind": "query",
+        "summary": "Search concise Infernux MCP guides and registered operation schemas.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "docs.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "docs",
+          "help",
+          "search",
+          "schema"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.input.key",
+        "kind": "command",
+        "summary": "Queue one keyboard transition through the engine event path.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one trusted SDL keyboard event into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "keyboard",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.input.key.chord",
+        "kind": "workflow",
+        "summary": "Press a key chord in order and release it in reverse order.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects ordered SDL keyboard transitions into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "keyboard",
+          "chord",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.workflow"
+      },
+      {
+        "id": "infernux.input.key.hold",
+        "kind": "workflow",
+        "summary": "Hold one key through the engine input queue for an explicit duration.",
+        "thread": "mixed",
+        "side_effects": [
+          "Queues a key-down transition, preserves it for the requested engine time window, then queues key-up."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "keyboard",
+          "hold",
+          "gameplay",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.workflow"
+      },
+      {
+        "id": "infernux.input.pointer.button",
+        "kind": "command",
+        "summary": "Queue one editor pointer-button transition.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one SDL pointer-button event into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "pointer",
+          "button",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.input.pointer.click",
+        "kind": "workflow",
+        "summary": "Move, press, and release the editor pointer at one window coordinate.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects pointer move, press, and release transitions into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "pointer",
+          "click",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.workflow"
+      },
+      {
+        "id": "infernux.input.pointer.move",
+        "kind": "command",
+        "summary": "Move the editor pointer in window coordinates.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one SDL pointer-motion event into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "pointer",
+          "mouse",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.input.pointer.wheel",
+        "kind": "command",
+        "summary": "Queue one editor pointer-wheel event.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one SDL wheel event into the Editor."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "pointer",
+          "wheel",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.input.status",
+        "kind": "query",
+        "summary": "Read synthetic editor-input queue delivery status.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "input.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "input",
+          "editor",
+          "status",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.input.text",
+        "kind": "command",
+        "summary": "Send UTF-8 text to the Editor's logical input target.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects UTF-8 text into the Editor's logical focus target."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "text",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.input.wait",
+        "kind": "query",
+        "summary": "Wait until one queued synthetic-input sequence reaches the Editor.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "input.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "input",
+          "delivery",
+          "wait",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.input.window.close",
+        "kind": "command",
+        "summary": "Request Editor window close through the normal input path.",
+        "thread": "mixed",
+        "side_effects": [
+          "Requests the Editor's normal close lifecycle."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "input.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "input",
+          "window",
+          "close",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.material.inspect",
+        "kind": "query",
+        "summary": "Read one material's canonical document by asset GUID.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "material.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "material",
+          "asset",
+          "guid",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.material.property.set",
+        "kind": "command",
+        "summary": "Set an existing value in a material document using a JSON pointer.",
+        "thread": "mixed",
+        "side_effects": [
+          "Changes and durably saves a material through editor history."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "material.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "material",
+          "asset",
+          "guid",
+          "property",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.material.slot.assign",
+        "kind": "command",
+        "summary": "Assign a GUID-addressed material to a renderer slot.",
+        "thread": "mixed",
+        "side_effects": [
+          "Changes a renderer material slot and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "material.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "material",
+          "renderer",
+          "slot",
+          "scene",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.mcp.attempt.start",
+        "kind": "command",
+        "summary": "Start a checkpoint-bound validation attempt and trace.",
+        "thread": "mixed",
+        "side_effects": [
+          "Starts a validation trace for the active project."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "session.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "session",
+          "attempt",
+          "trace"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.mcp.attempt.stop",
+        "kind": "command",
+        "summary": "Stop and save the active validation attempt trace.",
+        "thread": "mixed",
+        "side_effects": [
+          "Writes the active trace into the session artifact directory."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "session.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "session",
+          "attempt",
+          "trace"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.mcp.blocker.report",
+        "kind": "command",
+        "summary": "Persist a trace-backed validation blocker report.",
+        "thread": "mixed",
+        "side_effects": [
+          "Writes a blocker report into the session artifact directory."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "session.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "session",
+          "validation",
+          "blocker",
+          "report"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.mcp.checkpoint.list",
+        "kind": "query",
+        "summary": "List payload-verified Supervisor checkpoints for this session.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "session.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "session",
+          "checkpoint"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.mcp.checkpoint.status",
+        "kind": "query",
+        "summary": "Verify one Supervisor checkpoint against the current project ledger.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "session.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "session",
+          "checkpoint",
+          "verification"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.mcp.supervisor.shutdown",
+        "kind": "command",
+        "summary": "Request normal Editor shutdown using the private Supervisor lease.",
+        "thread": "mixed",
+        "side_effects": [
+          "Requests the Editor's normal close lifecycle."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "session.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "session",
+          "supervisor",
+          "shutdown"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.particle.graph.document.replace",
+        "kind": "command",
+        "summary": "Replace a Particle Graph with a complete strict schema document.",
+        "thread": "mixed",
+        "side_effects": [
+          "Compiles and durably replaces a Particle Graph asset with Undo support."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "particle.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "particle",
+          "graph",
+          "document",
+          "aot",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.particle.graph.inspect",
+        "kind": "query",
+        "summary": "Read a strict Particle Graph document addressed by asset GUID.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "particle.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "particle",
+          "graph",
+          "asset",
+          "guid",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.particle.graph.property.set",
+        "kind": "command",
+        "summary": "Set an existing Particle Graph document value and AOT-validate the result.",
+        "thread": "mixed",
+        "side_effects": [
+          "Compiles and durably saves a Particle Graph asset with Undo support."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "particle.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "particle",
+          "graph",
+          "property",
+          "aot",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.build",
+        "kind": "workflow",
+        "summary": "Build one registered Player target through the shared build service.",
+        "thread": "mixed",
+        "side_effects": [
+          "Writes a standalone Player package and optionally Build Settings."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "build",
+          "package",
+          "workflow"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.workflow"
+      },
+      {
+        "id": "infernux.player.targets",
+        "kind": "query",
+        "summary": "List Player targets contributed by core and enabled platform plugins.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "player.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "player",
+          "build",
+          "target",
+          "capability"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.player.validation.capture",
+        "kind": "command",
+        "summary": "Capture the managed Player Game render target for human review.",
+        "thread": "mixed",
+        "side_effects": [
+          "Writes one Player render-target capture artifact."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "capture",
+          "render-target"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.key",
+        "kind": "command",
+        "summary": "Send one keyboard transition to the managed Player.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one SDL keyboard event into the managed Player."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "input",
+          "keyboard"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.key.press",
+        "kind": "workflow",
+        "summary": "Press and release one Player key with engine-controlled timing.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects a timed SDL key press into the managed Player."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "input",
+          "keyboard",
+          "press"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.workflow"
+      },
+      {
+        "id": "infernux.player.validation.launch",
+        "kind": "command",
+        "summary": "Launch the configured Debug Player under Supervisor control.",
+        "thread": "mixed",
+        "side_effects": [
+          "Starts a managed standalone Player process."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "launch",
+          "supervisor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.logs",
+        "kind": "query",
+        "summary": "Read bounded managed Player runtime and stdout log tails.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "player.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "logs",
+          "console"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.player.validation.motion.arm",
+        "kind": "command",
+        "summary": "Arm bounded Player-owned motion sampling for public runtime objects.",
+        "thread": "mixed",
+        "side_effects": [
+          "Arms a bounded observation job inside the managed Player."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "motion",
+          "capture",
+          "runtime"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.motion.cancel",
+        "kind": "command",
+        "summary": "Cancel one managed Player motion-sampling job.",
+        "thread": "mixed",
+        "side_effects": [
+          "Cancels a Player-owned observation job."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "motion",
+          "cancel",
+          "runtime"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.motion.status",
+        "kind": "query",
+        "summary": "Read one managed Player motion-sampling job.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "player.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "motion",
+          "status",
+          "runtime"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.player.validation.observe",
+        "kind": "query",
+        "summary": "Observe bounded public state from the managed Player.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "player.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "observe",
+          "runtime"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.player.validation.pointer.button",
+        "kind": "command",
+        "summary": "Send one pointer-button transition to the managed Player.",
+        "thread": "mixed",
+        "side_effects": [
+          "Injects one SDL pointer-button event into the managed Player."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "input",
+          "pointer"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.shutdown",
+        "kind": "command",
+        "summary": "Request normal managed Player shutdown without force termination.",
+        "thread": "mixed",
+        "side_effects": [
+          "Requests normal shutdown of the managed Player."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "player.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "shutdown",
+          "supervisor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.player.validation.status",
+        "kind": "query",
+        "summary": "Read managed Player process and readiness state.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "player.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "player",
+          "validation",
+          "status"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.project.info",
+        "kind": "query",
+        "summary": "Read the project, scene document state, and last scene-load outcome. After scene.open/reload is scheduled, check active_scene.last_load until loaded or failed; failures include the parser diagnostic.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "project.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "project",
+          "scene",
+          "status"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.renderer.parameter.clear",
+        "kind": "command",
+        "summary": "Clear one renderer material slot's parameter override layer.",
+        "thread": "mixed",
+        "side_effects": [
+          "Clears a renderer-local material parameter override layer."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "material.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "renderer",
+          "material",
+          "parameter",
+          "override",
+          "clear"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.renderer.parameter.get",
+        "kind": "query",
+        "summary": "Read one effective per-renderer material parameter override.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "material.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "renderer",
+          "material",
+          "parameter",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.renderer.parameter.remove",
+        "kind": "command",
+        "summary": "Remove one renderer-local material parameter override.",
+        "thread": "mixed",
+        "side_effects": [
+          "Removes a renderer-local material parameter override."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "material.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "renderer",
+          "material",
+          "parameter",
+          "override",
+          "remove"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.renderer.parameter.set",
+        "kind": "command",
+        "summary": "Set one reflected material parameter on a renderer without mutating its shared material.",
+        "thread": "mixed",
+        "side_effects": [
+          "Publishes a renderer-local material parameter override."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "material.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "renderer",
+          "material",
+          "parameter",
+          "override"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.compute.profiling",
+        "kind": "command",
+        "summary": "Explicitly enable or disable native GPU submission timestamps; changing query resources waits for in-flight compute.",
+        "thread": "mixed",
+        "side_effects": [
+          "May wait for in-flight compute while changing native timestamp resources."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "performance",
+          "compute"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.compute.reset_statistics",
+        "kind": "command",
+        "summary": "Return the current compute counters and reset their accumulation; does not submit pending work or change Play state.",
+        "thread": "mixed",
+        "side_effects": [
+          "Resets cumulative compute counters, not GPU timestamp history."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "performance",
+          "compute"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.compute.statistics",
+        "kind": "query",
+        "summary": "Read cumulative compute transfers, submissions and CPU waits. GPU time is the latest completed submission, not a frame total.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "runtime.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "runtime",
+          "performance",
+          "compute"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.runtime.gizmos.statistics",
+        "kind": "query",
+        "summary": "Read the last Gizmo callback, geometry, packing, upload, and batch observation.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "runtime.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "runtime",
+          "performance",
+          "gizmos"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.runtime.pause",
+        "kind": "command",
+        "summary": "Pause the active Play Mode world.",
+        "thread": "mixed",
+        "side_effects": [
+          "Pauses Play Mode simulation."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "pause"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.performance.begin",
+        "kind": "command",
+        "summary": "Reset and begin the bounded native frame timing window; does not change Play state.",
+        "thread": "mixed",
+        "side_effects": [
+          "Resets previously collected frame timing samples."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "performance"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.performance.get",
+        "kind": "query",
+        "summary": "Read native frame timing percentiles without GPU readback or resetting the window.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "runtime.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "runtime",
+          "performance"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.runtime.play",
+        "kind": "command",
+        "summary": "Enter Play Mode through the editor state machine.",
+        "thread": "mixed",
+        "side_effects": [
+          "Replaces the edit world with a Play Mode world."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "play"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.resume",
+        "kind": "command",
+        "summary": "Resume a paused Play Mode world.",
+        "thread": "mixed",
+        "side_effects": [
+          "Resumes Play Mode simulation."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "resume"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.status",
+        "kind": "query",
+        "summary": "Read Play Mode state, timing, pause state, and time scale.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "runtime.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "status",
+          "time"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.runtime.step",
+        "kind": "command",
+        "summary": "Advance one frame while Play Mode is paused.",
+        "thread": "mixed",
+        "side_effects": [
+          "Advances the paused simulation by one frame."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "step",
+          "frame"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.stop",
+        "kind": "command",
+        "summary": "Exit Play Mode through the editor state machine.",
+        "thread": "mixed",
+        "side_effects": [
+          "Stops Play Mode and restores the edit world."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "stop"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.runtime.time-scale.set",
+        "kind": "command",
+        "summary": "Set Play Mode time scale.",
+        "thread": "mixed",
+        "side_effects": [
+          "Changes the simulation time scale."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "runtime.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "runtime",
+          "play-mode",
+          "time",
+          "scale"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.active.set",
+        "kind": "command",
+        "summary": "Make one loaded Scene and its authoring document active.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes the active authoring Scene and document."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "loaded",
+          "active",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.additive.load",
+        "kind": "command",
+        "summary": "Load a scene asset additively into the current editor World.",
+        "thread": "owner",
+        "side_effects": [
+          "Adds one resident Scene without replacing existing Scenes."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "document",
+          "load",
+          "additive",
+          "asset"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.component.add",
+        "kind": "command",
+        "summary": "Attach a registered native or Python component to a GameObject.",
+        "thread": "owner",
+        "side_effects": [
+          "Attaches a component and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "component",
+          "add",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.component.property.set",
+        "kind": "command",
+        "summary": "Set one serialized component field through the shared component service.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes a component field and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "component",
+          "property",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.component.remove",
+        "kind": "command",
+        "summary": "Remove one component through component history.",
+        "thread": "owner",
+        "side_effects": [
+          "Removes a component and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "component",
+          "remove",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.component.schema",
+        "kind": "query",
+        "summary": "Describe the authoritative writable fields of one component.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "scene.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "scene",
+          "component",
+          "schema",
+          "property"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.scene.hierarchy.get",
+        "kind": "query",
+        "summary": "Read the active scene hierarchy and serialized component state; inline mesh arrays are summarized by default.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "scene.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "scene",
+          "hierarchy",
+          "component",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.scene.loaded.get",
+        "kind": "query",
+        "summary": "List every Scene currently resident in the editor World.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "scene.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "scene",
+          "loaded",
+          "additive",
+          "inspect"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.scene.mesh.assign",
+        "kind": "command",
+        "summary": "Assign a registered Mesh asset, including mesh source state, through component history.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes the renderer mesh source and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "mesh",
+          "asset",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.model.instantiate",
+        "kind": "command",
+        "summary": "Instantiate one imported model asset through the same hierarchy transaction as a Project-panel drop.",
+        "thread": "owner",
+        "side_effects": [
+          "Instantiates a model hierarchy and records one Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "model",
+          "asset",
+          "instantiate",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.object.create",
+        "kind": "command",
+        "summary": "Create one GameObject through hierarchy history.",
+        "thread": "owner",
+        "side_effects": [
+          "Creates a scene object and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "object",
+          "create",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.object.delete",
+        "kind": "command",
+        "summary": "Delete explicit GameObjects through one hierarchy transaction.",
+        "thread": "owner",
+        "side_effects": [
+          "Deletes scene objects and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "object",
+          "delete",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.object.kinds",
+        "kind": "query",
+        "summary": "List object kinds accepted by the editor's hierarchy creation service.",
+        "thread": "owner",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "scene.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "scene",
+          "object",
+          "create",
+          "schema"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.scene.object.parent.set",
+        "kind": "command",
+        "summary": "Move GameObjects under a parent or to the scene root.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes the hierarchy and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "hierarchy",
+          "parent",
+          "move",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.object.property.set",
+        "kind": "command",
+        "summary": "Set one supported GameObject property through serialized-property history.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes a GameObject property and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "object",
+          "property",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.object.transform.set",
+        "kind": "command",
+        "summary": "Set the complete local transform of one GameObject.",
+        "thread": "owner",
+        "side_effects": [
+          "Changes a Transform and records an Undo entry."
+        ],
+        "reversible": true,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "object",
+          "transform",
+          "move",
+          "authoring"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.open",
+        "kind": "command",
+        "summary": "Schedule a scene asset load by GUID. The returned scheduled flag confirms that loading was queued.",
+        "thread": "owner",
+        "side_effects": [
+          "Replaces the active scene document."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "document",
+          "open",
+          "asset"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.reload",
+        "kind": "command",
+        "summary": "Reload the active scene from disk, optionally discarding unsaved edits.",
+        "thread": "owner",
+        "side_effects": [
+          "Replaces the active scene with its persisted document."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "document",
+          "reload",
+          "discard"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.scene.save",
+        "kind": "command",
+        "summary": "Save the active scene through its registered document controller.",
+        "thread": "owner",
+        "side_effects": [
+          "Durably writes the active scene asset."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "scene.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "scene",
+          "document",
+          "save"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.ui.semantic.capture.set",
+        "kind": "command",
+        "summary": "Enable or disable semantic Editor UI capture.",
+        "thread": "mixed",
+        "side_effects": [
+          "Changes semantic capture state for subsequent Editor frames."
+        ],
+        "reversible": false,
+        "capabilities": [
+          "ui.write"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "medium"
+        },
+        "tags": [
+          "ui",
+          "semantic",
+          "capture",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.authoring"
+      },
+      {
+        "id": "infernux.ui.semantic.snapshot",
+        "kind": "query",
+        "summary": "Request and read one semantic snapshot of rendered Editor controls.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "ui.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "ui",
+          "semantic",
+          "snapshot",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.ui.semantic.status",
+        "kind": "query",
+        "summary": "Read semantic-capture sequencing without scheduling a frame.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "ui.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "ui",
+          "semantic",
+          "status",
+          "editor"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      },
+      {
+        "id": "infernux.ui.semantic.wait",
+        "kind": "query",
+        "summary": "Wait for a matching control to appear in a freshly rendered semantic frame.",
+        "thread": "mixed",
+        "side_effects": [],
+        "reversible": false,
+        "capabilities": [
+          "ui.read"
+        ],
+        "cost": {
+          "class": "interactive",
+          "risk": "low"
+        },
+        "tags": [
+          "ui",
+          "semantic",
+          "wait",
+          "target",
+          "editor",
+          "validation"
+        ],
+        "availability": [
+          "editor"
+        ],
+        "phase": "editor.read"
+      }
+    ]
+  }
+}

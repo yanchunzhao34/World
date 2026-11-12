@@ -1,0 +1,7 @@
+"""原有网格及小端二进制布局，与 Godot 的 WorldLayout 保持一致。"""
+
+WIDTH = 512
+HEIGHT = 288
+CELL_STRIDE = 16
+CELL_BYTES = WIDTH * HEIGHT * CELL_STRIDE
+BACKGROUND_BYTES = WIDTH * HEIGHT * 4

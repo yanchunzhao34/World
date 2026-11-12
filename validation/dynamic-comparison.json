@@ -1,0 +1,56 @@
+{
+  "lab": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "cave": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "volcano": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "gallery": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "optics": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "energy": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "cover": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "empty": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  },
+  "titlelab": {
+    "mae": 0.0,
+    "p99": 0.0,
+    "max": 0,
+    "exact": true
+  }
+}

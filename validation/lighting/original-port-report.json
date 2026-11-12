@@ -1,0 +1,116 @@
+{
+  "renderer": "original",
+  "unchanged_source_files": 238,
+  "catalog": {
+    "materials": 90,
+    "reactions": 44,
+    "discoveries": 100
+  },
+  "adapter": {
+    "vendor": "NVIDIA",
+    "architecture": "",
+    "device": "NVIDIA GeForce RTX 5070 Ti",
+    "description": "610.88",
+    "stackgroup_min_size": 4,
+    "stackgroup_max_size": 128,
+    "vendor_id": 4318,
+    "device_id": 11269,
+    "adapter_type": "DiscreteGPU",
+    "backend_type": "Vulkan"
+  },
+  "fixed_lab_comparison": {
+    "frames": 120,
+    "width": 1536,
+    "height": 864,
+    "rgb_mae": 0.0,
+    "rgb_p99": 0.0,
+    "rgb_max": 0,
+    "channels_within_1": 1.0
+  },
+  "maps": {
+    "lab": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.584,
+      "rgb_max_error": 0
+    },
+    "cave": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.578,
+      "rgb_max_error": 0
+    },
+    "volcano": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.575,
+      "rgb_max_error": 0
+    },
+    "gallery": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.584,
+      "rgb_max_error": 0
+    },
+    "optics": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.572,
+      "rgb_max_error": 0
+    },
+    "energy": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.566,
+      "rgb_max_error": 0
+    },
+    "cover": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.587,
+      "rgb_max_error": 0
+    },
+    "empty": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.55,
+      "rgb_max_error": 0
+    },
+    "titlelab": {
+      "tick": 12,
+      "bodies": 0,
+      "seconds": 0.569,
+      "rgb_max_error": 0
+    }
+  },
+  "paused_paint": true,
+  "heat": true,
+  "single_step": true,
+  "clear": true,
+  "save_restore_exact_cells": true,
+  "resize": true,
+  "debug_views": 11,
+  "gpu_probe": true,
+  "demos": [
+    "light",
+    "density",
+    "phase",
+    "flames",
+    "reactions",
+    "glow",
+    "rigid",
+    "stained",
+    "daycycle",
+    "mirrors",
+    "cave",
+    "combustion",
+    "explosion",
+    "acid",
+    "cold",
+    "volcano"
+  ],
+  "shaders_compiled": 48,
+  "all_shaders_compiled": 50,
+  "world_snapshot_fields": 15,
+  "fast_drag_release": true
+}

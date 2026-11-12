@@ -1,0 +1,120 @@
+{
+    "metadata": {
+        "content_hash": {
+            "type": "string",
+            "value": "2b1fc745d010ac4b"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Shaders/WorkshopPresent.frag"
+        },
+        "guid": {
+            "type": "string",
+            "value": "0d875baa110679524f5b1bec732e4b8b"
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1793806693"
+        },
+        "properties": {
+            "type": "string",
+            "value": "[]"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Shader"
+        },
+        "shader_alpha_test": {
+            "type": "string",
+            "value": ""
+        },
+        "shader_blend": {
+            "type": "string",
+            "value": ""
+        },
+        "shader_capabilities": {
+            "type": "string",
+            "value": "[\"Fullscreen\"]"
+        },
+        "shader_cast_shadows": {
+            "type": "bool",
+            "value": true
+        },
+        "shader_cull_mode": {
+            "type": "string",
+            "value": "back"
+        },
+        "shader_depth_test": {
+            "type": "string",
+            "value": ""
+        },
+        "shader_depth_write": {
+            "type": "string",
+            "value": ""
+        },
+        "shader_entries": {
+            "type": "string",
+            "value": "{}"
+        },
+        "shader_hidden": {
+            "type": "bool",
+            "value": true
+        },
+        "shader_id": {
+            "type": "string",
+            "value": "Element Workshop Present"
+        },
+        "shader_imports": {
+            "type": "string",
+            "value": "[]"
+        },
+        "shader_inputs": {
+            "type": "string",
+            "value": "[{\"column\":14,\"interpolation\":\"Smooth\",\"line\":7,\"name\":\"inUV\",\"semantic\":\"\",\"space\":\"\",\"type\":\"Float2\"}]"
+        },
+        "shader_lighting_type": {
+            "type": "string",
+            "value": "Unlit"
+        },
+        "shader_outputs": {
+            "type": "string",
+            "value": "[{\"column\":15,\"interpolation\":\"Smooth\",\"line\":8,\"name\":\"outColor\",\"semantic\":\"\",\"space\":\"\",\"type\":\"Float4\"}]"
+        },
+        "shader_pass_tag": {
+            "type": "string",
+            "value": "opaque"
+        },
+        "shader_queue": {
+            "type": "int",
+            "value": 2000
+        },
+        "shader_receive_shadows": {
+            "type": "bool",
+            "value": true
+        },
+        "shader_requirements": {
+            "type": "string",
+            "value": "[]"
+        },
+        "shader_schema_format": {
+            "type": "string",
+            "value": "ShaderInfo"
+        },
+        "shader_stencil": {
+            "type": "string",
+            "value": ""
+        },
+        "shader_surface_type": {
+            "type": "string",
+            "value": "opaque"
+        },
+        "shader_unsupported": {
+            "type": "string",
+            "value": "[]"
+        },
+        "type": {
+            "type": "string",
+            "value": "fragment"
+        }
+    }
+}

@@ -1,0 +1,53 @@
+"""原设置键、范围及调试视图。界面通过操作协议更新后台。"""
+
+from .workshop_style import DIM
+
+SWITCHES = {"Enable3D": "立体光照", "VoxelExtrude": "体素挤出", "DayCycleOn": "昼夜循环",
+            "AutoExposure": "自动曝光", "BilinearFix": "光照插值修正", "BgSmooth": "背景平滑"}
+KNOBS = {
+    "WorldBrightness": ("画面亮度", .1, 3, .05), "BloomIntensity": ("泛光", 0, 2, .02),
+    "Daylight": ("日光", 0, 4, .05), "MirrorBeams": ("镜面光束", 0, 2, .05),
+    "LampBeams": ("灯光光束", 0, 2, .05), "HeatDistortion": ("热扭曲", 0, 3, .05),
+    "Grain": ("颗粒", 0, .1, .005), "ViewHeight": ("内部渲染高度", 288, 1728, 8)}
+DEBUG = ["最终画面", "平面颜色", "材料 ID", "温度", "流体速度", "烟雾", "辐照度",
+         "级联", "自发光", "消光", "闪光"]
+
+
+class WorkshopSettings:
+    def __init__(self, app):
+        self.app, self.scroll = app, 0
+
+    def render(self, c, rect):
+        app, (x, y, width, height) = self.app, rect
+        content = 48 + len(SWITCHES) * 38 + len(KNOBS) * 44 + 90
+        self.scroll = min(max(0, content - height), max(0, self.scroll))
+        if c.hit(rect):
+            self.scroll = min(max(0, content - height), max(0, self.scroll - c.ctx.get_mouse_wheel_delta() * 44))
+        c.clip(rect)
+        cy = y - self.scroll
+        c.text((x, cy, 120, 34), "音量", 13)
+        c.slider((x + 140, cy, width - 200, 34), app.sound.volume, 0, 1,
+                 lambda value: setattr(app.sound, "volume", value), "volume")
+        cy += 48
+        for key, label in SWITCHES.items():
+            value = bool(app.settings[key])
+            c.button((x, cy, width, 32), ("☑ " if value else "☐ ") + label,
+                     lambda key=key, value=value: app.set_setting(key, not value), fill="ffffff00",
+                     identifier="setting-" + key)
+            cy += 38
+        for key, (label, minimum, maximum, step) in KNOBS.items():
+            value = float(app.settings[key])
+            c.text((x, cy, 140, 36), label, 13)
+            c.slider((x + 150, cy + 4, max(40, width - 320), 30), value, minimum, maximum,
+                     lambda value, key=key, step=step: app.set_setting(key, round(value / step) * step),
+                     "slider-" + key)
+            c.button((x + width - 152, cy + 4, 28, 28), "−",
+                     lambda key=key, value=value, step=step, minimum=minimum: app.set_setting(key, max(minimum, value - step)))
+            c.text((x + width - 120, cy, 80, 36), f"{value:g}", 13, align=.5)
+            c.button((x + width - 36, cy + 4, 28, 28), "+",
+                     lambda key=key, value=value, step=step, maximum=maximum: app.set_setting(key, min(maximum, value + step)))
+            cy += 44
+        c.text((x, cy, 140, 36), "调试视图", 13)
+        mode = int(app.current.get("view_mode", 0))
+        c.button((x + 150, cy, width - 180, 36), DEBUG[mode] + " ⌄", lambda: app.open_modal("debug"))
+        c.unclip()

@@ -1,0 +1,130 @@
+[
+  {
+    "key": "light",
+    "title": "光的折射与反射",
+    "english": "Refraction and reflection of light",
+    "length": "24",
+    "scene": "optics",
+    "available": true
+  },
+  {
+    "key": "density",
+    "title": "密度与浮力",
+    "english": "Density and buoyancy",
+    "length": "18.5",
+    "scene": "showcase_density",
+    "available": true
+  },
+  {
+    "key": "phase",
+    "title": "物态变化",
+    "english": "Changes of state",
+    "length": "23",
+    "scene": "showcase_phase",
+    "available": true
+  },
+  {
+    "key": "flames",
+    "title": "火焰的颜色",
+    "english": "Flame colours",
+    "length": "25.5",
+    "scene": "showcase_flames",
+    "available": true
+  },
+  {
+    "key": "reactions",
+    "title": "化学反应",
+    "english": "Chemical reactions",
+    "length": "23",
+    "scene": "showcase_reactions",
+    "available": true
+  },
+  {
+    "key": "glow",
+    "title": "冷光与荧光",
+    "english": "Cold light and phosphorescence",
+    "length": "19.5",
+    "scene": "energy",
+    "available": true
+  },
+  {
+    "key": "rigid",
+    "title": "积木与刚体",
+    "english": "Toy blocks and rigid bodies",
+    "length": "19.5",
+    "scene": "showcase_rigid",
+    "available": true
+  },
+  {
+    "key": "stained",
+    "title": "彩色玻璃",
+    "english": "Stained glass",
+    "length": "14.5",
+    "scene": "showcase_stained",
+    "available": true
+  },
+  {
+    "key": "daycycle",
+    "title": "从清晨到深夜",
+    "english": "From dawn to night",
+    "length": "23",
+    "scene": "gallery",
+    "available": true
+  },
+  {
+    "key": "mirrors",
+    "title": "镜面长廊",
+    "english": "Mirror corridor",
+    "length": "13.5",
+    "scene": "showcase_mirrors",
+    "available": true
+  },
+  {
+    "key": "cave",
+    "title": "熔岩洞穴",
+    "english": "Lava cave",
+    "length": "14",
+    "scene": "cave",
+    "available": true
+  },
+  {
+    "key": "combustion",
+    "title": "燃烧",
+    "english": "Combustion",
+    "length": "27.5",
+    "scene": "showcase_combustion",
+    "available": true
+  },
+  {
+    "key": "explosion",
+    "title": "爆炸",
+    "english": "Explosions",
+    "length": "16",
+    "scene": "showcase_explosion",
+    "available": true
+  },
+  {
+    "key": "acid",
+    "title": "酸的腐蚀",
+    "english": "Acid corrosion",
+    "length": "17.5",
+    "scene": "showcase_acid",
+    "available": true
+  },
+  {
+    "key": "cold",
+    "title": "低温",
+    "english": "Extreme cold",
+    "length": "19",
+    "scene": "showcase_cold",
+    "available": true
+  },
+  {
+    "key": "volcano",
+    "title": "火山",
+    "english": "Volcano",
+    "length": "23",
+    "scene": "volcano",
+    "available": true
+  }
+]

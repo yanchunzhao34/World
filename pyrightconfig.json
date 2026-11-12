@@ -1,0 +1,12 @@
+{
+    "pythonVersion": "3.13",
+    "typeCheckingMode": "basic",
+    "reportMissingModuleSource": false,
+    "reportWildcardImportFromLibrary": false,
+    "extraPaths": [
+        ".runtime/python313/Lib/site-packages"
+    ],
+    "include": [
+        "Assets"
+    ]
+}

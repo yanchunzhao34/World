@@ -1,0 +1,23 @@
+{
+  "near-open": {
+    "fluence": 0.6460580229759216,
+    "extinction": 0.0,
+    "source": 0.0,
+    "surface": 0.0,
+    "fog": 0.06570269167423248
+  },
+  "near-stone": {
+    "fluence": 0.005107154604047537,
+    "extinction": 0.0,
+    "source": 0.0,
+    "surface": 0.0,
+    "fog": 0.036144714802503586
+  },
+  "near-glass": {
+    "fluence": 0.4433806836605072,
+    "extinction": 0.0,
+    "source": 0.0,
+    "surface": 0.0,
+    "fog": 0.054836492985486984
+  }
+}
