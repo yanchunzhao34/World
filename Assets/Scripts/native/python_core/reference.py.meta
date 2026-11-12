@@ -1,0 +1,40 @@
+{
+    "metadata": {
+        "content_hash": {
+            "type": "string",
+            "value": "37368a9bd8db1017"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".py"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/reference.py"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 8971
+        },
+        "file_type": {
+            "type": "string",
+            "value": "script"
+        },
+        "guid": {
+            "type": "string",
+            "value": "f3d0b36d9308423b8fe41cc3aea5a7b1"
+        },
+        "language": {
+            "type": "string",
+            "value": "python"
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794498416"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Script"
+        }
+    }
+}

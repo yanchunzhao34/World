@@ -1,0 +1,40 @@
+{
+    "metadata": {
+        "content_hash": {
+            "type": "string",
+            "value": "6fac784a0caa0844"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".py"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/observation.py"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 8640
+        },
+        "file_type": {
+            "type": "string",
+            "value": "script"
+        },
+        "guid": {
+            "type": "string",
+            "value": "b0e51f13d2f83e389e6327a5f2e0eae6"
+        },
+        "language": {
+            "type": "string",
+            "value": "python"
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794495445"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Script"
+        }
+    }
+}

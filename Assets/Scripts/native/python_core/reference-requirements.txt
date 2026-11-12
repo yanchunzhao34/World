@@ -1,0 +1,2 @@
+# Optional dependency for comparing Python against the archived JavaScript core.
+quickjs-ng==0.17.0.2

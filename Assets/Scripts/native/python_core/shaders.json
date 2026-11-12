@@ -1,0 +1,3716 @@
+{
+  "bodies/body_claim.comp": {
+    "readWrite": [
+      "cells"
+    ],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 3,
+        "binding": 0,
+        "name": "cells_r",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "bodies/body_dead.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed_1",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed_2",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "bodies/body_displace.comp": {
+    "readWrite": [
+      "cells",
+      "cells"
+    ],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 3,
+        "binding": 0,
+        "name": "cells_r",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "cells_pre",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      256,
+      1,
+      1
+    ]
+  },
+  "bodies/body_erase.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "unnamed_2",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "unnamed_3",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_4",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "bodies/body_occ.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "bodies/body_owner.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "bodies/body_stamp.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_1",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_2",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_3",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "unnamed_4",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed_5",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/advect.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/divergence.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "div_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "r32float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/fluid_inject.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_2",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/medium.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "vel_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 2,
+        "name": "vel_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "medium_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "medium_in_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "unnamed_1",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "medium_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/pressure.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "p_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "div_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "p_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "r32float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "fluid/pressure_solve.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "p_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "div_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "vel",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "p_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "r32float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      1024,
+      1,
+      1
+    ]
+  },
+  "fluid/project.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "pres",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "vel_view",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "net/net_chunks.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "medium",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_2",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      16,
+      16,
+      1
+    ]
+  },
+  "net/state_hash.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "pressure",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_2",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "render/beam_blur.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "prev_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "dir_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "dir_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/beam_probe.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "albedo_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 8,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "unnamed_2",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "fluence_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "fluence_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "ldir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 6,
+        "name": "ldir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed_3",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "beam_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 9,
+        "name": "beam_prev_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 10,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      }
+    ],
+    "workgroup": [
+      256,
+      1,
+      1
+    ]
+  },
+  "render/beam_waves.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "albedo_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 10,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "unnamed_2",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 8,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "unnamed_3",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "fluence_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "fluence_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "ldir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 6,
+        "name": "ldir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "beam_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 9,
+        "name": "beam_prev_smp",
+        "kind": "sampler"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/bloom_down.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "src",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "src_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/bloom_up.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "low",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "low_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cur",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 1,
+        "name": "cur_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/composite.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 12,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 13,
+        "name": "beam_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 13,
+        "name": "beam_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fluence_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fluence_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 15,
+        "name": "cha_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 15,
+        "name": "cha_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 16,
+        "name": "chb_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 16,
+        "name": "chb_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "albedo_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "ldir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "ldir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 14,
+        "name": "beam_dir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 14,
+        "name": "beam_dir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "sub_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "l0s_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "l0t_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/daylight.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "day_cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "prev_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/debug_view.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "aux_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "aux_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba8unorm",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/dof.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "src",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "src_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/downsample.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "src",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/exposure.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "ex",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "hdr",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/fog_backlight.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "l0s",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "l0t",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "fl2_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 2,
+        "name": "fl2_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fl3_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fl3_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/front_fog.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "backlight",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "l0s",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "l0t",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fl2_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fl2_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "fl3_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "fl3_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 7,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/gbuffer.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 2,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fluence_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fluence_prev_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 12,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "beam_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 11,
+        "name": "beam_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "albedo_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "emissive_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "rcsrc_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "rcext_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "gaux_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 13,
+        "name": "ldir_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 13,
+        "name": "ldir_prev_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 14,
+        "name": "gloss_a_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/godrays.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "rcsrc",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "rcsrc_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 2,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/light_prep.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "gloss",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "albedo_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "day_cells",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/occ_field.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "l0s",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "occ_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "bg_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "side_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/rc_avg.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "upper",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "upper_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/rc_cascade.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "scene",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "scene_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "gloss_a",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "gloss_a_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "ext_scene",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "ext_scene_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "upper_avg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "rp",
+        "kind": "uniform"
+      }
+    ],
+    "workgroup": [
+      128,
+      1,
+      1
+    ]
+  },
+  "render/rc_mips.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "ext_src",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "src",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "ext_dst",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/rc_resolve.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "c0_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "cha_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "chb_prev",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "fluence_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "cha_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "chb_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "dir_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/subsurface.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "albedo_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "prev_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "fluence_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "fluence_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/tonemap.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "hdr",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "bloom_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 1,
+        "name": "bloom_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "ex",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "lut",
+        "kind": "texture",
+        "dim": "3d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "lut_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "cost_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba8unorm",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/view3d.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 27,
+        "name": "cell_shade",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "l0s",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 14,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 13,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fl0_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fl0_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "fl1_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "fl1_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "fl2_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "fl2_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "fl3_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 6,
+        "name": "fl3_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "fl4_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 7,
+        "name": "fl4_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "ldir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 8,
+        "name": "ldir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 24,
+        "name": "cha_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 24,
+        "name": "cha_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 25,
+        "name": "chb_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 25,
+        "name": "chb_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 16,
+        "name": "occ_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 16,
+        "name": "occ_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 15,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 20,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 20,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "l0t",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 26,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 18,
+        "name": "bgsm_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 18,
+        "name": "bgsm_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 9,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 17,
+        "name": "side_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 17,
+        "name": "side_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "godray_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 10,
+        "name": "godray_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 23,
+        "name": "fog_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 23,
+        "name": "fog_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 19,
+        "name": "beam_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 19,
+        "name": "beam_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 21,
+        "name": "cost_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 22,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "render/view_cells.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 11,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "fl0_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 3,
+        "name": "fl0_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "fl1_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 4,
+        "name": "fl1_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "fl2_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "fl2_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "fl3_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 6,
+        "name": "fl3_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "fl4_",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 7,
+        "name": "fl4_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 8,
+        "name": "ldir_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 8,
+        "name": "ldir_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 24,
+        "name": "cha_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 24,
+        "name": "cha_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 25,
+        "name": "chb_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 25,
+        "name": "chb_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 16,
+        "name": "occ_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 16,
+        "name": "occ_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 13,
+        "name": "cells",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 14,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 15,
+        "name": "gaux_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "bg",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 20,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 20,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "l0s",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "l0t",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 0,
+        "binding": 26,
+        "name": "emissive_img",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 27,
+        "name": "cell_shade",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 9,
+        "name": "medium_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 9,
+        "name": "medium_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 10,
+        "name": "godray_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 10,
+        "name": "godray_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 12,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 17,
+        "name": "side_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 17,
+        "name": "side_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 18,
+        "name": "bgsm_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 18,
+        "name": "bgsm_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 19,
+        "name": "beam_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 19,
+        "name": "beam_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 21,
+        "name": "cost_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 23,
+        "name": "fog_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 23,
+        "name": "fog_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 22,
+        "name": "unnamed_1",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "render/window_shafts.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "rp",
+        "kind": "uniform"
+      },
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "bgsm_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 0,
+        "name": "bgsm_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "out_img",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba16float",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/apply_commands.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "stats",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_2",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/explosion.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_2",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/explosion_gather.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "unnamed",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "unnamed_2",
+        "kind": "storage"
+      }
+    ],
+    "workgroup": [
+      256,
+      1,
+      1
+    ]
+  },
+  "sim/heat.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/liquid_spread.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      }
+    ],
+    "workgroup": [
+      64,
+      1,
+      1
+    ]
+  },
+  "sim/margolus_move.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed_1",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/reactions.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "stats",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "unnamed_2",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "unnamed_3",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_4",
+        "kind": "read-only-storage"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  },
+  "sim/unary.comp": {
+    "readWrite": [],
+    "bindings": [
+      {
+        "group": 1,
+        "binding": 0,
+        "name": "pc",
+        "kind": "uniform"
+      },
+      {
+        "group": 0,
+        "binding": 0,
+        "name": "cells_in",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "uint"
+      },
+      {
+        "group": 0,
+        "binding": 1,
+        "name": "cells_out",
+        "kind": "storage-texture",
+        "dim": "2d",
+        "format": "rgba32uint",
+        "access": "write-only"
+      },
+      {
+        "group": 0,
+        "binding": 2,
+        "name": "unnamed",
+        "kind": "read-only-storage"
+      },
+      {
+        "group": 0,
+        "binding": 3,
+        "name": "stats",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 7,
+        "name": "unnamed_1",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 4,
+        "name": "unnamed_2",
+        "kind": "storage"
+      },
+      {
+        "group": 0,
+        "binding": 5,
+        "name": "light_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 5,
+        "name": "light_tex_smp",
+        "kind": "sampler"
+      },
+      {
+        "group": 0,
+        "binding": 6,
+        "name": "day_tex",
+        "kind": "texture",
+        "dim": "2d",
+        "sampleType": "float"
+      },
+      {
+        "group": 2,
+        "binding": 6,
+        "name": "day_tex_smp",
+        "kind": "sampler"
+      }
+    ],
+    "workgroup": [
+      8,
+      8,
+      1
+    ]
+  }
+}

@@ -40,7 +40,7 @@ Windows 启动时会在创建窗口前设置 Per-Monitor V2 DPI 上下文，兼�
 & '.\.runtime\python313\python.exe' -m pip install -r requirements.txt
 ```
 
-依赖安装或预加载配置修改后，重新打开编辑器。QuickJS-NG 的导入名为 `quickjs`，熔炉 0.4.1 的通用依赖检查器会误判为 `quickjs_ng`，因此其版本声明保留在根目录的 `requirements.txt`，由上述安装命令处理。
+依赖安装或预加载配置修改后，重新打开编辑器。默认游戏核心使用 Python，运行依赖统一记录在根目录的 `requirements.txt`。QuickJS-NG 是 JS 参考对照工具的可选依赖，安装方法见下方验证命令。
 
 界面偏好及图鉴进度保存在 `UserData/workshop_ui.json`，快速存档保存在 `UserData/saves/quick.ewsave`。快速存档沿用 Godot 版 ZIP 容器及二进制布局，可读取原有的 `cells.bin`、`background.bin`、`info.json`。
 
@@ -59,9 +59,11 @@ Windows 启动时会在创建窗口前设置 Per-Monitor V2 DPI 上下文，兼�
 
 ## 引擎适配与架构
 
-JavaScript 核心通过 QuickJS-NG 在后台线程运行。熔炉 0.4.1 的公开 compute 接口接受 buffer，现有算法需要整数、半精度和三维 storage texture，因此 `GpuHost` 使用 wgpu-native 的独立 Vulkan 计算设备，保留 Godot 版独立计算设备的资源边界。最终图像经过熔炉 `RenderStack`，由 `WorkshopPresent.frag` 执行原有采样、暗角、颗粒和色差公式。
+游戏核心由 `Assets/Scripts/native/python_core/runtime.py` 中的 Python `Simulation` 运行，GPU 资源、网格、刚体、渲染、相机及世界观测按原有职责分模块实现。新增核心代码与声明式数据统一放在 `Assets/Scripts/native/python_core/`。十六项演示和主页编排由 JSON 时间线驱动，着色器绑定、日照关键帧、模拟默认参数和固定调色 LUT 随核心保存。
 
-主线程负责熔炉界面、输入、显示缓冲与声音控制。后台线程独占 JavaScript 和 GPU。操作队列与最新帧邮箱沿用原结构。普通游玩按原流程读取显示帧与统计，世界观测仅在收到请求后采集数组。
+熔炉 0.4.1 的公开 compute 接口接受 buffer，现有算法需要整数、半精度和三维 storage texture，因此 `GpuHost` 使用 wgpu-native 的独立 Vulkan 计算设备。WGSL 负责逐格模拟和 GPU 渲染，Python 负责阶段调度、CPU 刚体计算和交互逻辑。最终图像经过熔炉 `RenderStack`，由 `WorkshopPresent.frag` 执行采样、暗角、颗粒和色差公式。
+
+主线程负责熔炉界面、输入、显示缓冲与声音控制。后台线程独占 Python 模拟状态和计算设备，通过操作队列与最新帧邮箱协作。普通游玩读取显示帧与统计，世界观测在收到请求后采集数组。
 
 | Godot 模块 | 熔炉模块 |
 | --- | --- |
@@ -72,19 +74,24 @@ JavaScript 核心通过 QuickJS-NG 在后台线程运行。熔炉 0.4.1 的公�
 | `native/GpuHost.Storage.cs` | `Assets/Scripts/native/gpu_host_storage.py` |
 | `native/WorldStateCapture.cs`、快照邮箱 | `Assets/Scripts/native/world_state_capture.py` |
 | `native/SoundSynth.cs` | `Assets/Scripts/native/sound_synth.py` |
-| `runtime/*.js` | `Assets/Workshop/runtime/*.js` |
+| `runtime/platform.js` | `Assets/Scripts/native/python_core/gpu.py` |
+| `SimulationGrid`、命令与统计 | `python_core/grid.py`、`python_core/commands.py` |
+| `RigidBodyWorld`、`RigidBodyGpuBridge` | `python_core/rigid.py`、`python_core/rigid_gpu.py` |
+| `WorldRenderer`、设置与相机 | `python_core/renderer.py`、`python_core/settings.py` |
+| `runtime/game.js`、演示和主页编排 | `python_core/runtime.py`、`demos.json`、`title_steps.json` |
+| `runtime/world_observation.js` | `python_core/observation.py` |
 | `ui/*.gd` | `Assets/Scripts/ui/*.py` |
 | `original/` | `Assets/Workshop/original/` |
 
-原 JavaScript 和 WGSL 文件保持原始内容。GPU 加载时沿用 Godot 转换器的 `workgroupUniformLoad` 原子变量兼容处理。Python 与 JavaScript 的二进制桥接保留子视图字节偏移、零字节和浮点位。
+`Assets/Workshop/runtime/` 保存 JS 参考实现，`python_core/reference.py` 在对照工具实例化时加载 QuickJS-NG。Python 核心直接传递二进制 GPU 数据。GPU 加载时沿用 Godot 转换器的 `workgroupUniformLoad` 原子变量兼容处理，238 个来源资产通过 `source-manifest.json` 校验。
 
-编辑器的组件脚本不在导入时修改 `sys.path`。QuickJS、wgpu、Pillow 及线程、音频和压缩库由 `Packages/workshop/runtime/WorkshopDependencies.py` 的 `InxPreload` 生命周期预加载；`runtime/library` 通过 `own_python_library` 声明为普通运行库。设备、线程和音频仍由 `WorkshopSession` 创建及释放，原有 `native/`、`ui/` 模块边界保持不变。场景中的 RenderStack 由引擎负责销毁，停止游戏后保留编辑器所需的渲染管线。
+编辑器的组件脚本通过标准项目模块导入。wgpu、Pillow 及线程、音频、压缩和二进制处理库由 `Packages/workshop/runtime/WorkshopDependencies.py` 的 `InxPreload` 生命周期预加载，`runtime/library` 通过 `own_python_library` 声明为普通运行库。设备、线程和音频由 `WorkshopSession` 创建及释放。场景中的 RenderStack 由引擎负责销毁，停止游戏后恢复编辑器所需的渲染管线。
 
 ### 帧率与帧间隔
 
 游戏内容的更新率取决于后台生成新画面的速度。编辑器原先显示的上千 FPS 包含重复绘制上一帧，不能用来代表模拟速度。性能记录单独统计新画面、模拟步数和帧间隔。
 
-2026-11-06 的优化保留原画质、固定 60 Hz 模拟规则与模块职责：
+2026-11-06 的 JS 核心阶段完成了以下优化。
 
 - 二进制桥接使用 QuickJS-NG 的原生 Base64 编解码，保留任意字节、浮点位和子视图范围。
 - 刚体占用位图用 NumPy 查表展开，随后继续调用原版更新方法；碰撞求解、回调顺序和 GPU 交换包沿用原逻辑。
@@ -95,15 +102,17 @@ JavaScript 核心通过 QuickJS-NG 在后台线程运行。熔炉 0.4.1 的公�
 
 本机实验室场景的后台真实新画面更新率从约 18 FPS 提升到 60 FPS，平均每帧计算耗时从 55.2 ms 降到 10.5 ms，95% 帧间隔从 58.0 ms 降到 17.8 ms。独立后台测试见 `validation/performance-before.json`、`validation/performance-after.json`；开启音效的真实编辑器测试见 `validation/editor-play.json` 中的 `performance_cycles`，汇总见 `validation/performance-summary.json`。这些数据来自预热后采样，复杂刚体、演示和不同机器的性能应分别测量。
 
+2026-11-12 的 Python 核心复测采用相同实验室地图、默认遮挡修正和预热条件。独立后台连续采样 5 秒，JS 参考核心平均每帧 11.49 ms，Python 核心为 8.36 ms，降低约 27%，两者均达到调度目标约 60 张新画面/秒。120 个固定步采样的均值分别为 11.36 ms 和 8.15 ms。记录位于 `validation/python-core-js-performance.json` 和 `validation/python-core-performance.json`。Python 核心在开启界面与音效的真实编辑器中完成两轮播放，每秒显示约 60 张新画面，平均后台耗时为 8.54 ms 和 8.64 ms，见 `validation/editor-play.json`。
+
 ## 光晕与雾光的遮挡修正
 
 默认渲染现在会检测局部光晕和前景雾光采样之间的材质遮挡。旧算法先把高亮区域模糊，再直接叠到画面；高温钠下方即使已经被容器底、木板挡住，后处理仍会给下层铁平台叠橙光。
 
-`Assets/Workshop/runtime/lighting.js` 接入原有渲染阶段；`Assets/Scripts/native/lighting_shaders.py` 在加载时应用小范围着色器覆盖；共享可见性代码位于 `Assets/Workshop/shaders/`。按格子遍历避免跳过薄墙，玻璃沿用原有 RGB 消光值，插值之前分别检查采样点。雾光改用尚未跨墙模糊的光照，再进行带遮挡的积分。正常发光、玻璃透光、开口透光和玩家的泛光强度设置都保留。
+Python 核心通过 `python_core/runtime.py` 注册遮挡绑定，由 `python_core/renderer.py` 接入渲染阶段。`Assets/Scripts/native/lighting_shaders.py` 在加载时应用小范围着色器覆盖，共享可见性代码位于 `Assets/Workshop/shaders/`。按格子遍历避免跳过薄墙，玻璃沿用 RGB 消光值，插值之前分别检查采样点。雾光使用尚未跨墙模糊的光照，再进行带遮挡的积分。JS 参考核心中的对应接入位于 `Assets/Workshop/runtime/lighting.js`。
 
 238 个原始来源文件和旧参考图没有修改。此修正有意改变遮挡区域的最终像素；默认画面不再声明与旧版逐像素相同。使用 `--original-renderer` 可在验证工具中关闭修正，继续检查与原 Godot 图像一致性；这不是玩家设置，不会写入用户偏好或存档。`tools/verify_lighting.py` 另行验证无挡板、单格/双格墙、铁板、玻璃、开口、斜墙、高温钠、缩放以及移动遮挡，结果位于 `validation/lighting/`。
 
-新增遮挡计算有开销；独立实验室运行的最新帧耗时及新画面更新率见 `validation/lighting/performance-final.json`，独立运行约 60 个新画面/秒，带界面和声音的编辑器复测约 55 个新画面/秒。雾光复用已有遮挡光场，保留原来的 32 层积分，避免重复向周围收集光线。当前实现哈希、遮挡数据和编辑器测量汇总在 `validation/lighting/summary.json`。前述性能优化记录是此次渲染修正之前的测量，不能混作当前耗时。
+遮挡修正的 JS 阶段测量位于 `validation/lighting/performance-final.json`，当时独立运行约 60 个新画面/秒，带界面和声音的编辑器约 55 个新画面/秒。雾光复用已有遮挡光场，使用 32 层积分。该阶段的实现哈希和遮挡数据汇总在 `validation/lighting/summary.json`，Python 核心的当前帧耗时见上方 2026-11-12 记录。
 
 ## 操作
 
@@ -121,16 +130,20 @@ JavaScript 核心通过 QuickJS-NG 在后台线程运行。熔炉 0.4.1 的公�
 - 关闭上述遮挡修正时，原 Godot 源码副本生成的九个场景，在固定 12 帧动态条件下，1536×864 游戏图像的全部 RGB 像素与移植版相同。旧记录在 `validation/dynamic-comparison.json`，参考图位于 `validation/reference/`，修正后的验证见 `validation/lighting/original-port-report.json`。
 - 关闭遮挡修正时，实验室暂停模拟、120 个渲染帧后的 1536×864 图像逐像素相同。
 - 暂停绘制、加热、单步、清空、存档逐字节恢复、分辨率调整、十一种调试视图和 GPU 探针通过验证。
-- 十六项演示完成启动检查。五十种运行时管线通过编译，全部 53 份 WGSL 均保留。
+- 十六项演示完成启动检查、完整编排时间线对照和 60 Hz 完整动态播放对照，共 19,292 帧的游戏输出图像及逐帧界面状态一致，每秒检查的网格、流体速度和介质数组一致。五十种运行时管线通过编译，全部 53 份 WGSL 通过来源校验。
 - 十五个世界观测字段、邮箱容量、取消、场景 epoch、不可变副本及停止边界通过验证，结果位于 `validation/world-runtime.json`。
 - 960×640 和 1920×1080 下完成主页、实验界面、物质库、图鉴和设置的原生运行检查。实际窗口中检查过搜索、键盘入口、字体和布局。
-- 编辑器的 24 个项目脚本通过严格预检查和隔离导入；真实编辑器中验证键盘从主页进入实验室、Game 视图显示、鼠标点击暂停和两轮播放/停止，记录位于 `validation/editor-frontend.json`、`validation/editor-play.json`。
+- 编辑器的 34 个项目脚本通过严格预检查和隔离导入，真实编辑器中验证键盘从主页进入实验室、Game 视图显示、鼠标点击暂停和两轮播放/停止，记录位于 `validation/editor-frontend.json`、`validation/editor-play.json`。
 - 优化后的二进制桥接覆盖全部 256 种字节、空数组、奇数长度和子视图；24 次刚体更新与原版状态及交换包完全相同。GPU 读回覆盖行对齐、三维纹理、缓冲扩容、写入失效和不可变数据，记录位于 `validation/optimizations.json`。
+- Python 与 JS 参考核心完成九张地图各 16 帧的 GPU 派发顺序、参数、像素及网格数组对照，26 个操作帧、双向 ZIP 存档互读、180 帧刚体碰撞/浮力/爆炸/断裂及数组边界检查通过，十五个世界观测字段一致，记录位于 `validation/python-core-parity.json`。
+- 在拦截 QuickJS 导入的独立进程中，通过 `launch.py` 正常入口完成 960×640 实验室画面，以及主页、实验界面、物质库、图鉴和设置面板的原生显示与退出。
 
-逐像素图像对照覆盖上述固定运行条件，采样位置为游戏渲染输出。界面的字体栅格化和部分控件排版仍有细节差异，整段演示播放、长时间运行及音效听测仍需进一步验收。显示帧继续经过 GPU 读回，帧率受运行库和数据传输开销影响。
+逐像素图像对照覆盖上述固定运行条件，采样位置为游戏渲染输出。完整演示测试固定震屏随机源，并在测试读回阶段对 GPU 原子追加的爆炸记录排序，保留每条记录的原始字节，使两套核心接收相同顺序的 CPU 反馈。界面的字体栅格化和部分控件排版仍有细节差异，长时间自由游玩及音效听测仍需进一步验收。显示帧经过 GPU 读回，帧率受运行库和数据传输开销影响。
 
 ```powershell
 $python = '.\.runtime\python313\python.exe'
+# JS 参考对照工具的可选依赖。
+& $python -m pip install -r Assets/Scripts/native/python_core/reference-requirements.txt
 & $python tools/verify_editor_frontend.py
 & $python tools/verify_editor.py
 & $python tools/verify_port.py --maps --compare
@@ -138,7 +151,8 @@ $python = '.\.runtime\python313\python.exe'
 & $python tools/verify_lighting.py
 & $python tools/verify_world_runtime.py
 & $python tools/verify_optimizations.py
-& $python tools/measure_performance.py
+& $python tools/verify_optimizations.py --full-demos
+& $python tools/measure_performance.py --output validation/python-core-performance.json
 & $python tools/verify_scene.py
 & $python launch.py --ui-smoke --width 960 --height 640
 ```

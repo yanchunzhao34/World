@@ -1,0 +1,48 @@
+{
+    "metadata": {
+        "binary_type": {
+            "type": "string",
+            "value": "binary"
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "1c587218dab162fd"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".bin"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/grading_lut.bin"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 262144
+        },
+        "file_type": {
+            "type": "string",
+            "value": "binary"
+        },
+        "guid": {
+            "type": "string",
+            "value": "ca99fcc11150a4f36b18e521bebe95b8"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": false
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794495015"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultBinary"
+        },
+        "size_category": {
+            "type": "string",
+            "value": "small"
+        }
+    }
+}

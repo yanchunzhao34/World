@@ -106,7 +106,7 @@ def verify():
                 print(label, results[label], flush=True)
             # Check camera mapping at a translated, magnified view.
             prepare(sim,'iron')
-            sim.evaluate('app.camera.setView([256, 130], 2.0);')
+            sim.set_camera_view([256, 130], 2.0)
             captures['zoom-'+variant] = capture(sim,'zoom-'+variant)
             for mode in ('flat','voxel'):
                 prepare(sim,'iron')

@@ -2,8 +2,6 @@
 # The engine checks these on every startup and auto-installs missing ones.
 # You can add your own packages here; lines starting with '#' are ignored.
 numba>=0.61.0
-# quickjs-ng imports as quickjs; Infernux 0.4.1's generic name conversion
-# misdetects it as quickjs_ng. Keep its pip declaration in ../requirements.txt.
 wgpu==0.31.1
 numpy>=2.2
 Pillow>=11

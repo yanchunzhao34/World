@@ -1,0 +1,362 @@
+[
+  [
+    0,
+    {
+      "skyMul": 0.12,
+      "skyTop": [
+        0.02,
+        0.03,
+        0.09
+      ],
+      "skyHorizon": [
+        0.06,
+        0.07,
+        0.14
+      ],
+      "sunAngle": 60,
+      "sunColor": [
+        0.55,
+        0.68,
+        1
+      ],
+      "sunMul": 0.1,
+      "ambient": [
+        0.35,
+        0.45,
+        0.85
+      ],
+      "ambientMul": 0.45,
+      "night": 1
+    }
+  ],
+  [
+    4.5,
+    {
+      "skyMul": 0.14,
+      "skyTop": [
+        0.02,
+        0.03,
+        0.09
+      ],
+      "skyHorizon": [
+        0.06,
+        0.07,
+        0.14
+      ],
+      "sunAngle": 30,
+      "sunColor": [
+        0.55,
+        0.68,
+        1
+      ],
+      "sunMul": 0.06,
+      "ambient": [
+        0.35,
+        0.45,
+        0.85
+      ],
+      "ambientMul": 0.45,
+      "night": 1
+    }
+  ],
+  [
+    5.5,
+    {
+      "skyMul": 0.3,
+      "skyTop": [
+        0.1,
+        0.12,
+        0.3
+      ],
+      "skyHorizon": [
+        0.5,
+        0.32,
+        0.38
+      ],
+      "sunAngle": 178,
+      "sunColor": [
+        1,
+        0.45,
+        0.3
+      ],
+      "sunMul": 0.03,
+      "ambient": [
+        0.7,
+        0.6,
+        0.75
+      ],
+      "ambientMul": 0.6,
+      "night": 0.6
+    }
+  ],
+  [
+    6.5,
+    {
+      "skyMul": 0.75,
+      "skyTop": [
+        0.32,
+        0.42,
+        0.78
+      ],
+      "skyHorizon": [
+        1,
+        0.55,
+        0.32
+      ],
+      "sunAngle": 165,
+      "sunColor": [
+        1,
+        0.58,
+        0.32
+      ],
+      "sunMul": 0.8,
+      "ambient": [
+        0.95,
+        0.75,
+        0.65
+      ],
+      "ambientMul": 0.85,
+      "night": 0
+    }
+  ],
+  [
+    9,
+    {
+      "skyMul": 1,
+      "skyTop": [
+        0.3,
+        0.52,
+        0.95
+      ],
+      "skyHorizon": [
+        0.85,
+        0.72,
+        0.6
+      ],
+      "sunAngle": 125,
+      "sunColor": [
+        1,
+        0.88,
+        0.72
+      ],
+      "sunMul": 1,
+      "ambient": [
+        0.9,
+        0.95,
+        1.05
+      ],
+      "ambientMul": 1,
+      "night": 0
+    }
+  ],
+  [
+    12,
+    {
+      "skyMul": 1.05,
+      "skyTop": [
+        0.3,
+        0.52,
+        0.95
+      ],
+      "skyHorizon": [
+        0.85,
+        0.72,
+        0.6
+      ],
+      "sunAngle": 92,
+      "sunColor": [
+        1,
+        0.95,
+        0.88
+      ],
+      "sunMul": 1.1,
+      "ambient": [
+        0.95,
+        1,
+        1.05
+      ],
+      "ambientMul": 1.05,
+      "night": 0
+    }
+  ],
+  [
+    15,
+    {
+      "skyMul": 1,
+      "skyTop": [
+        0.3,
+        0.52,
+        0.95
+      ],
+      "skyHorizon": [
+        0.85,
+        0.72,
+        0.6
+      ],
+      "sunAngle": 60,
+      "sunColor": [
+        1,
+        0.9,
+        0.75
+      ],
+      "sunMul": 1,
+      "ambient": [
+        0.95,
+        0.95,
+        1
+      ],
+      "ambientMul": 1,
+      "night": 0
+    }
+  ],
+  [
+    17.5,
+    {
+      "skyMul": 0.85,
+      "skyTop": [
+        0.35,
+        0.45,
+        0.8
+      ],
+      "skyHorizon": [
+        1,
+        0.62,
+        0.35
+      ],
+      "sunAngle": 28,
+      "sunColor": [
+        1,
+        0.68,
+        0.38
+      ],
+      "sunMul": 0.9,
+      "ambient": [
+        1,
+        0.8,
+        0.65
+      ],
+      "ambientMul": 0.9,
+      "night": 0
+    }
+  ],
+  [
+    19,
+    {
+      "skyMul": 0.45,
+      "skyTop": [
+        0.24,
+        0.2,
+        0.45
+      ],
+      "skyHorizon": [
+        0.92,
+        0.42,
+        0.4
+      ],
+      "sunAngle": 10,
+      "sunColor": [
+        1,
+        0.45,
+        0.32
+      ],
+      "sunMul": 0.3,
+      "ambient": [
+        0.8,
+        0.6,
+        0.75
+      ],
+      "ambientMul": 0.7,
+      "night": 0.3
+    }
+  ],
+  [
+    20.5,
+    {
+      "skyMul": 0.18,
+      "skyTop": [
+        0.06,
+        0.06,
+        0.18
+      ],
+      "skyHorizon": [
+        0.25,
+        0.15,
+        0.3
+      ],
+      "sunAngle": 3,
+      "sunColor": [
+        0.9,
+        0.5,
+        0.5
+      ],
+      "sunMul": 0.03,
+      "ambient": [
+        0.35,
+        0.45,
+        0.85
+      ],
+      "ambientMul": 0.5,
+      "night": 0.85
+    }
+  ],
+  [
+    21.5,
+    {
+      "skyMul": 0.12,
+      "skyTop": [
+        0.02,
+        0.03,
+        0.09
+      ],
+      "skyHorizon": [
+        0.06,
+        0.07,
+        0.14
+      ],
+      "sunAngle": 140,
+      "sunColor": [
+        0.55,
+        0.68,
+        1
+      ],
+      "sunMul": 0.05,
+      "ambient": [
+        0.35,
+        0.45,
+        0.85
+      ],
+      "ambientMul": 0.45,
+      "night": 1
+    }
+  ],
+  [
+    24,
+    {
+      "skyMul": 0.12,
+      "skyTop": [
+        0.02,
+        0.03,
+        0.09
+      ],
+      "skyHorizon": [
+        0.06,
+        0.07,
+        0.14
+      ],
+      "sunAngle": 60,
+      "sunColor": [
+        0.55,
+        0.68,
+        1
+      ],
+      "sunMul": 0.1,
+      "ambient": [
+        0.35,
+        0.45,
+        0.85
+      ],
+      "ambientMul": 0.45,
+      "night": 1
+    }
+  ]
+]

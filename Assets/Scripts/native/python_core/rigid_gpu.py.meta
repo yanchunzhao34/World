@@ -1,0 +1,40 @@
+{
+    "metadata": {
+        "content_hash": {
+            "type": "string",
+            "value": "9bb9c0468327127d"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".py"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/rigid_gpu.py"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 6797
+        },
+        "file_type": {
+            "type": "string",
+            "value": "script"
+        },
+        "guid": {
+            "type": "string",
+            "value": "ee12bc8932674b10bd320eb9cf13b728"
+        },
+        "language": {
+            "type": "string",
+            "value": "python"
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794495241"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Script"
+        }
+    }
+}

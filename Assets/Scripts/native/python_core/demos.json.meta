@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "character_count": {
+            "type": "size_t",
+            "value": 943199
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "a31ccf487cd7544d"
+        },
+        "encoding": {
+            "type": "string",
+            "value": "utf-8"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".json"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/demos.json"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 943199
+        },
+        "file_type": {
+            "type": "string",
+            "value": "text"
+        },
+        "guid": {
+            "type": "string",
+            "value": "1cc5242aa3e876b9c8206112b92c93b0"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": true
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794494327"
+        },
+        "line_count": {
+            "type": "size_t",
+            "value": 46188
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultText"
+        }
+    }
+}

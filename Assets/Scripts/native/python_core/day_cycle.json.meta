@@ -1,0 +1,52 @@
+{
+    "metadata": {
+        "character_count": {
+            "type": "size_t",
+            "value": 5285
+        },
+        "content_hash": {
+            "type": "string",
+            "value": "635376c6d0a83912"
+        },
+        "encoding": {
+            "type": "string",
+            "value": "ascii"
+        },
+        "file_extension": {
+            "type": "string",
+            "value": ".json"
+        },
+        "file_path": {
+            "type": "string",
+            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/day_cycle.json"
+        },
+        "file_size": {
+            "type": "size_t",
+            "value": 5285
+        },
+        "file_type": {
+            "type": "string",
+            "value": "text"
+        },
+        "guid": {
+            "type": "string",
+            "value": "cc84b9a492592e1a77f8bc6e079be58c"
+        },
+        "is_readable": {
+            "type": "bool",
+            "value": true
+        },
+        "last_modified": {
+            "type": "string",
+            "value": "1794494327"
+        },
+        "line_count": {
+            "type": "size_t",
+            "value": 363
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "DefaultText"
+        }
+    }
+}

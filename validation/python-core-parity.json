@@ -1,0 +1,39 @@
+{
+  "maps": {
+    "lab": 16,
+    "cave": 16,
+    "volcano": 16,
+    "gallery": 16,
+    "optics": 16,
+    "energy": 16,
+    "cover": 16,
+    "empty": 16,
+    "titlelab": 16
+  },
+  "action_frames": 26,
+  "demo_timelines": 16,
+  "save_layout": "JS-to-Python and Python-to-JS ZIP restore matches all entries",
+  "rigid_frames": 180,
+  "world_observation_fields": 15,
+  "passed": true,
+  "demo_playback_frames": {
+    "light": 1442,
+    "density": 1112,
+    "phase": 1382,
+    "flames": 1532,
+    "reactions": 1382,
+    "glow": 1172,
+    "rigid": 1172,
+    "stained": 872,
+    "daycycle": 1382,
+    "mirrors": 812,
+    "cave": 842,
+    "combustion": 1652,
+    "explosion": 962,
+    "acid": 1052,
+    "cold": 1142,
+    "volcano": 1382
+  },
+  "demo_camera_shake": "matching xorshift32 streams for deterministic comparison",
+  "demo_explosion_feedback": "test-only stable ordering of GPU atomic event records; all record bytes retained"
+}

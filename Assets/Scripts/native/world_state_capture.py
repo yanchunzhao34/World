@@ -36,8 +36,7 @@ class WorldStateCapture:
                 value = simulation.host.read_buffer(resource["id"], 0, expected)
             else:
                 # A restored save can have a different background than its source map.
-                from .game_runtime import decode_binary
-                value = decode_binary(simulation.evaluate("byteString(app.currentBackground)"))
+                value = simulation.read_cpu_field(resource['name'])
             if len(value) != expected:
                 raise ValueError("World observation layout mismatch for " + resource["name"])
             fields[resource["name"]] = value

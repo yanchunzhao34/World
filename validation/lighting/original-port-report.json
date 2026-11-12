@@ -31,55 +31,55 @@
     "lab": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.584,
+      "seconds": 0.252,
       "rgb_max_error": 0
     },
     "cave": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.578,
+      "seconds": 0.239,
       "rgb_max_error": 0
     },
     "volcano": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.575,
+      "seconds": 0.242,
       "rgb_max_error": 0
     },
     "gallery": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.584,
+      "seconds": 0.252,
       "rgb_max_error": 0
     },
     "optics": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.572,
+      "seconds": 0.259,
       "rgb_max_error": 0
     },
     "energy": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.566,
+      "seconds": 0.268,
       "rgb_max_error": 0
     },
     "cover": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.587,
+      "seconds": 0.264,
       "rgb_max_error": 0
     },
     "empty": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.55,
+      "seconds": 0.242,
       "rgb_max_error": 0
     },
     "titlelab": {
       "tick": 12,
       "bodies": 0,
-      "seconds": 0.569,
+      "seconds": 0.245,
       "rgb_max_error": 0
     }
   },

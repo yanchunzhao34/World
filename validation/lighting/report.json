@@ -1,4 +1,5 @@
 {
+  "passed": true,
   "cases": {
     "free-before": {
       "fluence": 0.5242970585823059,
@@ -197,6 +198,5 @@
   "original_light_fields_unchanged": true,
   "free_space_bloom_energy_ratio": 0.9997495412826538,
   "moving_blocker_passed": true,
-  "source": "real GPU, fixed scenes and camera, 48 warm frames each",
-  "passed": true
+  "source": "real GPU, fixed scenes and camera, 48 warm frames each"
 }

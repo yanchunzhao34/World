@@ -1,0 +1,19 @@
+{
+  "substeps": 8,
+  "liquidSpread": 8,
+  "heatIterations": 2,
+  "pressureIterations": 20,
+  "windCoupling": 0.6,
+  "gasRelax": 0.01,
+  "ambient": 293,
+  "buoyancy": 6e-06,
+  "blastImpulse": 1.2,
+  "damping": 0.985,
+  "fluidDt": 1,
+  "sootKeep": 0.992,
+  "steamKeep": 0.985,
+  "mediumSource": 0.25,
+  "mediumRise": 0.25,
+  "flameKeep": 0.8,
+  "flameRise": 0.6
+}
