@@ -2,7 +2,7 @@
     "metadata": {
         "content_hash": {
             "type": "string",
-            "value": "5aace47b54a0b274"
+            "value": "6b68470a39fd92c5"
         },
         "file_extension": {
             "type": "string",
@@ -14,7 +14,7 @@
         },
         "file_size": {
             "type": "size_t",
-            "value": 12796
+            "value": 13387
         },
         "file_type": {
             "type": "string",
@@ -30,7 +30,7 @@
         },
         "last_modified": {
             "type": "string",
-            "value": "1794494672"
+            "value": "1794565136"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

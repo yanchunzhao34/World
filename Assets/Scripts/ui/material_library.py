@@ -23,6 +23,7 @@ class MaterialLibrary:
         app = self.app
         if self.query.strip():
             query = self.query.lower()
+            # 同时匹配显示名与稳定键名，便于跨语言查找同一物质
             return [("搜索结果", [m for m in self.usable() if query in (
                 m["zh"] + " " + m["key"] + " " + app.english_names.get(m["key"], "")).lower()])]
         if self.category in ("recent", "fav"):
@@ -82,6 +83,7 @@ class MaterialLibrary:
             for index, material in enumerate(items):
                 tx, ty = grid_x + (index % columns) * 72, gy + (index // columns) * 88
                 if ty + 82 >= clip[1] and ty < bottom:
+                    # 仅为可见行生成交互项，降低长物质列表的绘制开销
                     material_tile(c, app, (tx, ty, 66, 82), material)
             gy += math.ceil(len(items) / columns) * 88 + 10
         c.unclip()

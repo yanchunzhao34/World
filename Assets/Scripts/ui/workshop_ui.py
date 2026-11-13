@@ -168,6 +168,7 @@ class WorkshopUI(InxGUIRenderable):
             return
         if not isinstance(saved, dict):
             return
+        # 按当前材料表过滤旧偏好，避免数据升级后引用失效物质
         valid = {m["key"] for m in self.data["materials"] if m["id"] > 0 and not m["hidden"]}
         if saved.get("home_language") in ("zh", "zh-TW", "en"):
             self.home_language = saved["home_language"]
@@ -192,6 +193,7 @@ class WorkshopUI(InxGUIRenderable):
         try:
             with os.fdopen(descriptor, "w", encoding="utf-8") as stream:
                 json.dump(payload, stream, ensure_ascii=False)
+            # 原子替换偏好文件，避免程序中断留下截断的JSON
             os.replace(name, self.user_directory / "workshop_ui.json")
         finally:
             Path(name).unlink(missing_ok=True)
@@ -199,6 +201,7 @@ class WorkshopUI(InxGUIRenderable):
     def open_modal(self, name):
         self.focus_text("")
         self.modal, self.menu_scroll = name, 0
+        # 打开面板时终止画笔状态，避免关闭后沿旧起点继续绘制
         self.drawing, self.panning, self.straight = False, False, False
         self.invalidate_probe()
 
@@ -226,9 +229,7 @@ class WorkshopUI(InxGUIRenderable):
     def update(self, wait_for_frame=False):
         """Consume simulation frames independently of cached editor GUI draws."""
         now = time.monotonic()
-        # Align presentation with the producer instead of racing two 60 Hz
-        # clocks and alternating duplicated/dropped frames. Queue waiting
-        # releases the GIL and stays bounded during loading, errors and Stop.
+        # 限时等待与产帧节奏对齐，减少双时钟竞争造成的重复帧
         timeout = 1 / 60 if wait_for_frame and self.current else 0
         frame = self.runtime.latest(timeout=timeout)
         if frame is not None:
@@ -237,8 +238,10 @@ class WorkshopUI(InxGUIRenderable):
             self.sound.update(self.current)
             probe = frame.state.get("probe", {})
             if self.probe_pending and probe.get("request_id") == self.probe_pending:
+                # 按请求号接纳结果，避免较早探针覆盖当前鼠标位置
                 self.probe_sample = probe
                 self.probe_received, self.probe_pending = now, 0
+            # 图鉴只记录玩家实验，避免主页与演示自动解锁条目
             if self.playing and not self.current.get("demo") and self.current.get("map") != "titlelab":
                 if self.codex.update(self.current):
                     self.save_ui_state()
@@ -255,8 +258,7 @@ class WorkshopUI(InxGUIRenderable):
         if self.editor_panel is None:
             self.update(wait_for_frame=True)
         if self.editor_panel is not None:
-            # The editor owns its render target and the Game tab's visibility.
-            # This input-transparent overlay stays inside the displayed image.
+            # 将叠加界面限定在游戏视图内，避免遮挡其他编辑器面板
             if not self.editor_panel.is_content_visible():
                 self.drawing = self.panning = self.straight = False
                 self.last_render = now
@@ -276,8 +278,7 @@ class WorkshopUI(InxGUIRenderable):
         self.presentation.update(None, width, height)
         child_open = False
         if self.editor_panel is not None:
-            # Append to the existing viewport child. A separate no-input
-            # window can be sorted behind the dock host when Game gains focus.
+            # 复用游戏视图子窗口，避免聚焦切换时界面被压到后方
             visible = ctx.begin_window("game_view", True, 0)
             if visible:
                 visible = ctx.begin_child("##GameViewportRegion", 0, 0, False)
@@ -295,8 +296,7 @@ class WorkshopUI(InxGUIRenderable):
                 ctx.draw_image_rect(self.frontend.get_game_texture_id(), x, y, x + width, y + height)
                 scale = round(max(1, min(2.5, min(width / 1600, height / 900))) * 20) / 20
                 canvas = Canvas(ctx, self, x, y, width, height, scale)
-                # The Game View's invisible viewport button owns the active
-                # ImGui item during a press; it must not block our same-child UI.
+                # 游戏视图占用活动项时仍接收同层输入，避免按钮失效
                 canvas.input_enabled = (self.editor_panel is None or
                                         ctx.is_window_hovered(1 << 7))
                 self.widgets = {}
@@ -336,6 +336,7 @@ class WorkshopUI(InxGUIRenderable):
                 self.send(dict(type="demo_stop"))
             return
         if self.text_focus:
+            # 文本输入优先消费按键，避免搜索时触发游戏快捷键
             view = self.library if self.text_focus == "library-search" else self.codex_view
             value = InputManager.instance().input_string
             control = ctx.is_key_down(K.KEY_LEFT_CTRL) or ctx.is_key_down(K.KEY_RIGHT_CTRL)
@@ -395,6 +396,7 @@ class WorkshopUI(InxGUIRenderable):
         ctx = c.ctx
         point = tuple(value * c.scale for value in c.mouse)
         inside = 0 <= c.mouse[0] < c.width and 0 <= c.mouse[1] < c.height
+        # 控件区域拦截世界操作，避免点击界面时同时绘制材料
         blocked = not inside or bool(self.modal) or any(c.hit(rect) for rect in c.regions)
         focused = (Input.is_game_focused() if self.editor_panel is not None else
                    ctx.is_window_focused(1 << 2))
@@ -435,6 +437,7 @@ class WorkshopUI(InxGUIRenderable):
                 self.paint(point, point)
             if self.tool == 6:
                 self.drawing = False
+        # 按模拟频率采样拖动，避免高界面帧率挤满画笔队列
         if self.drawing and not self.straight and self.paint_elapsed > 1 / 60:
             self.paint(self.last, point)
             self.last = point
@@ -442,6 +445,7 @@ class WorkshopUI(InxGUIRenderable):
         if self.current:
             draw_brush(c, self)
             draw_probe(c, self, now)
+        # 探针限频并允许超时重试，兼顾GPU开销与悬停反馈
         if self.current and now - self.probe_sent >= .08 and (not self.probe_pending or now - self.probe_sent > .5):
             self.probe_sequence += 1
             self.probe_pending, self.probe_sent = self.probe_sequence, now

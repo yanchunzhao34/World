@@ -13,7 +13,7 @@ class ShaderPipelines:
         source = (self.assets / "original/shaders" / path.replace(".comp", ".wgsl")).read_text("utf-8")
         if self.lighting_corrections:
             source = lighting_shader_source(self.assets, path, source)
-        # Apply precisely the existing Godot converter's atomic-load compatibility fix.
+        # 转换器的原子变量加载需适配WGSL合法的原子读取接口
         for name in re.findall(r"var<workgroup> (\w+): atomic<", source):
             source = source.replace(f"workgroupUniformLoad((&{name}))", f"atomicLoad((&{name}))")
         module = self.device.create_shader_module(label=path, code=source)
@@ -45,6 +45,7 @@ class ShaderPipelines:
     def dispatch(self, path, packed, parameters, x, y, z):
         self.readback.invalidate()
         self.load_shader(path)
+        # 每次派发使用独立参数槽，避免同批命令读到后续参数
         if self.parameter_index == len(self.parameters):
             self.parameters.append(self.device.create_buffer(size=64,
                 usage=wgpu.BufferUsage.UNIFORM | wgpu.BufferUsage.COPY_DST))
@@ -52,6 +53,7 @@ class ShaderPipelines:
         self.parameter_index += 1
         self.device.queue.write_buffer(parameter, 0, parameters)
         pipeline, layouts = self.shaders[path]
+        # 参数槽参与缓存键，避免复用到其他派发的绑定组
         dispatch_key = path, tuple(packed), self.parameter_index
         bindings = self.dispatch_bindings.get(dispatch_key)
         if bindings is None:

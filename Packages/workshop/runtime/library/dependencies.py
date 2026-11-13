@@ -25,8 +25,7 @@ from types import MappingProxyType, SimpleNamespace
 import wgpu
 from PIL import Image
 
-# Public engine modules used by component candidates must be ready before the
-# editor publishes the complete project script transaction.
+# 预载公共引擎模块，避免组件隔离导入时出现依赖缺失
 from Infernux.core.assets import AssetManager
 from Infernux.renderstack import RenderPipeline, RenderStack
 from Infernux.renderstack.render_stack_pipeline import RenderStackPipeline
@@ -37,6 +36,7 @@ from Infernux.input import Input
 def load_reference_js():
     """Load the archived runtime only when a migration parity check requests it."""
     try:
+        # 按需加载参考解释器，让正常游戏依赖保持精简
         import quickjs
     except ImportError as error:
         raise RuntimeError('Reference checks require quickjs-ng==0.17.0.2') from error

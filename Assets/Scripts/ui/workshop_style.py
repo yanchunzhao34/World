@@ -34,6 +34,7 @@ class Images:
                 path = path.parent.parent / "vector_raster" / (path.stem + ".png")
             with Image.open(path) as source:
                 image = source.convert("RGBA")
+            # 图标采用最近邻采样，避免像素边缘被插值模糊
             self.native.submit_imgui_texture(name, image.tobytes(), *image.size,
                                             nearest="/icons/" in relative, pinned=True)
             self.names[name] = image.size
@@ -49,6 +50,7 @@ class Canvas:
     def __init__(self, ctx, app, x, y, width, height, scale):
         self.ctx, self.app = ctx, app
         self.x, self.y, self.scale = x, y, scale
+        # 布局与鼠标共用逻辑坐标，保证缩放后绘制与命中对齐
         self.width, self.height = width / scale, height / scale
         self.mouse = ((ctx.get_mouse_pos_x() - x) / scale,
                       (ctx.get_mouse_pos_y() - y) / scale)
@@ -65,6 +67,7 @@ class Canvas:
     def hit(self, rect):
         x, y, w, h = rect
         mx, my = self.mouse
+        # 命中判定同步裁剪区域，避免滚出面板的控件响应点击
         return (self.input_enabled and x <= mx < x + w and y <= my < y + h
                 and all(cx <= mx < cx + cw and cy <= my < cy + ch for cx, cy, cw, ch in self.clips))
 

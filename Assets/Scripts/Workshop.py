@@ -21,9 +21,7 @@ class WorkshopSession:
         self.previous_play_fps_cap = self.play_fps_cap = None
         self.sound = SoundSynth()
         try:
-            # The 60 Hz producer gains nothing from redrawing its last image
-            # thousands of times. Bound UI/presentation work while this session
-            # is alive, retaining any lower user cap and restoring it on Stop.
+            # 限制重复呈现的开销，为60Hz模拟与界面交互留出预算
             self.previous_play_fps_cap = self.native.get_play_fps_cap()
             self.play_fps_cap = (min(120, self.previous_play_fps_cap)
                                  if self.previous_play_fps_cap > 0 else 120)
@@ -40,6 +38,7 @@ class WorkshopSession:
             self.ui = WorkshopUI(frontend, self.runtime, self.presentation, self.sound,
                                  root, user_directory, map_key, paused, editor_panel)
             frontend.register_gui("Element Workshop", self.ui, priority=100)
+            # 依赖就绪后再启动线程，避免半初始化会话继续运行
             self.runtime.start()
         except BaseException:
             self.close()
@@ -49,6 +48,7 @@ class WorkshopSession:
         try:
             self.frontend.unregister_gui("Element Workshop")
             if self.runtime is not None:
+                # 等待模拟线程退出，避免资源释放后后台继续访问GPU
                 self.runtime.close()
             self.sound.close()
             if self.ui is not None:
@@ -56,6 +56,7 @@ class WorkshopSession:
             if self.presentation is not None:
                 self.presentation.close()
         finally:
+            # 避免停止播放时覆盖编辑器刚调整的帧率设置
             if (self.previous_play_fps_cap is not None and
                     self.native.get_play_fps_cap() == self.play_fps_cap):
                 self.native.set_play_fps_cap(self.previous_play_fps_cap)
@@ -88,4 +89,5 @@ class Workshop(inx.InxComponent):
         session = getattr(self, "session", None)
         if session is not None:
             session.close()
+            # 清除旧会话引用，避免重复销毁和再次播放共用失效对象
             self.session = None

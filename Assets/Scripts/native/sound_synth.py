@@ -41,15 +41,18 @@ class SoundSynth:
         self.reaction += (min(1, math.sqrt(events[4]) / 12) * multiplier - self.reaction) * .3
         for explosion in state.get("explosions", [])[:3]:
             amount = min(1.4, max(.3, explosion[2] / 10))
+            # 优先复用最弱爆炸声部，降低新事件对明显尾音的截断
             voice = min(range(6), key=self.explosion_envelopes.__getitem__)
             self.explosion_envelopes[voice] = min(.6 + .4 * amount, 1.2)
             self.explosion_pitch[voice] = .04 + .03 / amount
 
     def generate(self, count, rate=44100):
         samples = array.array("h")
+        # 滤波与衰减按采样率换算，避免音色和包络时长随设备变化
         scale = 44100 / rate
         target = 0 if self.muted else self.volume
         for _ in range(count):
+            # 平滑音量跳变，减少开关静音时的点击杂音
             self.gain += (target - self.gain) * .0005 * scale
             noise = random.random() * 2 - 1
             self.fire_low += (noise - self.fire_low) * (1 - .98 ** scale)
@@ -78,6 +81,7 @@ class SoundSynth:
                         self.explosion_pitch[voice] + self.explosion_envelopes[voice] * .05)
                     total += self.explosion_low[voice] * self.explosion_envelopes[voice] * 3.2
                     self.explosion_envelopes[voice] *= .99987 ** scale
+            # 软限幅压低爆炸叠加的峰值，减少硬裁剪失真
             sample = round(math.tanh(total * self.gain) * .5 * 32767)
             samples.extend((sample, sample))
         return samples.tobytes()
@@ -102,11 +106,13 @@ class SoundSynth:
             error = api.waveOutOpen(ctypes.byref(device), 0xFFFFFFFF, ctypes.byref(format), 0, 0, 0)
             if error:
                 raise RuntimeError(f"Audio device open failed ({error})")
+            # 多缓冲覆盖生成与提交耗时，降低音频断流概率
             for _ in range(4):
                 storage = ctypes.create_string_buffer(1024 * 4)
                 header = WaveHeader(ctypes.addressof(storage), len(storage), 0, 0, 0, 0, None, 0)
                 if api.waveOutPrepareHeader(device, ctypes.byref(header), ctypes.sizeof(header)):
                     raise RuntimeError("Audio buffer preparation failed")
+                # 持有样本内存引用，避免系统播放期间音频地址失效
                 headers.append((header, storage))
             print("AUDIO_STREAM_READY rate=44100 channels=2", flush=True)
             while not self.stop.is_set():
@@ -122,6 +128,7 @@ class SoundSynth:
             print("AUDIO_ERROR", error, flush=True)
         finally:
             if device.value:
+                # 先归还系统占用的缓冲，再撤销头部以免悬挂引用
                 api.waveOutReset(device)
                 for header, _ in headers:
                     api.waveOutUnprepareHeader(device, ctypes.byref(header), ctypes.sizeof(header))

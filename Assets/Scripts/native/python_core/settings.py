@@ -21,6 +21,7 @@ def vector_length(x, y):
 
 class RenderSettings:
     def __init__(self, values, day_cycle):
+        # 颜色参数独立持有，避免多个会话共享可变配置
         self.v = {key: list(value) if isinstance(value, list) else value for key, value in values.items()}
         self.day_cycle = day_cycle
         self.timeOfDay = 10
@@ -58,10 +59,12 @@ class RenderSettings:
             return SimpleNamespace(skyTop=self.c('SkyTop')[:3], skyHorizon=self.c('SkyHorizon')[:3],
                 skyMul=1, sunAngle=self.n('SunAngle'), sunColor=self.c('SunColor')[:3], sunMul=1,
                 ambient=self.c('Ambient')[:3], ambientMul=1, night=0)
+        # 时间归一到单日，保证跨午夜与负时间使用同组关键帧
         hour = (math.fmod(self.timeOfDay, 24) + 24) % 24
         for (start, first), (end, second) in zip(self.day_cycle, self.day_cycle[1:]):
             if hour <= end:
                 fraction = clamp((hour - start) / max(end-start, .0001), 0, 1)
+                # 平滑关键帧端点斜率，避免昼夜变化突然折转
                 fraction = fraction * fraction * (3 - 2 * fraction)
                 values = {}
                 for name in first:
@@ -85,6 +88,7 @@ class RenderSettings:
     def toUbo(self, time, delta, width, height, cascade_count, camera, view_width, view_height):
         day = self.day
         value = self.n
+        # 字段顺序与WGSL统一，调整参数时需同步维护GPU布局
         rows = []
 
         def color(rgb, multiplier, alpha):
@@ -210,6 +214,7 @@ class WorldCamera:
         self.clampCenter()
 
     def clampCenter(self):
+        # 世界小于视口时居中，避免边界约束反向造成相机抖动
         lower = [self.screen[i]*.5/self.zoom-110/self.zoom for i in range(2)]
         upper = [self.worldSize[i]-lower[i] for i in range(2)]
         self.center = [self.worldSize[i]*.5 if lower[i]>upper[i] else clamp(self.center[i], lower[i], upper[i]) for i in range(2)]
@@ -220,6 +225,7 @@ class WorldCamera:
             if abs(self.zoom-self.targetZoom)<.001:
                 self.zoom, self.zoomAnimating = self.targetZoom, False
             self.updateView()
+            # 缩放时补偿中心位移，让鼠标指向的世界位置保持稳定
             anchor = self.screenToCell(*self.zoomAnchorScreen)
             self.center = [self.center[i]+self.zoomAnchorCell[i]-anchor[i] for i in range(2)]
             self.clampCenter()

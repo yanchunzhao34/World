@@ -19,7 +19,9 @@ def material_tile(canvas, app, rect, material, slot=-1):
     if canvas.interactive and canvas.hit(rect):
         if canvas.ctx.is_mouse_button_clicked(0):
             app.drag_source = dict(material=identifier, slot=slot, origin=canvas.mouse)
+        # 位移阈值区分点击与拖放，避免选材料时误改快捷栏
         moved = app.drag_source and math.dist(canvas.mouse, app.drag_source["origin"]) > 5
         if not canvas.ctx.is_mouse_button_down(0) and moved and slot >= 0:
+            # 松手帧直接处理落点，避免快速拖放跳过持续拖动状态
             app.assign_hotbar(slot, app.drag_source["material"])
 

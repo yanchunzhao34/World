@@ -31,6 +31,7 @@ class WorkshopSettings:
         cy += 48
         for key, label in SWITCHES.items():
             value = bool(app.settings[key])
+            # 控件固定自身键名与值，避免点击后修改其他画面设置
             c.button((x, cy, width, 32), ("☑ " if value else "☐ ") + label,
                      lambda key=key, value=value: app.set_setting(key, not value), fill="ffffff00",
                      identifier="setting-" + key)
@@ -38,6 +39,7 @@ class WorkshopSettings:
         for key, (label, minimum, maximum, step) in KNOBS.items():
             value = float(app.settings[key])
             c.text((x, cy, 140, 36), label, 13)
+            # 滑动值对齐步长，保证滑块与加减按钮的调节粒度一致
             c.slider((x + 150, cy + 4, max(40, width - 320), 30), value, minimum, maximum,
                      lambda value, key=key, step=step: app.set_setting(key, round(value / step) * step),
                      "slider-" + key)

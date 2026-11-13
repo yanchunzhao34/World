@@ -19,6 +19,7 @@ class WorldObservation:
             self.trace = None
 
     def recordReset(self, reason, map_key):
+        # 重置即推进世界版本，避免不同场景状态的观测结果混用
         self.worldEpoch += 1
         if self.enabled:
             if len(self.pendingResets) < 256:
@@ -30,9 +31,11 @@ class WorldObservation:
         if not self.enabled:
             return
         self.actionSequence += 1
+        # 固定操作载荷副本，避免调用方修改历史观测记录
         item = dict(sequence=self.actionSequence, epoch_before=epoch_before, epoch_after=self.worldEpoch,
             tick_at_acceptance=tick, status='handled_by_action_dispatch' if handled else 'ignored_unknown_type',
             input=copy.deepcopy(action))
+        # 限制单帧追踪体积，避免密集输入让观测内存持续增长
         if len(self.pendingActions) < 256:
             self.pendingActions.append(item)
         else:
@@ -61,6 +64,7 @@ class WorldObservation:
             self.trace['grid_boundaries_omitted'] += 1
             return None
         return dict(ordinal=ordinal, kind=kind, world_epoch=self.worldEpoch, tick_before=app.sim.tick,
+            # 暂停编辑的时长记零，避免观测误把改图当作模拟推进
             duration_seconds=1/60 if kind == 'grid_step' else 0,
             command_seed_start=commands.seed if commands else None,
             commands=copy.deepcopy(commands.pending) if commands else [])
@@ -114,6 +118,7 @@ class WorldObservation:
             inertia_engine_units=body.inertia, center_of_mass=body.com, shape_width=body.rw,
             shape_height=body.rh, shape_mask=body.mask.tolist(), density=body.dens.tolist()) for body in app.rigid.bodies]
         stats = app.stats
+        # 明示缺失的内部状态，避免把观测快照用于精确续跑
         return dict(schema='element-workshop.world-observation', schema_version=1,
             boundary=dict(kind='frame_end', frame_sequence=self.frameSequence, world_epoch=self.worldEpoch,
                 scene_revision=simulation.sceneRevision, tick=app.sim.tick, render_frame=app.render.frame,

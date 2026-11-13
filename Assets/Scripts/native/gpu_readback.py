@@ -28,6 +28,7 @@ class FrameReadback:
             cursor = (cursor + size + 255) & -256
         width, height, depth, stride = self.host.dimensions[texture_id]
         row_bytes = width * stride
+        # GPU纹理拷贝要求256字节行对齐，读回时再去除填充
         row_pitch = (row_bytes + 255) & -256
         texture_offset = cursor
         self.entries[("texture", texture_id, 0, 0, width, height, depth)] = (
@@ -36,8 +37,10 @@ class FrameReadback:
         if cursor > self.capacity:
             if self.buffer is not None:
                 self.host.flush()
+                # 等待旧拷贝完成，避免销毁仍在使用的读回缓冲
                 self.host.device.queue.on_submitted_work_done_sync()
                 self.buffer.destroy()
+            # 按幂次扩容，减少视口变化引起的缓冲重建
             self.capacity = 1 << (cursor - 1).bit_length()
             self.buffer = self.host.device.create_buffer(
                 label="Workshop frame readback", size=self.capacity,
@@ -58,11 +61,11 @@ class FrameReadback:
         if entry is None:
             return None
         if self.data is None:
+            # 同批数据共享一次映射，减少CPU等待GPU的次数
             self.host.flush()
             self.buffer.map_sync(wgpu.MapMode.READ, 0, self.size)
             try:
-                # Own the bytes before unmapping: published Frames and world
-                # snapshots must remain immutable across subsequent GPU writes.
+                # 解除映射前复制字节，避免已发布帧随缓冲复用而改变
                 self.data = bytes(self.buffer.read_mapped(copy=False))
             finally:
                 self.buffer.unmap()

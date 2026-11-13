@@ -19,6 +19,7 @@ class BrushCommands:
         return len(self.pending)
 
     def add(self, command):
+        # 队列容量与GPU命令区一致，防止输入写穿固定布局
         if len(self.pending) < self.Max:
             self.pending.append(command)
 
@@ -30,6 +31,7 @@ class BrushCommands:
             struct.pack_into('<4i', result, offset, command['type'], command.get('material', 0),
                              command.get('shape', 0), int(bool(command.get('overwrite', False))))
             spray = command.get('spray', 1)
+            # 连续种子区分同帧笔触，避免随机喷洒重复相同图案
             struct.pack_into('<7fI', result, offset + 16, *command['from'], *command['to'],
                              command['radius'], command.get('strength', 0),
                              spray if spray > 0 else 1, self.seed & 0xffffffff)
@@ -66,6 +68,7 @@ class SimulationStatistics:
     def parse(self, data):
         if len(data) < self.SizeBytes:
             return
+        # 拷贝读回视图，避免统计状态随后续缓冲复用而变化
         for name, offset, count in [('histogram', 0, 256), ('reactionCount', 1024, 1024),
                                    ('igniteCount', 5120, 256), ('phaseHi', 6144, 256),
                                    ('phaseLo', 7168, 256), ('events', 8192, 16)]:

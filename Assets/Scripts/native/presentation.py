@@ -45,6 +45,7 @@ class Presentation:
 
     def update(self, frame, width, height):
         if frame is None and self.last_dimensions == (width, height):
+            # 画面和视口都未变化时复用显示状态，减少重复上传
             return
         if frame is not None:
             self.last_frame = frame
@@ -56,7 +57,7 @@ class Presentation:
                 self.stack.pipeline.pixels = self.pixels
                 self.stack.invalidate_graph()
                 old.close()
-            # The buffer capacity remains stable across 512x288 debug views.
+            # 仅扩容可复用小尺寸调试视图，避免切换时反复分配
             self.pixels.set_data(values, offset=0)
         if self.last_frame is None:
             return
@@ -75,8 +76,7 @@ class Presentation:
         self.state.set_data(packed)
 
     def close(self):
-        # Scene components receive on_disable/on_destroy from the editor's
-        # world teardown. Calling them here would clear ownership too early.
+        # 场景组件由编辑器销毁，提前释放会打断其生命周期
         if not getattr(self, "scene_owned", True):
             self.stack.on_destroy()
         self.frontend.set_render_pipeline(RenderStackPipeline())

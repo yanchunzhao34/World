@@ -14,6 +14,7 @@ class WorldStateSnapshot:
     fields: object
 
     def copy_field_bytes(self, name):
+        # 显式复制字节，满足字段复制接口独立持有数据的约定
         return bytes(bytearray(self.fields[name]))
 
 
@@ -35,8 +36,9 @@ class WorldStateCapture:
             elif resource["kind"] == "buffer":
                 value = simulation.host.read_buffer(resource["id"], 0, expected)
             else:
-                # A restored save can have a different background than its source map.
+                # 存档可改写背景，观测应取当前内容以免回读原地图
                 value = simulation.read_cpu_field(resource['name'])
+            # 核对描述与字节数，避免错误布局被解读为合法状态
             if len(value) != expected:
                 raise ValueError("World observation layout mismatch for " + resource["name"])
             fields[resource["name"]] = value
@@ -52,6 +54,7 @@ class WorldStateCapture:
         self.sequence += 1
         metadata.update(runtime_session_id=self.session_id, snapshot_sequence=self.sequence,
                         byte_order="little_endian", fields=descriptors)
+        # 只读字段映射配合独立字节，允许多个请求共用同帧快照
         return WorldStateSnapshot(json.dumps(metadata, ensure_ascii=False), MappingProxyType(fields))
 
 
@@ -62,6 +65,7 @@ class WorldSnapshotMailbox:
 
     def request(self):
         with self.lock:
+            # 限制同时持有的快照数量，避免大网格读回导致内存失控
             if self.stopped or len(self.requests) >= 2:
                 return -1
             identifier = self.next_id
@@ -79,12 +83,14 @@ class WorldSnapshotMailbox:
     def complete(self, identifiers, snapshot=None, error=""):
         with self.lock:
             for identifier in identifiers:
+                # 请求可能在采集期间被取消，发布前复查可避免结果复活
                 if identifier in self.requests:
                     self.requests[identifier].update(status="failed" if error else "ready",
                                                      snapshot=snapshot, error=error)
 
     def get(self, identifier):
         with self.lock:
+            # 返回状态副本，避免调用方绕过锁改写请求状态
             return dict(self.requests.get(identifier, dict(status="unknown", snapshot=None, error="")))
 
     def release(self, identifier):

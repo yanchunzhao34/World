@@ -37,6 +37,7 @@ class Sampler:
 
 class DoubleBuffer:
     def __init__(self, read, write):
+        # 读写分离使邻域计算基于同一旧状态，避免原地更新干扰
         self.read, self.write = read, write
 
     def swap(self):
@@ -53,6 +54,7 @@ class Parameters:
     def set(self, name, value):
         index = (0 if name[1] == '0' else 4) + 'xyzw'.index(name[2])
         if name[0] == 'i':
+            # 按32位补码截断，保持Python与着色器的整数位模式一致
             value = int(value) & 0xffffffff
             self.i[index] = value if value < 0x80000000 else value - 0x100000000
         else:
@@ -123,6 +125,7 @@ class NativeGPU:
         self.host.upload_buffer(buffer.id, int(offset), data[data_offset:] if size is None else data[data_offset:data_offset+size])
 
     def begin(self):
+        # 宿主按需创建编码器，保留阶段接口以统一模拟调度
         pass
 
     def submit(self):
@@ -166,6 +169,7 @@ class ComputeShader:
 
     def dispatch(self, bindings, parameters, width, height, z=1):
         scratch = {}
+        # 为读写纹理保留旧副本，避免同一派发读到刚写入的邻格
         for name in self.info['readWrite']:
             spec = next(item for item in self.info['bindings'] if item['group'] == 0 and item['name'] == name)
             target = bindings.entries.get(spec['binding'])
@@ -177,6 +181,7 @@ class ComputeShader:
         for spec in self.info['bindings']:
             group, binding = spec['group'], spec['binding']
             if group == 1:
+                # 参数组由宿主注入，避免普通资源绑定覆盖派发参数槽
                 continue
             if group == 3:
                 resource, kind = scratch[binding], 2

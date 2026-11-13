@@ -89,6 +89,7 @@ class Simulation:
         self.loadMap(item['scene'])
         settings = self.app.settings
         self.demo.freeze = settings.freezeTime
+        # 退出演示时恢复临时设置，避免编排参数污染后续实验
         self.demo.saved = [(key, settings.v[key]) for key, _ in item['settings']]
         for key, value in item['settings']:
             settings.set(key, value)
@@ -115,6 +116,7 @@ class Simulation:
             return
         self.demo.t += delta
         time = self.demo.t
+        # 补齐本帧跨过的事件，避免低帧率时漏掉时间线动作
         while self.demo.next < len(item['steps']) and item['steps'][self.demo.next][0] <= time:
             self.replay(item['steps'][self.demo.next][1])
             self.demo.next += 1
@@ -151,6 +153,7 @@ class Simulation:
         app.bodify = False
         app.time = app.accum = 0
         app.camera.fit()
+        # 切图后重置光照历史，避免新地图混入上一场景的余光
         for pair in (app.render.fluence, app.render.day, app.render.beamTex, app.render.beamDir,
                      app.render.sub, app.render.chA, app.render.chB):
             gpu.clearTexture(pair.read)
@@ -166,6 +169,7 @@ class Simulation:
         if self.app.currentMap != 'titlelab':
             return
         self.app.camera.center = [self.app.W/2, self.app.H/2]
+        # 主页编排依赖双次计时，合并会改变原版动作触发时刻
         self.titleElapsed += delta
         previous = self.titleElapsed
         self.titleElapsed += delta
@@ -201,6 +205,7 @@ class Simulation:
         elif kind == 'resize':
             app.camera.screen = [action['width'], action['height']]
             app.camera.fit()
+            # 视图尺寸对齐8像素，满足渲染工作组的整块布局
             height = int(clamp(app.settings.n('ViewHeight'), 270, 2160)) & -8
             width = math.floor(height*action['width']/action['height']+.5) & -8
             app.render.setViewSize(max(64, width), height)
@@ -232,6 +237,7 @@ class Simulation:
             self.stopDemo()
             self.sceneRevision += 1
             app.currentMap, app.settings.timeOfDay = saved['map'], saved['time']
+            # 存档保存格子材料，刚体需由恢复后的格子重新建立
             app.rigid.clear()
             app.rigid.onCells(cells)
             self.observation.recordReset('restore', app.currentMap)
@@ -261,10 +267,12 @@ class Simulation:
         self.updateDemo(delta)
         ticks = 0
         if not app.paused:
+            # 累积小数步数，让模拟速率独立于显示帧率
             app.accum += delta*60*app.speed
             ticks = math.floor(app.accum)
             app.accum -= ticks
             if ticks > 2:
+                # 限制补算步数，避免卡顿后集中追帧进一步阻塞模拟
                 ticks, app.accum = 2, 0
         ticks += app.steps
         app.steps = 0
@@ -273,7 +281,7 @@ class Simulation:
         self.updateCameraAndDaylight(delta)
         self.simulateAndRender(ticks)
         self.updatePointerProbe()
-        # The same completed-frame buffer supplies all deferred ownership reads.
+        # 帧尾统一交付归属数据，避免下一帧混用不同边界的读回
         while self.gpu.jobs:
             self.gpu.jobs.pop(0)()
         self.observation.endFrame(app)
@@ -301,11 +309,13 @@ class Simulation:
         gpu.begin()
         app.bodyGpu.preStep(app.sim, packet)
         for ordinal in range(ticks):
+            # 追赶多步时只消费一次笔刷，避免同一输入被重复施加
             commands = app.commands if ordinal == 0 else None
             boundary = self.observation.beginGridBoundary(app, commands, 'grid_step', ordinal)
             app.sim.step(commands)
             self.observation.endGridBoundary(boundary, app)
         if ticks == 0 and app.commands.count:
+            # 暂停时仍应用编辑命令，保证画笔操作即时反馈
             boundary = self.observation.beginGridBoundary(app, app.commands, 'paused_commands', 0)
             app.sim.applyCommandsOnly(app.commands)
             self.observation.endGridBoundary(boundary, app)
@@ -313,6 +323,7 @@ class Simulation:
         app.sim.lightTex, app.sim.daylightTex = app.render.fluenceTex, app.render.daylightTex
         app.render.render(app.sim, app.time, app.camera.view)
         output = app.render.output if app.render.mode == 0 else app.render.debugOutput
+        # 同一提交汇总读回，减少统计与画面之间的同步等待
         self.host.queue_frame_readbacks(app.sim.statsBuf.id, SimulationStatistics.SizeBytes,
             app.bodyGpu.occ.id, app.W*app.H//4, app.bodyGpu.owner.id, app.bodyGpu.atlasUsed*4, output.id)
         gpu.submit()
@@ -335,6 +346,7 @@ class Simulation:
         if all(math.isfinite(value) for value in point):
             x, y = math.floor(point[0]), math.floor(point[1])
             if 0 <= x < app.W and 0 <= y < app.H:
+                # 探针仅回读目标格子，避免悬停查询触发整图传输
                 data = self.host.read_texture(app.sim.cells.read.id, x, y, 1, 1, 16)
                 material, temperature = struct.unpack_from('<If', data)
                 temperature -= 273.15
@@ -370,6 +382,7 @@ class Simulation:
 
     def evaluate(self, path):
         """Compatibility for validation tools reading resource paths; no code execution."""
+        # 路径校验维持旧工具的查询接口，避免将输入作为代码执行
         if not re.fullmatch(r'app(?:\.[A-Za-z_][A-Za-z_0-9]*|\[\d+\])*', path):
             raise ValueError('Use the Python app objects for operations; only resource paths can be inspected')
         value = self.app

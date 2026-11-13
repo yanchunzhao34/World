@@ -13,6 +13,7 @@ class RigidBodyGpuBridge:
 
     def __init__(self, gpu, width, height):
         self.gpu, self.w, self.h = gpu, width, height
+        # 无主标记使用全1位，避免与合法刚体编号混淆
         self.deadOwners = bytes([255])*(self.ATLAS_CELLS*4)
         self.atlasBuf = gpu.createStorageBuffer(self.ATLAS_CELLS*16, None, 'body_atlas')
         self.owner = gpu.createStorageBuffer(self.ATLAS_CELLS*4, self.deadOwners, 'body_owner')
@@ -31,6 +32,7 @@ class RigidBodyGpuBridge:
         self.occPending = self.ownerPending = False
 
     def reset(self):
+        # 清除旧世界的归属与盖章记录，避免切图后残留刚体
         self.gpu.writeBuffer(self.owner, 0, self.deadOwners)
         for texture in self.stamped:
             self.gpu.clearBuffer(texture)
@@ -41,6 +43,7 @@ class RigidBodyGpuBridge:
             return
         gpu = self.gpu
         if self.lastSubmit == gpu.submits:
+            # 同批更新前先提交，避免后续写入覆盖在途刚体数据
             gpu.submit()
             gpu.begin()
         self.lastSubmit = gpu.submits
@@ -75,9 +78,11 @@ class RigidBodyGpuBridge:
                 .buffer(2, grid.materialsBuf).buffer(3, self.atlasBuf).buffer(4, self.owner)
                 .buffer(5, self.alive).buffer(6, self.pick))
 
+        # 先擦除旧位置再盖章，避免刚体移动时残留材料副本
         for phase in (0, 1):
             self.erase.dispatch(erase_bindings(), parameters.clone().set('i0w', phase), self.w, self.h)
         grid.cells.swap()
+        # 双份盖章记录区分前后帧，便于清理已消失的刚体格子
         previous, current = self.stamped[self.parity^1], self.stamped[self.parity]
         self.dead.dispatch(Bindings().buffer(0, self.owner).buffer(1, self.alive).buffer(2, previous),
                            Parameters(i0x=words), words, 1)
@@ -110,6 +115,7 @@ class RigidBodyGpuBridge:
                 self.gpu.writeBuffer(buffer, 0, data)
 
     def postStep(self, grid, frame, occupancy_callback, owners_callback):
+        # 每类读回仅保留一个在途请求，避免重复读取占满队列
         if not self.occPending:
             self.occPass.dispatch(Bindings().image(0, grid.cells.read).buffer(1, grid.materialsBuf).buffer(2, self.occ),
                 Parameters(i0x=self.w, i0y=self.h), self.w*self.h//16, 1)

@@ -15,6 +15,7 @@ sys.path[:0] = [str(ROOT / ".runtime/packages"), str(ROOT / "Assets")]
 
 def select_runtime():
     if importlib.util.find_spec("infernux") is not None:
+        # 复用已具备熔炉依赖的解释器，避免重复拉起进程
         return
     configured = os.environ.get("INFERNUX_PYTHON")
     candidates = ([Path(configured)] if configured else [])
@@ -49,8 +50,7 @@ def configure_windows_dpi():
     if user32.AreDpiAwarenessContextsEqual(user32.GetThreadDpiAwarenessContext(), per_monitor_v2):
         return
     if not user32.SetProcessDpiAwarenessContext(per_monitor_v2):
-        # A compatibility shim can lock the process policy. Windows supports
-        # a PMv2 override on the UI thread that owns all SDL windows.
+        # 父启动器可能锁定进程策略，窗口线程需单独覆盖DPI设置
         if not user32.SetThreadDpiAwarenessContext(per_monitor_v2):
             raise ctypes.WinError(ctypes.get_last_error())
     if not user32.AreDpiAwarenessContextsEqual(user32.GetThreadDpiAwarenessContext(), per_monitor_v2):
@@ -81,6 +81,7 @@ def main():
     native = frontend.get_native_engine()
     session = None
     errors, completed = [], False
+    # 验证运行隔离用户目录，避免覆盖玩家进度与存档
     user_directory = ROOT / ("validation/ui-user" if args.smoke or args.ui_smoke else "UserData")
     try:
         frontend.init_renderer(args.width, args.height, str(ROOT))
@@ -167,8 +168,7 @@ if __name__ == "__main__":
     except Exception:
         traceback.print_exc()
         raise SystemExit(1)
-    # Follow Infernux's standalone Player exit contract after explicit cleanup.
-    # Native GUI objects must not be collected during CPython module teardown.
+    # 按播放器约定直接退出，避免GUI对象在解释器清理期析构
     sys.stdout.flush()
     sys.stderr.flush()
     os._exit(0)

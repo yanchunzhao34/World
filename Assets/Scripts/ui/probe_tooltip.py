@@ -6,12 +6,14 @@ import math
 def draw_probe(canvas, app, now):
     sample = app.probe_sample
     if not sample.get("valid") or now - app.probe_received > .5:
+        # 过期探针可能对应旧画面，超时后隐藏可避免误报温度
         return
     state = app.current
     point = tuple(v * canvas.scale for v in canvas.mouse)
     center, camera, zoom = state["camera_center"], state["camera_size"], state["zoom"]
     cell = tuple(math.floor(center[i] + (point[i] - camera[i] / 2) / zoom) for i in range(2))
     if cell != (sample["x"], sample["y"]):
+        # 相机或鼠标移动会改变目标格，坐标不符时舍弃旧提示
         return
     material = app.data["materials"][sample["material"]]
     x = min(canvas.width - 154, canvas.mouse[0] + 18)

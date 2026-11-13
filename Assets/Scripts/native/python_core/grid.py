@@ -10,6 +10,7 @@ class SimulationGrid:
     OFFSETS = ((0, 0), (1, 1), (1, 0), (0, 1))
 
     def __init__(self, gpu, width, height, data, defaults):
+        # 网格按32格对齐，满足多级降采样与分块计算的尺寸约束
         if width % 32 or height % 32:
             raise ValueError('World size must be a multiple of 32')
         self.gpu, self.width, self.height = gpu, width, height
@@ -75,6 +76,7 @@ class SimulationGrid:
             raise ValueError('Bad world size')
         gpu = self.gpu
         gpu.writeTexture(self.cells.read, data)
+        # 切图时清除派生场，避免新材料继承旧世界的流体与事件
         gpu.clearTexture(self.medium.read)
         gpu.clearTexture(self.fluidVel.read)
         gpu.clearBuffer(self.fluidState[0])
@@ -102,6 +104,7 @@ class SimulationGrid:
             self.writeCommands(packet)
         bindings = Bindings().buffer(0, self.exGrid).buffer(1, self.pendingBuf).buffer(2, self.exCounts)
         items = (self.width*self.height+3)//4
+        # 先归并爆炸请求，保证后续阶段使用完整的本步事件集合
         for phase in (0, 1):
             self.gather.dispatch(bindings, Parameters(i0x=self.width, i0y=self.height, i0z=phase), items, 1)
         gpu.clearBuffer(self.statsBuf, SimulationStatistics.HistOffset, 1024)
@@ -128,6 +131,7 @@ class SimulationGrid:
             return
         block_width, block_height = self.width//2+1, self.height//2+1
         for substep in range(settings.substeps):
+            # 交替移动分块起点，减轻固定网格边界造成的方向偏差
             offset = self.OFFSETS[(substep+tick)&3]
             parameters = self.P(tick, substep).set('i1x', offset[0]).set('i1y', offset[1]).set('f0x', settings.windCoupling)
             self.move.dispatch(Bindings().image(0, self.cells.read).image(1, self.cells.write)
@@ -180,12 +184,14 @@ class SimulationGrid:
 
     def writeCommands(self, packet):
         if self.cmdSubmit == self.gpu.submits:
+            # 写入新笔触前先提交，避免覆盖同批命令仍需使用的输入
             self.gpu.submit()
             self.gpu.begin()
         self.gpu.writeBuffer(self.commandsBuf, 0, packet)
         self.cmdSubmit = self.gpu.submits
 
     def applyCommandsOnly(self, commands):
+        # 暂停编辑只改材料场，避免额外推进反应与流体时间
         packet = commands.drain()
         if int.from_bytes(packet[:4], 'little') == 0:
             return
@@ -215,6 +221,7 @@ class SimulationGrid:
             Parameters(i0x=width, i0y=height, f0x=settings.fluidDt), width, height)
         parameters = Parameters(i0x=width, i0y=height)
         self.fDiv.dispatch(Bindings().buffer(0, scratch).image(1, self.divergence), parameters, width, height)
+        # 压力迭代约束速度散度，减轻流体凭空膨胀或收缩
         for _ in range(settings.pressureIterations):
             self.fPressure.dispatch(Bindings().image(0, self.pressure.read).image(1, self.pressure.write)
                 .image(2, self.divergence).buffer(3, scratch), parameters, width, height)

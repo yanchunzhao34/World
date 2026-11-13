@@ -54,6 +54,7 @@ class GpuHost(Storage, ShaderPipelines):
 
     def commands(self):
         if self.compute_pass is not None:
+            # 纹理复制需结束计算通道，满足GPU命令编码约束
             self.compute_pass.end()
             self.compute_pass = None
         if self.encoder is None:
@@ -62,6 +63,7 @@ class GpuHost(Storage, ShaderPipelines):
 
     def compute_commands(self):
         if self.compute_pass is None:
+            # 复用计算通道，减少连续派发时的通道切换开销
             self.compute_pass = self.commands().begin_compute_pass(label="Workshop compute")
         return self.compute_pass
 
@@ -73,7 +75,7 @@ class GpuHost(Storage, ShaderPipelines):
         identifier = self.add(texture)
         self.dimensions[identifier] = (width, height, depth, STRIDES[format])
         self.views[identifier] = texture.create_view()
-        # WebGPU guarantees zero-initialized resources, including every channel.
+        # 利用WebGPU零初始化保证，省去重复的整图清零
         return identifier
 
     def make_buffer(self, size, uniform):
@@ -88,11 +90,13 @@ class GpuHost(Storage, ShaderPipelines):
             address_mode_u=addressing, address_mode_v=addressing))
 
     def upload_buffer(self, identifier, offset, data):
+        # 先提交旧命令，防止新上传覆盖尚未执行的GPU输入
         self.readback.invalidate()
         self.flush()
         self.device.queue.write_buffer(self.resources[identifier], offset, data)
 
     def upload_texture(self, identifier, data):
+        # 修改纹理后旧读回失效，避免取得更新前的数据
         self.readback.invalidate()
         self.flush()
         width, height, depth, stride = self.dimensions[identifier]
@@ -151,7 +155,7 @@ class GpuHost(Storage, ShaderPipelines):
     def destroy(self, identifier):
         self.readback.invalidate()
         self.flush()
-        # Bind groups retain their resources, so invalidate cached descriptors first.
+        # 绑定组持有资源引用，先清缓存以免复用已销毁资源
         self.bind_groups.clear()
         self.dispatch_bindings.clear()
         resource = self.resources.pop(identifier, None)
@@ -162,6 +166,7 @@ class GpuHost(Storage, ShaderPipelines):
 
     def close(self):
         self.flush()
+        # GPU提交异步完成，销毁资源前需等待在途命令结束
         self.device.queue.on_submitted_work_done_sync()
         self.readback.close()
         self.bind_groups.clear()

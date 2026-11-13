@@ -37,6 +37,7 @@ class RenderView:
         for texture in [self.hdr, self.dof, self.cost, self.output, *self.bloomDown, *self.bloomUp]:
             if texture is not None:
                 texture.destroy()
+        # 主视图共享曝光与参数缓冲，视口重建时由渲染器继续持有
         if not shared:
             self.exposure.destroy()
             self.ubo.destroy()
@@ -147,6 +148,7 @@ class WorldRenderer:
                 retired.extend((pair.read, pair.write))
         retired = [texture for texture in retired if texture is not None]
         if retired:
+            # 延迟释放旧光场，避免在途帧引用失效的纹理
             self.retired.append((retired, self.frame+3))
         self.spacing = spacing
         width, height = self.width//spacing, self.height//spacing
@@ -188,6 +190,7 @@ class WorldRenderer:
 
     def dispatch(self, name, bindings, parameters, width, height, *, view_ubo=None):
         if self.gpu.host.lighting_corrections and name in self.OCCLUSION_PASSES:
+            # 后处理也需读取材质遮挡，避免模糊光晕穿过实体墙面
             bindings.image(30, self.extMips[0]).image(31, self.emissive)
             if name not in ('front_fog', 'view3d'):
                 bindings.ubo(32, view_ubo or self.ubo)
@@ -226,6 +229,7 @@ class WorldRenderer:
         gpu.writeBuffer(self.ubo, 0, settings.toUbo(time, delta, width, height, self.cascadeCount, camera, self.viewW, self.viewH))
         sampler = gpu.linearClamp
         mirror, lamp = settings.n('MirrorBeams'), settings.n('LampBeams')
+        # 交错更新远场与介质，利用历史光照分摊每帧计算开销
         even = not self.frame & 1
         light_update = not self.lightHalfRate or even
         medium_update = not (self.lightHalfRate or self.midHalf) or not even
@@ -273,6 +277,7 @@ class WorldRenderer:
             .image(5, grid.cells.read).image(6, self.dayCells),
             Parameters(i0x=width, i0y=height, i0z=width//8, i0w=height//8), width, height)
         if light_update:
+            # 从远到近求解级联，让近层可复用远层的入射光
             for cascade in range(self.cascadeCount-1, -1, -1):
                 if (cascade >= self.farFrom and not far_update or
                     not self.lightHalfRate and cascade > self.farFrom and self.frame&3 != (0 if cascade == self.farFrom+1 else 2)):
@@ -329,6 +334,7 @@ class WorldRenderer:
             self.dispatch('occ_field', Bindings().image(0, self.l0s).image(1, self.occ).image(2, self.side)
                 .image(3, self.background).image(4, self.bgsm), parameters, width, height)
         if settings.b('Enable3D') and not settings.b('VoxelExtrude') and (not self.lightHalfRate or not even):
+            # 雾光使用未跨墙模糊的光场，避免积分带入墙后亮度
             backlight_levels = (self.fluence.read, self.fluence.read) if gpu.host.lighting_corrections else (self.fl(2), self.fl(3))
             self.dispatch('fog_backlight', Bindings().image(0, self.l0s).image(1, self.l0t)
                 .sampler(2, sampler, backlight_levels[0]).sampler(3, sampler, backlight_levels[1])
@@ -345,6 +351,7 @@ class WorldRenderer:
     def renderExtraView(self, grid, time, camera, view, parallax):
         delta = clamp(time-view.lastTime, 0, .1)
         view.lastTime = time
+        # 附加视图临时替换视差，避免其参数污染主视图渲染
         previous = self.settings.frameParallax
         self.settings.frameParallax = parallax
         self.gpu.writeBuffer(view.ubo, 0, self.settings.toUbo(time, delta, self.width, self.height,
@@ -371,6 +378,7 @@ class WorldRenderer:
             i1x=self.width, i1y=self.height, i1z=int(cells_enabled)), width, height, view_ubo=view.ubo)
         source = view.hdr
         if settings.b('Enable3D') and settings.n('DofStrength') > .05:
+            # 景深接近零时跳过模糊，减少无明显收益的GPU派发
             self.dispatch('dof', Bindings().sampler(0, sampler, view.hdr).image(1, view.dof),
                 Parameters(i0x=width, i0y=height, f0x=settings.n('DofStrength'), f0y=settings.n('DofStart'),
                     f0z=max(settings.n('DofEnd'), settings.n('DofStart')+1)), width, height)

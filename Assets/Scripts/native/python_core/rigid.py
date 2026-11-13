@@ -13,6 +13,7 @@ class XorShift32:
         self.state = (seed & 0xffffffff) or 1
 
     def next(self):
+        # 限定32位溢出，保持跨语言的随机序列一致
         self.state ^= (self.state << 13) & 0xffffffff
         self.state ^= self.state >> 17
         self.state ^= (self.state << 5) & 0xffffffff
@@ -74,6 +75,7 @@ class RigidBody:
                 if not self.mask[index]:
                     continue
                 point = [x+.5-self.com[0], y+.5-self.com[1]]
+                # 计入单格自身转动惯量，避免小刚体旋转响应失真
                 inertia += float(self.dens[index])*(point[0]*point[0]+point[1]*point[1]+1/6)
                 points.append(point)
                 if (x == 0 or y == 0 or x == self.rw-1 or y == self.rh-1 or
@@ -83,6 +85,7 @@ class RigidBody:
         self.inertia, self.invMass, self.invInertia = inertia, 1/mass, 1/max(inertia, .001)
         self.all, self.edge = points, edges
         if self.created >= 0 and (previous_com[0] != 0 or previous_com[1] != 0):
+            # 质心变化时补偿位置，避免形状受损后整体跳动
             shift = self.rot([self.com[0]-previous_com[0], self.com[1]-previous_com[1]])
             self.pos = [self.pos[0]+shift[0], self.pos[1]+shift[1]]
 
@@ -129,6 +132,7 @@ class RigidBodyWorld:
 
     def densityOf(self, identifier):
         density = self.mats[identifier].get('density', 1000) if identifier < len(self.mats) else 1000
+        # 密度下限避免轻质材料产生过大的逆质量与碰撞响应
         return max(density/1000, .05)
 
     def allocate(self, count):
@@ -168,6 +172,7 @@ class RigidBodyWorld:
 
     def bodify(self, data):
         packed = np.frombuffer(data, '<u4').reshape(-1, 4)
+        # 排除已有归属的格子，避免同一块材料生成重复刚体
         owned = {body.atlas+index for body in self.bodies for index in np.flatnonzero(body.mask)}
         flags = np.asarray([material['flags'] for material in self.mats], '<u4')
         materials = packed[:, 0] & 255
@@ -260,6 +265,7 @@ class RigidBodyWorld:
         for index in range(len(self.bodies)-1, -1, -1):
             body = self.bodies[index]
             if body.created > frame-3:
+                # 延迟接纳旧归属读回，避免新刚体被在途结果误删
                 continue
             removed = 0
             for local in range(len(body.mask)):
@@ -274,6 +280,7 @@ class RigidBodyWorld:
             if not components:
                 self.bodies.pop(index)
                 continue
+            # 最大连通块沿用原归属，减少断裂后的GPU所有权改写
             components.sort(key=len, reverse=True)
             previous_com = body.com
             for component in components[1:]:
@@ -289,6 +296,7 @@ class RigidBodyWorld:
                 fragment.created = self.frame
                 shift = body.rot([fragment.com[0]-previous_com[0], fragment.com[1]-previous_com[1]])
                 fragment.pos = [body.pos[0]+shift[0], body.pos[1]+shift[1]]
+                # 碎片继承断裂点速度，避免分裂瞬间出现运动突变
                 fragment.vel = [body.vel[0]-body.angVel*shift[1], body.vel[1]+body.angVel*shift[0]]
                 fragments.append(fragment)
             body.recompute()
@@ -356,6 +364,7 @@ class RigidBodyWorld:
         return [body.vel[0]-body.angVel*arm[1], body.vel[1]+body.angVel*arm[0]]
 
     def solve(self):
+        # 迭代分摊接触冲量，减轻堆叠物体间的约束误差
         for _ in range(8):
             for contact in self.contacts:
                 first, second = contact.a, contact.b if contact.b and not contact.b.asleep else None
@@ -407,8 +416,7 @@ class RigidBodyWorld:
                     continue
                 left, right = math.floor(x-1.5), math.floor(x+1.5)
                 left_index, right_index = row*self.w+left, row*self.w+right
-                # JS typed arrays return undefined outside the flat buffer.
-                # Keep valid cross-row indices, while avoiding NumPy's negative wrap.
+                # 限定扁平索引范围，避免负索引回绕改变原版浮力
                 left_wet = left >= 0 and 0 <= left_index < len(self.occ) and self.occ[left_index]&2
                 right_wet = right < self.w and 0 <= right_index < len(self.occ) and self.occ[right_index]&2
                 if left_wet or right_wet:
@@ -433,6 +441,7 @@ class RigidBodyWorld:
         body.angVel *= math.exp(-.2*delta)
         speed = vector_length(*body.vel)
         if speed > 500:
+            # 限制单步位移，降低高速刚体穿过格子障碍的风险
             body.vel = [body.vel[0]/speed*500, body.vel[1]/speed*500]
         body.angVel = clamp(body.angVel, -20, 20)
         body.pos = [body.pos[0]+body.vel[0]*delta, body.pos[1]+body.vel[1]*delta]
@@ -495,6 +504,7 @@ class RigidBodyWorld:
                 if body.asleep:
                     body.sleepCheck += 1
                     if body.sleepCheck >= 15:
+                        # 休眠后仍复查支撑，避免底部材料消失时物体悬空
                         body.sleepCheck, self.contacts = 0, []
                         self.rasterizeBodies()
                         self.findContacts(body, [0, .8])
@@ -509,6 +519,7 @@ class RigidBodyWorld:
 
     def snapshot(self, paused):
         count = min(len(self.bodies), 1024)
+        # 交换包固定为着色器的64字节布局，避免CPU与GPU错读
         data = bytearray(count*64)
         for index, body in enumerate(self.bodies[:count]):
             cosine, sine = math.cos(body.angle), math.sin(body.angle)

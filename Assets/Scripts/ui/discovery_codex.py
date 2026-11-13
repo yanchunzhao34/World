@@ -9,6 +9,7 @@ class DiscoveryCodex:
         self.entries, self.found, self.previous = [], set(), {}
         self.revision = -1
         self.by_key = {m["key"]: m["id"] for m in data["materials"]}
+        # 从材料与反应规则派生条目，避免图鉴与实验规则分别维护
         for index, reaction in enumerate(data["reactions"]):
             if reaction["hidden"]:
                 continue
@@ -82,6 +83,7 @@ class DiscoveryCodex:
                     "hi": state.get("phase_hi", []), "lo": state.get("phase_lo", [])}
         changed = False
         revision = state.get("scene_revision", 0)
+        # 仅比较同一场景版本的累计增量，避免切图时误解锁图鉴
         if self.previous and self.revision == revision:
             for entry in self.entries:
                 key = ["r", "ig", "hi", "hi", "lo", "lo"][entry["kind"]]
