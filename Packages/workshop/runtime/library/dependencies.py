@@ -33,11 +33,15 @@ from Infernux.engine.ui import imgui_keys
 from Infernux.input import Input
 
 
+# 按需载入迁移对照使用的参考解释器。
 def load_reference_js():
     """Load the archived runtime only when a migration parity check requests it."""
+
     try:
         # 按需加载参考解释器，让正常游戏依赖保持精简
         import quickjs
+
     except ImportError as error:
         raise RuntimeError('Reference checks require quickjs-ng==0.17.0.2') from error
+
     return quickjs

@@ -15,157 +15,258 @@ from .gpu_host_shaders import ShaderPipelines
 from .gpu_readback import FrameReadback
 
 
-STRIDES = {"rgba32uint": 16, "rgba32float": 16, "rgba16float": 8,
-           "rgba8unorm": 4, "rgba8uint": 4, "r32float": 4}
+STRIDES = {
+    "rgba32uint": 16,
+    "rgba32float": 16,
+    "rgba16float": 8,
+    "rgba8unorm": 4,
+    "rgba8uint": 4,
+    "r32float": 4,
+}
 
 
 class GpuHost(Storage, ShaderPipelines):
+    # 初始化GPU计算设备及资源所有权。
     def __init__(self, assets, save_directory, *, lighting_corrections=True):
         super().__init__(assets, save_directory)
         os.environ.setdefault("WGPU_BACKEND_TYPE", "Vulkan")
+
         self.assets = Path(assets)
         self.lighting_corrections = lighting_corrections
-        self.adapter = wgpu.gpu.request_adapter_sync(power_preference="high-performance")
-        features = [name for name in ("float32-filterable",) if name in self.adapter.features]
-        self.device = self.adapter.request_device_sync(required_features=features,
-            required_limits={"max-storage-buffer-binding-size": 134217728,
-                             "max-buffer-size": 268435456})
+        self.adapter = wgpu.gpu.request_adapter_sync(
+            power_preference="high-performance"
+        )
+        features = [
+            name for name in ("float32-filterable",) if name in self.adapter.features
+        ]
+        self.device = self.adapter.request_device_sync(
+            required_features=features,
+            required_limits={
+                "max-storage-buffer-binding-size": 134217728,
+                "max-buffer-size": 268435456,
+            },
+        )
+
         self.resources = {}
         self.dimensions = {}
         self.views = {}
         self.shaders = {}
         self.metadata = {}
+
         self.bind_groups = {}
         self.dispatch_bindings = {}
         self.parameters = []
         self.parameter_index = 0
+
         self.encoder = None
         self.compute_pass = None
         self.dispatches = 0
         self.next_id = 1
+
         self.last_error = None
         self.readback = FrameReadback(self)
 
+    # 登记GPU资源并分配宿主侧标识。
     def add(self, resource):
         identifier = self.next_id
         self.next_id += 1
         self.resources[identifier] = resource
+
         return identifier
 
+    # 取得可执行复制与清理操作的命令编码器。
     def commands(self):
         if self.compute_pass is not None:
             # 纹理复制需结束计算通道，满足GPU命令编码约束
             self.compute_pass.end()
+
             self.compute_pass = None
+
         if self.encoder is None:
             self.encoder = self.device.create_command_encoder()
+
         return self.encoder
 
+    # 取得可复用的计算通道编码器。
     def compute_commands(self):
         if self.compute_pass is None:
             # 复用计算通道，减少连续派发时的通道切换开销
-            self.compute_pass = self.commands().begin_compute_pass(label="Workshop compute")
+            self.compute_pass = self.commands().begin_compute_pass(
+                label="Workshop compute"
+            )
+
         return self.compute_pass
 
+    # 创建纹理并登记尺寸、步长和视图。
     def make_texture(self, width, height, format, depth):
-        usage = (wgpu.TextureUsage.COPY_SRC | wgpu.TextureUsage.COPY_DST
-                 | wgpu.TextureUsage.TEXTURE_BINDING | wgpu.TextureUsage.STORAGE_BINDING)
-        texture = self.device.create_texture(size=(width, height, depth),
-            dimension="3d" if depth > 1 else "2d", format=format, usage=usage)
+        usage = (
+            wgpu.TextureUsage.COPY_SRC
+            | wgpu.TextureUsage.COPY_DST
+            | wgpu.TextureUsage.TEXTURE_BINDING
+            | wgpu.TextureUsage.STORAGE_BINDING
+        )
+        texture = self.device.create_texture(
+            size=(width, height, depth),
+            dimension="3d" if depth > 1 else "2d",
+            format=format,
+            usage=usage,
+        )
         identifier = self.add(texture)
         self.dimensions[identifier] = (width, height, depth, STRIDES[format])
         self.views[identifier] = texture.create_view()
+
         # 利用WebGPU零初始化保证，省去重复的整图清零
         return identifier
 
+    # 按对齐要求创建统一或存储缓冲。
     def make_buffer(self, size, uniform):
         usage = wgpu.BufferUsage.UNIFORM if uniform else wgpu.BufferUsage.STORAGE
-        return self.add(self.device.create_buffer(size=max(16, (size + 15) & -16),
-            usage=usage | wgpu.BufferUsage.COPY_DST | wgpu.BufferUsage.COPY_SRC))
 
+        return self.add(
+            self.device.create_buffer(
+                size=max(16, (size + 15) & -16),
+                usage=usage | wgpu.BufferUsage.COPY_DST | wgpu.BufferUsage.COPY_SRC,
+            )
+        )
+
+    # 创建指定过滤与寻址方式的采样器。
     def make_sampler(self, linear, repeat):
         filtering = "linear" if linear else "nearest"
         addressing = "repeat" if repeat else "clamp-to-edge"
-        return self.add(self.device.create_sampler(mag_filter=filtering, min_filter=filtering,
-            address_mode_u=addressing, address_mode_v=addressing))
 
+        return self.add(
+            self.device.create_sampler(
+                mag_filter=filtering,
+                min_filter=filtering,
+                address_mode_u=addressing,
+                address_mode_v=addressing,
+            )
+        )
+
+    # 提交旧命令后上传缓冲数据。
     def upload_buffer(self, identifier, offset, data):
         # 先提交旧命令，防止新上传覆盖尚未执行的GPU输入
         self.readback.invalidate()
         self.flush()
         self.device.queue.write_buffer(self.resources[identifier], offset, data)
 
+    # 校验纹理布局并上传完整像素数据。
     def upload_texture(self, identifier, data):
         # 修改纹理后旧读回失效，避免取得更新前的数据
         self.readback.invalidate()
         self.flush()
+
         width, height, depth, stride = self.dimensions[identifier]
+
         if len(data) != width * height * depth * stride:
             raise ValueError("Texture upload has incorrect byte length")
-        self.device.queue.write_texture({"texture": self.resources[identifier]}, data,
-            {"bytes_per_row": width * stride, "rows_per_image": height}, (width, height, depth))
 
+        self.device.queue.write_texture(
+            {"texture": self.resources[identifier]},
+            data,
+            {"bytes_per_row": width * stride, "rows_per_image": height},
+            (width, height, depth),
+        )
+
+    # 按纹理实际布局写入零值数据。
     def clear_texture(self, identifier):
         width, height, depth, stride = self.dimensions[identifier]
+
         self.upload_texture(identifier, bytes(width * height * depth * stride))
 
+    # 编码指定缓冲区域的清零操作。
     def clear_buffer(self, identifier, offset, size):
         self.readback.invalidate()
         self.commands().clear_buffer(self.resources[identifier], offset, size)
 
+    # 编码尺寸一致的纹理复制操作。
     def copy_texture(self, source, destination):
         self.readback.invalidate()
-        width, height, depth, _ = self.dimensions[source]
-        self.commands().copy_texture_to_texture({"texture": self.resources[source]},
-            {"texture": self.resources[destination]}, (width, height, depth))
 
+        width, height, depth, _ = self.dimensions[source]
+
+        self.commands().copy_texture_to_texture(
+            {"texture": self.resources[source]},
+            {"texture": self.resources[destination]},
+            (width, height, depth),
+        )
+
+    # 提交已编码GPU命令并复位参数槽。
     def flush(self):
         if self.encoder is not None:
             self.device.queue.submit([self.commands().finish()])
+
             self.encoder = None
+
         self.parameter_index = 0
 
+    # 从帧末缓存或GPU读取指定缓冲区域。
     def read_buffer(self, identifier, offset, size):
         data = self.readback.read(("buffer", identifier, offset, size))
+
         if data is not None:
             return data
-        self.flush()
-        return bytes(self.device.queue.read_buffer(self.resources[identifier], offset, size))
 
+        self.flush()
+
+        return bytes(
+            self.device.queue.read_buffer(self.resources[identifier], offset, size)
+        )
+
+    # 按区域及层数读取纹理原始数据。
     def read_texture(self, identifier, x=0, y=0, width=None, height=None, stride=None):
-        tw, th, depth, pixel_stride = self.dimensions[identifier]
-        width, height = width or tw, height or th
+        texture_width, texture_height, depth, pixel_stride = self.dimensions[identifier]
+        width, height = width or texture_width, height or texture_height
+
         if stride is not None and stride != pixel_stride:
             raise ValueError("Texture stride mismatch")
-        layers = depth if width == tw and height == th else 1
+
+        layers = depth if width == texture_width and height == texture_height else 1
         data = self.readback.read(("texture", identifier, x, y, width, height, layers))
+
         if data is not None:
             return data
+
         self.flush()
-        return bytes(self.device.queue.read_texture(
-            {"texture": self.resources[identifier], "origin": (x, y, 0)},
-            {"bytes_per_row": width * pixel_stride, "rows_per_image": height},
-            (width, height, layers)))
 
-    def queue_frame_readbacks(self, stats, stats_size, occupancy, occupancy_size,
-                             owners, owners_size, output):
-        self.readback.stage([(stats, stats_size), (occupancy, occupancy_size),
-                             (owners, owners_size)], output)
+        return bytes(
+            self.device.queue.read_texture(
+                {"texture": self.resources[identifier], "origin": (x, y, 0)},
+                {"bytes_per_row": width * pixel_stride, "rows_per_image": height},
+                (width, height, layers),
+            )
+        )
 
+    # 将本帧统计、刚体数据和图像合并读回。
+    def queue_frame_readbacks(
+        self, stats, stats_size, occupancy, occupancy_size, owners, owners_size, output
+    ):
+        self.readback.stage(
+            [(stats, stats_size), (occupancy, occupancy_size), (owners, owners_size)],
+            output,
+        )
+
+    # 清理资源绑定后销毁指定GPU资源。
     def destroy(self, identifier):
         self.readback.invalidate()
         self.flush()
+
         # 绑定组持有资源引用，先清缓存以免复用已销毁资源
         self.bind_groups.clear()
         self.dispatch_bindings.clear()
+
         resource = self.resources.pop(identifier, None)
+
         self.views.pop(identifier, None)
         self.dimensions.pop(identifier, None)
+
         if resource is not None and hasattr(resource, "destroy"):
             resource.destroy()
 
+    # 等待在途命令并释放计算设备及资源。
     def close(self):
         self.flush()
+
         # GPU提交异步完成，销毁资源前需等待在途命令结束
         self.device.queue.on_submitted_work_done_sync()
         self.readback.close()
@@ -173,9 +274,11 @@ class GpuHost(Storage, ShaderPipelines):
         self.dispatch_bindings.clear()
         self.shaders.clear()
         self.views.clear()
+
         for resource in [*self.parameters, *self.resources.values()]:
             if hasattr(resource, "destroy"):
                 resource.destroy()
+
         self.resources.clear()
         self.parameters.clear()
         self.device.destroy()

@@ -10,37 +10,66 @@ class BrushCommands:
     Stride = 64
     SizeBytes = 16 + Max * Stride
 
+    # 初始化画笔命令队列与随机种子。
     def __init__(self):
         self.pending = []
         self.seed = 1
 
+    # 读取本次待提交的画笔命令数量。
     @property
     def count(self):
         return len(self.pending)
 
+    # 在固定GPU容量内接纳画笔命令。
     def add(self, command):
         # 队列容量与GPU命令区一致，防止输入写穿固定布局
         if len(self.pending) < self.Max:
             self.pending.append(command)
 
+    # 打包画笔命令并推进连续随机种子。
     def drain(self):
         result = bytearray(self.SizeBytes)
+
         struct.pack_into('<I', result, 0, self.count)
+
         for index, command in enumerate(self.pending):
             offset = 16 + index * self.Stride
-            struct.pack_into('<4i', result, offset, command['type'], command.get('material', 0),
-                             command.get('shape', 0), int(bool(command.get('overwrite', False))))
+
+            struct.pack_into(
+                '<4i',
+                result,
+                offset,
+                command['type'],
+                command.get('material', 0),
+                command.get('shape', 0),
+                int(bool(command.get('overwrite', False))),
+            )
+
             spray = command.get('spray', 1)
+
             # 连续种子区分同帧笔触，避免随机喷洒重复相同图案
-            struct.pack_into('<7fI', result, offset + 16, *command['from'], *command['to'],
-                             command['radius'], command.get('strength', 0),
-                             spray if spray > 0 else 1, self.seed & 0xffffffff)
+            struct.pack_into(
+                '<7fI',
+                result,
+                offset + 16,
+                *command['from'],
+                *command['to'],
+                command['radius'],
+                command.get('strength', 0),
+                spray if spray > 0 else 1,
+                self.seed & 0xFFFFFFFF,
+            )
+
             self.seed += 1
+
             if 'clip' in command:
                 struct.pack_into('<4f', result, offset + 48, *command['clip'])
+
         count = self.count
+
         self.pending.clear()
-        return bytes(result[:16 + count * self.Stride])
+
+        return bytes(result[: 16 + count * self.Stride])
 
 
 class SimulationStatistics:
@@ -56,6 +85,7 @@ class SimulationStatistics:
     SizeBytes = ExplosionsOffset + MaxExplosions * 16
     PendingSize = 16 + MaxExplosions * 16
 
+    # 初始化材料和事件统计容器。
     def __init__(self):
         self.histogram = np.zeros(256, '<u4')
         self.reactionCount = np.zeros(1024, '<u4')
@@ -65,14 +95,26 @@ class SimulationStatistics:
         self.events = np.zeros(16, '<u4')
         self.explosions = []
 
+    # 按固定二进制布局解析模拟统计结果。
     def parse(self, data):
         if len(data) < self.SizeBytes:
             return
+
         # 拷贝读回视图，避免统计状态随后续缓冲复用而变化
-        for name, offset, count in [('histogram', 0, 256), ('reactionCount', 1024, 1024),
-                                   ('igniteCount', 5120, 256), ('phaseHi', 6144, 256),
-                                   ('phaseLo', 7168, 256), ('events', 8192, 16)]:
+        for name, offset, count in [
+            ('histogram', 0, 256),
+            ('reactionCount', 1024, 1024),
+            ('igniteCount', 5120, 256),
+            ('phaseHi', 6144, 256),
+            ('phaseLo', 7168, 256),
+            ('events', 8192, 16),
+        ]:
             setattr(self, name, np.frombuffer(data, '<u4', count, offset).copy())
-        count = min(struct.unpack_from('<I', data, self.ExCountOffset)[0], self.MaxExplosions)
-        self.explosions = [list(struct.unpack_from('<4f', data, self.ExplosionsOffset + index * 16))
-                           for index in range(count)]
+
+        count = min(
+            struct.unpack_from('<I', data, self.ExCountOffset)[0], self.MaxExplosions
+        )
+        self.explosions = [
+            list(struct.unpack_from('<4f', data, self.ExplosionsOffset + index * 16))
+            for index in range(count)
+        ]
