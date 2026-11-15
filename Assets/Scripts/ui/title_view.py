@@ -2,6 +2,8 @@
 
 import json
 
+from numpy import size
+
 from .workshop_style import INK, DIM
 
 
@@ -42,19 +44,13 @@ class TitleView:
 
         canvas.button(
             (width - 220, 16, 116, 40),
-            "◎ " + languages[app.home_language] + " ⌄",
+            "" + languages[app.home_language] + "",
             lambda: app.open_modal("language"),
             fill="fffffff2",
             identifier="home-language",
             font=app.pixel_font,
         )
-        canvas.button(
-            (width - 96, 16, 36, 40),
-            "",
-            lambda: app.open_modal("settings"),
-            fill="fffffff2",
-            identifier="home-settings",
-        )
+
         canvas.image((width - 87, 27, 18, 18), "ui/vectors/gear.svg")
         canvas.button(
             (width - 52, 16, 36, 40),
@@ -100,12 +96,13 @@ class TitleView:
         tag_y = title_y + title_size * 1.05 + (10 if compact else 14) + 4
 
         canvas.text(
-            (24, tag_y, width - 48, tag_size * 1.1),
+            (24, tag_y, width - 48, tag_size * 1),
             "Simulation is all you need",
-            tag_size,
+            30,
             "ffffff",
             0.5,
             app.latin_bold_font,
+
         )
         canvas.text(
             (24, tag_y + tag_size * 1.1 + 10, width - 48, 26),
@@ -185,19 +182,30 @@ class TitleView:
             font=app.pixel_font,
             wrap=True,
         )
-        canvas.button(
-            (panel_x + panel_width - 288, footer, 132, 50),
-            self.copy("playMulti"),
-            lambda: app.open_modal("network"),
-            fill="ffffff",
-            border="d4d4db",
-            font=app.pixel_font,
-        )
-        canvas.button(
-            (panel_x + panel_width - 144, footer, 124, 50),
+
+    
+        canvas.button(  # 开始游戏按钮
+            ((width - 260) / 2, panel_y - 118, 260, 48),
             self.copy("start"),
-            lambda: app.start_game(app.selected_map),
+            app.show_mode_page,
             dark=True,
             font=app.pixel_font,
             identifier="start-game",
+            rounding=3,
+            fill="777777",
+            border="222222",
+            
         )
+
+        canvas.button(  # 设置按钮
+            ((width - 260) / 2, panel_y - 62, 260, 48),
+            "设置",
+            lambda: app.open_modal("settings"),
+            dark=True,
+            font=app.pixel_font,
+            identifier="home-settings",
+            rounding=3,
+            fill="777777",
+            border="222222",
+        )   
+        

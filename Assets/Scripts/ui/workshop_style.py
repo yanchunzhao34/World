@@ -178,7 +178,14 @@ class Canvas:
         fill=None,
         border=None,
         font=None,
+        rounding=10,
+        hover_fill=None,
     ):
+        """
+        绘制按钮并处理悬停、点击及回调。
+        
+        返回按钮本帧是否被点击。
+        """
         self.regions.append(rect)
 
         self.app.widgets[identifier or text] = rect
@@ -197,7 +204,10 @@ class Canvas:
             background = "f4f4f6"
 
         if hovered and self.interactive:
-            if dark:
+            if hover_fill:
+                background = hover_fill
+
+            elif dark:
                 background = "2b2b33"
 
             elif active:
@@ -206,7 +216,7 @@ class Canvas:
             else:
                 background = "e7e7ec"
 
-        self.rect(rect, background, 10, border or (ACCENT if active else None))
+        self.rect(rect, background, rounding, border or (ACCENT if active else None))
 
         if text:
             self.text(rect, text, size, "ffffff" if dark else INK, 0.5, font)

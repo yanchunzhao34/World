@@ -4,6 +4,7 @@ import json
 import math
 import os
 from pathlib import Path
+from tkinter import Menu
 
 from _infernux_packages.workshop.runtime.library.dependencies import tempfile, time
 
@@ -21,6 +22,7 @@ from .title_view import TitleView
 from .workshop_hud import WorkshopHud
 from .workshop_settings import WorkshopSettings, DEBUG
 from .workshop_style import Canvas, Images, INK, DIM
+from .mode_view import ModeView
 
 
 class WorkshopUI(InxGUIRenderable):
@@ -60,6 +62,7 @@ class WorkshopUI(InxGUIRenderable):
         map_key=None,
         paused=False,
         editor_panel=None,
+        menu_page = "title",    # 主页
     ):
         super().__init__()
 
@@ -94,7 +97,8 @@ class WorkshopUI(InxGUIRenderable):
 
         self.load_ui_state()
 
-        self.selected_map, self.playing = map_key or "lab", map_key is not None
+        self.selected_map, self.playing =  map_key or "lab", map_key is not None
+        self.menu_page = menu_page
         self.material_id = 14
         self.tool = 0
         self.radius = 4
@@ -107,6 +111,7 @@ class WorkshopUI(InxGUIRenderable):
         self.menu_scroll = 0
 
         self.title, self.hud = TitleView(self), WorkshopHud(self)
+        self.mode = ModeView(self)
         self.library, self.codex_view = MaterialLibrary(self), CodexView(self)
         self.settings_view = WorkshopSettings(self)
         self.dimensions, self.widgets = (0, 0), {}
@@ -155,6 +160,14 @@ class WorkshopUI(InxGUIRenderable):
     # 清除已经失去坐标基准的探针结果。
     def invalidate_probe(self):
         self.probe_sample, self.probe_pending = {}, 0
+
+    # 选择模式界面
+    def show_mode_page(self):
+        self.menu_page = "mode"
+
+    # 主页界面
+    def show_title_page(self):
+        self.menu_page = "title"
 
     # 记录主页当前选择的实验地图。
     def select_scene(self, key):
@@ -552,11 +565,14 @@ class WorkshopUI(InxGUIRenderable):
 
                 canvas.interactive = not bool(self.modal)
 
-                if self.playing:
+                if self.playing:    # 1：游戏操作界面 0：主页
                     self.hud.render(canvas)
 
-                else:
+                elif self.menu_page == "title":
                     self.title.render(canvas)
+
+                elif self.menu_page == "mode":
+                    self.mode.render(canvas)
 
                 if self.modal:
                     canvas.interactive = True
@@ -994,3 +1010,7 @@ class WorkshopUI(InxGUIRenderable):
     def close(self):
         self.focus_text("")
         self.images.close()
+
+    # 开始游戏后跳转到菜单
+    def menu_select(self):
+        pass

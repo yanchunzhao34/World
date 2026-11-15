@@ -34,7 +34,7 @@
         },
         "last_modified": {
             "type": "string",
-            "value": "1794495015"
+            "value": "1794568160"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",
