@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "2189067a5a274aaf"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Packages/workshop/runtime/library/dependencies.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 1301
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Packages/workshop/runtime/library/dependencies.py"
         },
         "guid": {
             "type": "string",
             "value": "f568466b4baaec3b2af206961ed8b6ef"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

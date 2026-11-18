@@ -1,1 +1,3 @@
-0.4.1
+# Preferred Infernux release for runtime installation.
+# An existing project runtime determines the actual engine.
+0.4.8

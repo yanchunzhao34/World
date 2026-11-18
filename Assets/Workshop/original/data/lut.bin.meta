@@ -1,48 +1,16 @@
 {
     "metadata": {
-        "binary_type": {
-            "type": "string",
-            "value": "binary"
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "36ac07ebc0fbee05"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".bin"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/lut.bin"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 262144
-        },
-        "file_type": {
-            "type": "string",
-            "value": "binary"
+            "value": "Assets/Workshop/original/data/lut.bin"
         },
         "guid": {
             "type": "string",
             "value": "d74ddcb67169e4269603e0edf302edae"
         },
-        "is_readable": {
-            "type": "bool",
-            "value": false
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1792830102"
-        },
         "resource_type": {
             "type": "enum infernux::ResourceType",
             "value": "DefaultBinary"
-        },
-        "size_category": {
-            "type": "string",
-            "value": "small"
         }
     }
 }

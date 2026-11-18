@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 2519
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "12b5a9a58e358ded"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".json"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/ui/material_names.json"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 2519
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/ui/material_names.json"
         },
         "guid": {
             "type": "string",
             "value": "ee826d34e3a63b763ed2923b8aa162e1"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793286938"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 92
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

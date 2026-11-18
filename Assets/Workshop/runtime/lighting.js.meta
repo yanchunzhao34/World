@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 2157
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "94bff34412864a4e"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".js"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/runtime/lighting.js"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 2157
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/runtime/lighting.js"
         },
         "guid": {
             "type": "string",
             "value": "02264566cf244a777d16173b9ae42415"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794024343"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 43
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

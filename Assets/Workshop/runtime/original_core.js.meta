@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 177130
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "06665368862e45fa"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "utf-8"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".js"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/runtime/original_core.js"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 177130
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/runtime/original_core.js"
         },
         "guid": {
             "type": "string",
             "value": "1d7b0639ed5da7d4a94e77f85be938ea"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793373451"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 4768
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

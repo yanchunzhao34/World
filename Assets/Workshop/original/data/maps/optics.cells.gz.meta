@@ -1,48 +1,16 @@
 {
     "metadata": {
-        "binary_type": {
-            "type": "string",
-            "value": "archive"
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "5a7211cb0ffb123d"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".gz"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/maps/optics.cells.gz"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 2359296
-        },
-        "file_type": {
-            "type": "string",
-            "value": "binary"
+            "value": "Assets/Workshop/original/data/maps/optics.cells.gz"
         },
         "guid": {
             "type": "string",
             "value": "949e3a73811627ce3ec6aeb8305337d6"
         },
-        "is_readable": {
-            "type": "bool",
-            "value": false
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1792830136"
-        },
         "resource_type": {
             "type": "enum infernux::ResourceType",
             "value": "DefaultBinary"
-        },
-        "size_category": {
-            "type": "string",
-            "value": "medium"
         }
     }
 }

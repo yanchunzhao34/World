@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 102
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "a7eda2c92325c796"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".txt"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/reference-requirements.txt"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 102
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Scripts/native/python_core/reference-requirements.txt"
         },
         "guid": {
             "type": "string",
             "value": "6c7dbeb8f6f035df9662d1efb03046d4"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794568160"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 3
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

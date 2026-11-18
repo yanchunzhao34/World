@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "8be30503bae7f03d"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/gpu_host_storage.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 3743
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Assets/Scripts/native/gpu_host_storage.py"
         },
         "guid": {
             "type": "string",
             "value": "45b0e85896e3d5771165e98b51ca66ea"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

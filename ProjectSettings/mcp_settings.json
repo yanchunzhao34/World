@@ -1,0 +1,22 @@
+{
+  "enabled": true,
+  "write_default_config_on_bootstrap": true,
+  "features": {
+    "trace_recorder": true,
+    "session_call_log": true,
+    "discovery_files": true
+  },
+  "session": {
+    "build_profile": "debug_feedback",
+    "recording_enabled": false,
+    "cmake_configure_preset": "",
+    "cmake_build_preset": ""
+  },
+  "limits": {
+    "main_thread_timeout_ms": 30000,
+    "trace_argument_max_string": 240,
+    "trace_result_max_string": 480,
+    "session_log_result_max_string": 480,
+    "batch_max_steps": 100
+  }
+}

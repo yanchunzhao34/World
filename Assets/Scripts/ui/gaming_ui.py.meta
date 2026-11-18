@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "file_path": {
+            "type": "string",
+            "value": "Assets/Scripts/ui/gaming_ui.py"
+        },
+        "guid": {
+            "type": "string",
+            "value": "aca1a3f2afb746b180cdca3c92aedbca"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Script"
+        }
+    }
+}

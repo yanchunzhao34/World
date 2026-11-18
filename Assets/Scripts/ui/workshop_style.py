@@ -168,18 +168,18 @@ class Canvas:
     # 绘制按钮并接入鼠标点击回调。
     def button(
         self,
-        rect,
-        text,
-        callback=None,
-        active=False,
-        dark=False,
-        size=13,
-        identifier=None,
-        fill=None,
-        border=None,
-        font=None,
-        rounding=10,
-        hover_fill=None,
+        rect,   # 输入x，y和宽高
+        text,   # 输入展示文本
+        callback=None,  # 点击按钮时执行的回调函数
+        active=False,   # 激活状态
+        dark=False, # 是否深色
+        size=13,  # 按钮文本字号
+        identifier=None,  # 控件标识，用于记录按钮位置
+        fill=None,  # 按钮背景颜色
+        border=None,  # 按钮边框颜色
+        font=None,  # 按钮文本使用的字体
+        rounding=10,  # 按钮圆角半径
+        hover_fill=None,  # 鼠标悬停时的背景颜色
     ):
         """
         绘制按钮并处理悬停、点击及回调。

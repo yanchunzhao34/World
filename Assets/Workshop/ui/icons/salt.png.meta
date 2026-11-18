@@ -36,25 +36,9 @@
             "type": "int",
             "value": 4
         },
-        "content_hash": {
-            "type": "string",
-            "value": "ec6601c8f2c21c26"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".png"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/ui/icons/salt.png"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 262
-        },
-        "file_type": {
-            "type": "string",
-            "value": "texture"
+            "value": "Assets/Workshop/ui/icons/salt.png"
         },
         "filter_mode": {
             "type": "string",
@@ -75,10 +59,6 @@
         "is_binary": {
             "type": "bool",
             "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793204515"
         },
         "max_size": {
             "type": "int",

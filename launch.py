@@ -42,7 +42,7 @@ def select_runtime():
 
 # 为游戏窗口建立兼容的高DPI上下文。
 def configure_windows_dpi():
-    """在 SDL 创建窗口前建立 PMv2，兼容父启动器继承的 DPI 设置。"""
+    """在 SDL 创建窗口前建立 PMv2,兼容父启动器继承的 DPI 设置。"""
 
     if sys.platform != "win32":
         return
@@ -84,7 +84,7 @@ def main():
     configure_windows_dpi()
 
     import infernux as inx
-    from Infernux.lib import SceneManager, ConsolePanel
+    from infernux.lib import SceneManager, ConsolePanel
     from tools.workshop_bootstrap import preload_dependencies
 
     dependencies = preload_dependencies(ROOT)

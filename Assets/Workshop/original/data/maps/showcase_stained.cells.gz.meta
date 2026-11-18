@@ -1,48 +1,16 @@
 {
     "metadata": {
-        "binary_type": {
-            "type": "string",
-            "value": "archive"
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "e4693081ba2beb43"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".gz"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/maps/showcase_stained.cells.gz"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 2359296
-        },
-        "file_type": {
-            "type": "string",
-            "value": "binary"
+            "value": "Assets/Workshop/original/data/maps/showcase_stained.cells.gz"
         },
         "guid": {
             "type": "string",
             "value": "b5260de579cd29ca491b867857be0195"
         },
-        "is_readable": {
-            "type": "bool",
-            "value": false
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793287473"
-        },
         "resource_type": {
             "type": "enum infernux::ResourceType",
             "value": "DefaultBinary"
-        },
-        "size_category": {
-            "type": "string",
-            "value": "medium"
         }
     }
 }

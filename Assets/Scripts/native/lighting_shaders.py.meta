@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "4cad5e183f1b9dbd"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/lighting_shaders.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 3135
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Assets/Scripts/native/lighting_shaders.py"
         },
         "guid": {
             "type": "string",
             "value": "e3ec6a0f89f837b4bb905a9471838230"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

@@ -2,9 +2,9 @@
 
 import numpy as np
 import infernux as inx
-from Infernux.core.assets import AssetManager
-from Infernux.renderstack import RenderPipeline, RenderStack
-from Infernux.renderstack.render_stack_pipeline import RenderStackPipeline
+from infernux.core.assets import AssetManager
+from infernux.renderstack import RenderPipeline, RenderStack
+from infernux.renderstack.render_stack_pipeline import RenderStackPipeline
 
 
 class WorkshopPipeline(RenderPipeline):

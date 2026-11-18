@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 5004
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "3df64d2a4ff5b03c"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".wgsl"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/shaders/render/beam_blur.wgsl"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 5004
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/original/shaders/render/beam_blur.wgsl"
         },
         "guid": {
             "type": "string",
             "value": "2534c6f6c7550edb30169525efb5645d"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793199970"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 165
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

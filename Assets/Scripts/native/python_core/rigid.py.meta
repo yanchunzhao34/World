@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "0f22c30f55cb747f"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/python_core/rigid.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 36552
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Assets/Scripts/native/python_core/rigid.py"
         },
         "guid": {
             "type": "string",
             "value": "a120a2f1233a64cdb3f327770b13b79f"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

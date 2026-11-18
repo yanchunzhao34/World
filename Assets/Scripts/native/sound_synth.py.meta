@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "5b88676cc310dbdb"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/sound_synth.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 9491
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Assets/Scripts/native/sound_synth.py"
         },
         "guid": {
             "type": "string",
             "value": "5fe85e3516eb199f615965ae09a1bfa1"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

@@ -48,20 +48,20 @@
       "children": [],
       "components": [
         {
-          "component_id": 4,
+          "component_id": "26296e29ba9557cb8d8e94aac74c9f4a",
           "data": {},
           "enabled": true,
           "execution_order": 0,
           "type_id": "python:5eb2013ef611a6c590323132fd76c579:205ef8c1cfe65546a2fd99e24732f8e5:Scripts.Workshop:Workshop"
         }
       ],
-      "id": 2,
+      "id": "aaa46a5e00135e0cbbc7f5cd41e26dcf",
       "is_static": false,
       "layer": 0,
       "name": "Element Workshop",
       "tag": "Untagged",
       "transform": {
-        "component_id": 3,
+        "component_id": "c5399ea3e39d5378a27f6508e6416a21",
         "enabled": true,
         "execution_order": 0,
         "position": [
@@ -82,5 +82,6 @@
         "type": "Transform"
       }
     }
-  ]
+  ],
+  "identity_format": "guid-v1"
 }

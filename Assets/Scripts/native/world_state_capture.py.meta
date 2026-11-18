@@ -1,36 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "887a4ce0eadd2794"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".py"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Scripts/native/world_state_capture.py"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 6056
-        },
-        "file_type": {
-            "type": "string",
-            "value": "script"
+            "value": "Assets/Scripts/native/world_state_capture.py"
         },
         "guid": {
             "type": "string",
             "value": "f8e10321c0bc91357e66ed7ffe53cf44"
-        },
-        "language": {
-            "type": "string",
-            "value": "python"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1794571574"
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

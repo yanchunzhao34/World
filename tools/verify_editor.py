@@ -28,36 +28,33 @@ def main():
         listener.bind(("127.0.0.1", 0))
         os.environ["INFERNUX_MCP_PORT"] = str(listener.getsockname()[1])
 
-    from Infernux import resources
-    from Infernux.engine.library_sync import sync_resources
-    from Infernux.engine.bootstrap import EditorBootstrap
-    from Infernux.components.script_loader import get_script_errors
-    from Infernux.host import EditorAutomationHost
-    from Infernux.input import Input
-    from Infernux.lib import InxGUIRenderable, LogLevel, SceneManager
+    from infernux import resources
+    from infernux.engine.library_sync import sync_resources
+    from infernux.engine.bootstrap import EditorBootstrap
+    from infernux.components.script_loader import get_script_errors
+    from infernux.lib import InxGUIRenderable, LogLevel, SceneManager
 
     sync_resources(str(project))
     resources.activate_library(str(project))
     bootstrap = EditorBootstrap(str(project), LogLevel.Info)
     errors, report = [], {"project": str(project), "cycles": 0, "captures": [],
-                          "performance_cycles": [], "audio_enabled": True}
+                          "performance_cycles": [], "audio_enabled": True,
+                          "input_driver": "UI callbacks"}
     try:
         bootstrap.run()
         print("EDITOR_BOOTSTRAPPED", flush=True)
         frontend = bootstrap.engine
         native = frontend.get_native_engine()
         manager = frontend.get_play_mode_manager()
-        host = EditorAutomationHost.instance()
         assert not get_script_errors(), get_script_errors()
         native.set_editor_fps_cap(60)
         native.set_editor_idle_fps(0)
         previous_play_cap = native.get_play_fps_cap()
         started, phase, session, capture, ready = time.monotonic(), "enter", None, 0, 0
         frame_samples = []
-        pause_point = (0, 0)
 
         def after_draw():
-            nonlocal phase, session, capture, ready, pause_point
+            nonlocal phase, session, capture, ready
             try:
                 now = time.monotonic()
                 serious = [entry for entry in bootstrap.console._get_visible_log_snapshot(200)
@@ -95,24 +92,12 @@ def main():
                     assert session.ui.dimensions[0] > 100
                     report["viewport"] = list(session.ui.dimensions)
                     print("EDITOR_UI_READY", session.ui.dimensions, flush=True)
-                    mx, my = Input.mouse_position
-                    gx, gy = Input.game_mouse_position
-                    x, y = mx - gx + 20, my - gy + 20
-                    host.queue_input("pointer_move", x=x, y=y)
-                    host.queue_input("pointer_button", button=0, pressed=True, x=x, y=y)
-                    phase, ready = "release_focus", now
-                elif phase == "release_focus" and now - ready > .1:
-                    mx, my = Input.mouse_position
-                    host.queue_input("pointer_button", button=0, pressed=False, x=mx, y=my)
-                    phase, ready = "press_enter", now
-                elif phase == "press_enter" and now - ready > .1:
-                    host.queue_input("key", key="return", pressed=True)
-                    phase, ready = "release_enter", now
-                elif phase == "release_enter" and now - ready > .1:
-                    host.queue_input("key", key="return", pressed=False)
+                    # 0.4.8 synthetic gameplay input is separate from ImGui.
+                    # Exercise the callbacks shared by the actual UI controls.
+                    session.ui.start_game("lab")
                     phase, ready = "lab", now
                 elif phase == "lab" and now - ready > 9:
-                    assert session.ui.playing, "Game View keyboard did not reach the UI"
+                    assert session.ui.playing, "Game start callback did not complete"
                     assert not session.ui.error, session.ui.error
                     if session.ui.current["map"] != "lab":
                         return
@@ -134,34 +119,15 @@ def main():
                     report["performance_cycles"].append(performance)
                     frame_samples.clear()
                     print("EDITOR_GAME_PERFORMANCE", json.dumps(performance), flush=True)
-                    rx, ry, rw, rh = session.ui.widgets["pause"]
-                    width, height = session.ui.dimensions
-                    scale = round(max(1, min(2.5, min(width / 1600, height / 900))) * 20) / 20
-                    mx, my = Input.mouse_position
-                    gx, gy = Input.game_mouse_position
-                    x, y = mx - gx + (rx + rw / 2) * scale, my - gy + (ry + rh / 2) * scale
-                    pause_point = x, y
-                    host.queue_input("pointer_move", x=x, y=y)
-                    phase, ready = "press_pause", now
-                elif phase == "press_pause" and now - ready > .1:
-                    x, y = pause_point
-                    host.queue_input("pointer_move", x=x, y=y)
-                    host.queue_input("pointer_button", button=0, pressed=True, x=x, y=y)
-                    phase, ready = "release_pause", now
-                elif phase == "release_pause" and now - ready > .1:
-                    mx, my = pause_point
-                    host.queue_input("pointer_move", x=mx, y=my)
-                    host.queue_input("pointer_button", button=0, pressed=False, x=mx, y=my)
+                    session.ui.toggle_pause()
                     phase, ready = "paused", now
                 elif phase == "paused" and now - ready > .2:
                     if not session.ui.current["paused"]:
                         if now - ready > 5:
-                            raise AssertionError(("Pause click was not delivered", session.ui.paused,
-                                                  Input.mouse_position, Input.game_mouse_position,
-                                                  Input.is_game_focused()))
+                            raise AssertionError(("Pause callback was not delivered", session.ui.paused))
                         return
-                    report["pointer_pause_button"] = True
-                    print("EDITOR_POINTER_PAUSE_PASS", flush=True)
+                    report["pause_callback"] = True
+                    print("EDITOR_PAUSE_CALLBACK_PASS", flush=True)
                     destination = ROOT / f"validation/editor-window-{report['cycles'] + 1}.png"
                     capture = frontend.request_capture("editor", str(destination))
                     phase = "capture"
@@ -191,10 +157,6 @@ def main():
 
         class Driver(InxGUIRenderable):
             def on_render(self, ctx):
-                if phase == "release_pause" and ctx.is_mouse_button_clicked(0):
-                    print("EDITOR_MOUSE_PRESS", Input.mouse_position,
-                          (ctx.get_mouse_pos_x(), ctx.get_mouse_pos_y()),
-                          Input.game_mouse_position, session.ui.paused, flush=True)
                 after_draw()
 
         frontend.register_gui("Workshop Editor Verification", Driver(), priority=1000)

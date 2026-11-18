@@ -1,20 +1,12 @@
 {
     "metadata": {
-        "content_hash": {
-            "type": "string",
-            "value": "2b1fc745d010ac4b"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Shaders/WorkshopPresent.frag"
+            "value": "Assets/Shaders/WorkshopPresent.frag"
         },
         "guid": {
             "type": "string",
             "value": "0d875baa110679524f5b1bec732e4b8b"
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793806693"
         },
         "properties": {
             "type": "string",

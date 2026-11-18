@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 18070
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "240a6fe4df2a1966"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "utf-8"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".js"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/runtime/game.js"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 18070
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/runtime/game.js"
         },
         "guid": {
             "type": "string",
             "value": "b8b5eabcd03d80feb8fb9e868c80fe37"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793449401"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 482
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

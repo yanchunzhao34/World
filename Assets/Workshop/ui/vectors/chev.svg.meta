@@ -1,52 +1,104 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 198
+        "aniso_level": {
+            "type": "int",
+            "value": -1
         },
-        "content_hash": {
-            "type": "string",
-            "value": "3cb59dbd40e7a31c"
+        "artifact_depth": {
+            "type": "int",
+            "value": 1
         },
-        "encoding": {
+        "artifact_dimension": {
             "type": "string",
-            "value": "ascii"
+            "value": "2d"
         },
-        "file_extension": {
+        "artifact_format": {
             "type": "string",
-            "value": ".svg"
+            "value": "bc3_srgb"
+        },
+        "artifact_height": {
+            "type": "int",
+            "value": 2048
+        },
+        "artifact_mip_count": {
+            "type": "int",
+            "value": 12
+        },
+        "artifact_srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "artifact_width": {
+            "type": "int",
+            "value": 2048
+        },
+        "channels": {
+            "type": "int",
+            "value": 4
         },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/ui/vectors/chev.svg"
+            "value": "Assets/Workshop/ui/vectors/chev.svg"
         },
-        "file_size": {
-            "type": "size_t",
-            "value": 198
-        },
-        "file_type": {
+        "filter_mode": {
             "type": "string",
-            "value": "text"
+            "value": "linear"
+        },
+        "generate_mipmaps": {
+            "type": "bool",
+            "value": true
         },
         "guid": {
             "type": "string",
             "value": "3f1d648bc858860004d1d263411daecc"
         },
-        "is_readable": {
+        "height": {
+            "type": "int",
+            "value": 2048
+        },
+        "is_binary": {
             "type": "bool",
-            "value": true
+            "value": false
         },
-        "last_modified": {
-            "type": "string",
-            "value": "1793286938"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 1
+        "max_size": {
+            "type": "int",
+            "value": 2048
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",
-            "value": "DefaultText"
+            "value": "Texture"
+        },
+        "source_container": {
+            "type": "string",
+            "value": "SVG"
+        },
+        "srgb": {
+            "type": "bool",
+            "value": true
+        },
+        "texture_compression": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_compression_quality": {
+            "type": "string",
+            "value": "normal"
+        },
+        "texture_format": {
+            "type": "string",
+            "value": "auto"
+        },
+        "texture_type": {
+            "type": "string",
+            "value": "default"
+        },
+        "width": {
+            "type": "int",
+            "value": 2048
+        },
+        "wrap_mode": {
+            "type": "string",
+            "value": "repeat"
         }
     }
 }

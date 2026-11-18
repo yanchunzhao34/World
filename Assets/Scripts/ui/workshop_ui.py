@@ -8,9 +8,9 @@ from tkinter import Menu
 
 from _infernux_packages.workshop.runtime.library.dependencies import tempfile, time
 
-from Infernux.lib import InxGUIRenderable, InputManager
-from Infernux.input import Input
-from Infernux.engine.ui import imgui_keys as K
+from infernux.lib import InxGUIRenderable, InputManager
+from infernux.input import Input
+from infernux.engine.ui import imgui_keys as K
 
 from .action_menu import action_menu
 from .brush_overlay import draw_brush
@@ -164,6 +164,13 @@ class WorkshopUI(InxGUIRenderable):
     # 选择模式界面
     def show_mode_page(self):
         self.menu_page = "mode"
+
+    # 退出
+    def request_exit(self):
+        if self.editor_panel is not None:
+            self.frontend.get_play_mode_manager().exit_play_mode()
+        else:
+            self.native.exit()
 
     # 主页界面
     def show_title_page(self):
@@ -493,9 +500,7 @@ class WorkshopUI(InxGUIRenderable):
                 return
 
             width, height = Input.game_viewport_size
-            mouse_x, mouse_y = Input.mouse_position
-            game_mouse_x, game_mouse_y = Input.game_mouse_position
-            viewport_x, viewport_y = mouse_x - game_mouse_x, mouse_y - game_mouse_y
+            viewport_x, viewport_y = self.editor_panel.ui_input_state()["viewport"]["origin"]
 
         else:
             viewport_x, viewport_y, width, height = ctx.get_main_viewport_bounds()
@@ -1011,6 +1016,3 @@ class WorkshopUI(InxGUIRenderable):
         self.focus_text("")
         self.images.close()
 
-    # 开始游戏后跳转到菜单
-    def menu_select(self):
-        pass

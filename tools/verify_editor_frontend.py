@@ -8,11 +8,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "Assets"))
 
 from workshop_bootstrap import preload_dependencies
-from Infernux.engine.candidate_import import CandidateImportTransaction
-from Infernux.engine.project_context import (
+from infernux.engine.candidate_import import CandidateImportTransaction
+from infernux.engine.project_context import (
     get_script_module_name, is_project_component_script, set_project_root,
 )
-from Infernux.engine.script_change_collector import ScriptChangeCollector
+from infernux.engine.script_change_collector import ScriptChangeCollector
 
 
 def main():

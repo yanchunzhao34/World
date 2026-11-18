@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 16400
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "5f0cb7586896b6b9"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".wgsl"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/shaders/sim/liquid_spread.wgsl"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 16400
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/original/shaders/sim/liquid_spread.wgsl"
         },
         "guid": {
             "type": "string",
             "value": "d20d4a28bbd7878b2353d56d49d6d8e4"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793199971"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 564
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

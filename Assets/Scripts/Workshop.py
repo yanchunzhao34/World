@@ -3,8 +3,8 @@
 from pathlib import Path
 
 import infernux as inx
-from Infernux.application import Application
-from Infernux.lib import Vector3
+from infernux.application import Application
+from infernux.lib import Vector3
 
 from .native.game_runtime import GameRuntime
 from .native.presentation import Presentation
@@ -125,7 +125,7 @@ class Workshop(inx.InxComponent):
         panel = None
 
         if Application.is_editor():
-            from Infernux.engine.ui.window_manager import WindowManager
+            from infernux.engine.ui.window_manager import WindowManager
 
             manager = WindowManager.instance()
 
@@ -148,7 +148,8 @@ class Workshop(inx.InxComponent):
         session = getattr(self, "session", None)
 
         if session is not None:
-            session.ui.update(wait_for_frame=True)
+            # 主线程继续处理纹理上传，模拟线程有新帧时再更新画面。
+            session.ui.update()
 
     # 结束场景组件持有的游戏会话。
     def on_destroy(self):

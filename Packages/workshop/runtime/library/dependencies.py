@@ -26,11 +26,11 @@ import wgpu
 from PIL import Image
 
 # 预载公共引擎模块，避免组件隔离导入时出现依赖缺失
-from Infernux.core.assets import AssetManager
-from Infernux.renderstack import RenderPipeline, RenderStack
-from Infernux.renderstack.render_stack_pipeline import RenderStackPipeline
-from Infernux.engine.ui import imgui_keys
-from Infernux.input import Input
+from infernux.core.assets import AssetManager
+from infernux.renderstack import RenderPipeline, RenderStack
+from infernux.renderstack.render_stack_pipeline import RenderStackPipeline
+from infernux.engine.ui import imgui_keys
+from infernux.input import Input
 
 
 # 按需载入迁移对照使用的参考解释器。

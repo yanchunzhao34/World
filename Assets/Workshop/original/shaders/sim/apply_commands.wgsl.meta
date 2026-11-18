@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 28563
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "da3c5e5c3f31a9db"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".wgsl"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/shaders/sim/apply_commands.wgsl"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 28563
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/original/shaders/sim/apply_commands.wgsl"
         },
         "guid": {
             "type": "string",
             "value": "e1f1ab586c6e382e82483f7989086a5e"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793199971"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 945
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

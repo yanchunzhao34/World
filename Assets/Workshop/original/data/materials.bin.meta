@@ -1,48 +1,16 @@
 {
     "metadata": {
-        "binary_type": {
-            "type": "string",
-            "value": "binary"
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "1f75635dc339cd21"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".bin"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/data/materials.bin"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 86016
-        },
-        "file_type": {
-            "type": "string",
-            "value": "binary"
+            "value": "Assets/Workshop/original/data/materials.bin"
         },
         "guid": {
             "type": "string",
             "value": "753468f2c359c77bbb978bdacf9ec836"
         },
-        "is_readable": {
-            "type": "bool",
-            "value": false
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1792830103"
-        },
         "resource_type": {
             "type": "enum infernux::ResourceType",
             "value": "DefaultBinary"
-        },
-        "size_category": {
-            "type": "string",
-            "value": "small"
         }
     }
 }

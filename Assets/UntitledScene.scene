@@ -48,7 +48,7 @@
       "children": [],
       "components": [
         {
-          "component_id": 10,
+          "component_id": "cf5cdfc5d54d593c86bd72380153d859",
           "data": {
             "anamorphism": 0.0,
             "aperture": 16.0,
@@ -96,13 +96,13 @@
           "type_id": "native:infernux.Camera"
         }
       ],
-      "id": 5,
+      "id": "dd17cfc34d0d5eb1a461806ea7374996",
       "is_static": false,
       "layer": 0,
       "name": "Main Camera",
       "tag": "MainCamera",
       "transform": {
-        "component_id": 9,
+        "component_id": "c6e069e62c485b3fb01225b78dad4824",
         "enabled": true,
         "execution_order": 0,
         "position": [
@@ -128,7 +128,7 @@
       "children": [],
       "components": [
         {
-          "component_id": 12,
+          "component_id": "158b2ab13c0353f39d173182c7732c05",
           "data": {
             "areaSize": [
               1.600000023841858,
@@ -160,13 +160,13 @@
           "type_id": "native:infernux.Light"
         }
       ],
-      "id": 6,
+      "id": "0b01880f63d3586b8a8d811275a054b7",
       "is_static": false,
       "layer": 0,
       "name": "Directional Light",
       "tag": "Untagged",
       "transform": {
-        "component_id": 11,
+        "component_id": "ec5b938dd5035036b68ec10fb0516e60",
         "enabled": true,
         "execution_order": 0,
         "position": [
@@ -187,5 +187,6 @@
         "type": "Transform"
       }
     }
-  ]
+  ],
+  "identity_format": "guid-v1"
 }

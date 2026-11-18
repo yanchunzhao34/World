@@ -8,9 +8,9 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path[:0] = [str(ROOT / ".runtime/packages"), str(ROOT / "Assets"), str(ROOT / "Assets/Scripts")]
 
 import infernux as inx
-from Infernux.core.assets import AssetManager
-from Infernux.components.component_identity import bind_asset_script_guid
-from Infernux.lib import RuntimeMode, SceneManager
+from infernux.core.assets import AssetManager
+from infernux.components.component_identity import bind_asset_script_guid
+from infernux.lib import RuntimeMode, SceneManager
 from workshop_bootstrap import preload_dependencies
 DEPENDENCIES = preload_dependencies(ROOT)
 from Scripts.Workshop import Workshop

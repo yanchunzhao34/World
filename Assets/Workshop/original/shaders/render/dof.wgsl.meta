@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 3061
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "d828e8caa38c2a27"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".wgsl"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/shaders/render/dof.wgsl"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 3061
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/original/shaders/render/dof.wgsl"
         },
         "guid": {
             "type": "string",
             "value": "4aea349f92016bd34186107c76acf999"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793199970"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 123
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

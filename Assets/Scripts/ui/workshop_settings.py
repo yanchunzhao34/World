@@ -75,7 +75,7 @@ class WorkshopSettings:
             # 控件固定自身键名与值，避免点击后修改其他画面设置
             canvas.button(
                 (x, cy, width, 32),
-                ("☑ " if value else "☐ ") + label,
+                ("开" if value else "关") + label,
                 lambda key=key, value=value: app.set_setting(key, not value),
                 fill="ffffff00",
                 identifier="setting-" + key,

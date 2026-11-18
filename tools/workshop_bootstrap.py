@@ -1,6 +1,6 @@
 """Use the same dependency lifecycle in standalone tools as in the Editor."""
 
-from Infernux.plugins.preload import PreloadManager
+from infernux.plugins.preload import PreloadManager
 
 
 def preload_dependencies(root):

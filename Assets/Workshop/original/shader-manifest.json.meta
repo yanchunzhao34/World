@@ -1,48 +1,12 @@
 {
     "metadata": {
-        "character_count": {
-            "type": "size_t",
-            "value": 10190
-        },
-        "content_hash": {
-            "type": "string",
-            "value": "8c0b330978bd18ce"
-        },
-        "encoding": {
-            "type": "string",
-            "value": "ascii"
-        },
-        "file_extension": {
-            "type": "string",
-            "value": ".json"
-        },
         "file_path": {
             "type": "string",
-            "value": "D:/InfernuxHubInstaller_projects/ElementWorkshop-Infernux-Native/Assets/Workshop/original/shader-manifest.json"
-        },
-        "file_size": {
-            "type": "size_t",
-            "value": 10190
-        },
-        "file_type": {
-            "type": "string",
-            "value": "text"
+            "value": "Assets/Workshop/original/shader-manifest.json"
         },
         "guid": {
             "type": "string",
             "value": "f4d444a7a2d4be22a590715be3c23bc7"
-        },
-        "is_readable": {
-            "type": "bool",
-            "value": true
-        },
-        "last_modified": {
-            "type": "string",
-            "value": "1793199971"
-        },
-        "line_count": {
-            "type": "size_t",
-            "value": 324
         },
         "resource_type": {
             "type": "enum infernux::ResourceType",

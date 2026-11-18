@@ -1,5 +1,5 @@
 {
-  "project": "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-project-c5847613",
+  "project": "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-project-460a9342",
   "cycles": 2,
   "captures": [
     "D:\\InfernuxHubInstaller_projects\\ElementWorkshop-Infernux-Native\\validation\\editor-window-1.png",
@@ -7,35 +7,36 @@
   ],
   "performance_cycles": [
     {
-      "seconds": 5.99868620000052,
+      "seconds": 5.989287500000501,
       "samples": 361,
-      "produced_fps": 60.01314087740892,
-      "engine_fps": 60.01314087740892,
+      "produced_fps": 60.10731660484989,
+      "engine_fps": 60.10731660484989,
       "presentation_fps_cap": 120.0,
-      "displayed_new_frames_per_second": 60.01314087740892,
-      "mean_compute_ms": 8.540990581793451,
-      "mean_interval_ms": 16.66301722222367,
-      "p95_interval_ms": 18.244300001242664,
-      "maximum_interval_ms": 19.097899999906076
+      "displayed_new_frames_per_second": 60.10731660484989,
+      "mean_compute_ms": 9.975708587385938,
+      "mean_interval_ms": 16.636909722223614,
+      "p95_interval_ms": 18.06389999910607,
+      "maximum_interval_ms": 18.82320000004256
     },
     {
-      "seconds": 5.998797700001887,
+      "seconds": 6.000565099999221,
       "samples": 361,
-      "produced_fps": 60.0120254096728,
-      "engine_fps": 60.0120254096728,
+      "produced_fps": 59.99434953218768,
+      "engine_fps": 59.99434953218768,
       "presentation_fps_cap": 120.0,
-      "displayed_new_frames_per_second": 60.0120254096728,
-      "mean_compute_ms": 8.635274792365214,
-      "mean_interval_ms": 16.663326944449686,
-      "p95_interval_ms": 18.026499998086365,
-      "maximum_interval_ms": 18.7363999975787
+      "displayed_new_frames_per_second": 59.99434953218768,
+      "mean_compute_ms": 8.98384598347099,
+      "mean_interval_ms": 16.668236388886726,
+      "p95_interval_ms": 18.22610000090208,
+      "maximum_interval_ms": 22.134300001198426
     }
   ],
   "audio_enabled": true,
+  "input_driver": "UI callbacks",
   "viewport": [
-    1312,
-    738
+    1332,
+    749
   ],
-  "pointer_pause_button": true,
+  "pause_callback": true,
   "passed": true
 }
