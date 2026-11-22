@@ -1,0 +1,16 @@
+{
+    "metadata": {
+        "file_path": {
+            "type": "string",
+            "value": "Assets/Scripts/ui/create_world_view.py"
+        },
+        "guid": {
+            "type": "string",
+            "value": "417fa152c1604c45bab3f74fc4002690"
+        },
+        "resource_type": {
+            "type": "enum infernux::ResourceType",
+            "value": "Script"
+        }
+    }
+}

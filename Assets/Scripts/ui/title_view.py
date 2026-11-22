@@ -1,12 +1,6 @@
-"""主页布局、八个场景、三种主页语言与双击启动。"""
+"""主页标题、语言选择及进入世界列表的入口。"""
 
 import json
-
-
-from numpy import identity, size
-
-from .workshop_style import INK, DIM
-
 
 
 class TitleView:
@@ -48,59 +42,14 @@ class TitleView:
                 (10 / 255, 11 / 255, 16 / 255, shade_alpha),
             )
 
-        # 顶部控件从画布右边缘定位，图标在同一行内垂直居中。
-        header_y = 16
-        header_button_height = 40
-        header_icon_size = 18
-        header_icon_y = header_y + (header_button_height - header_icon_size) / 2
-
-        language_button_width = 116
-        language_right_margin = 104
-        language_button_x = canvas_width - language_right_margin - language_button_width
-        language_button_rect = (
-            language_button_x, header_y, language_button_width, header_button_height
-        )
-
-        fullscreen_button_width = 36
-        fullscreen_right_margin = 16
-        fullscreen_button_x = (
-            canvas_width - fullscreen_right_margin - fullscreen_button_width
-        )
-        fullscreen_button_rect = (
-            fullscreen_button_x, header_y, fullscreen_button_width, header_button_height
-        )
-        fullscreen_icon_x = (
-            fullscreen_button_x + (fullscreen_button_width - header_icon_size) / 2
-        )
-        gear_icon_gap = 17
-        gear_icon_x = fullscreen_button_x - gear_icon_gap - header_icon_size
-
         languages = {"zh": "简体中文", "zh-TW": "繁體中文", "en": "English"}
-
-        canvas.button(
-            language_button_rect,
-            "" + languages[app.home_language] + "",
-            lambda: app.open_modal("language"),
-            fill="fffffff2",
-            identifier="home-language",
-            font=app.pixel_font,
-        )
-
-        canvas.image(
-            (gear_icon_x, header_icon_y, header_icon_size, header_icon_size),
-            "ui/vectors/gear.svg",
-        )
-        canvas.button(
-            fullscreen_button_rect,
-            "",
-            app.fullscreen,
-            fill="fffffff2",
-            identifier="home-fullscreen",
-        )
-        canvas.image(
-            (fullscreen_icon_x, header_icon_y, header_icon_size, header_icon_size),
-            "ui/vectors/full.svg",
-        )
+        header_y = 8 if canvas_height < 440 else 16
+        canvas.menu_button((canvas_width - 166, header_y, 108, 34), languages[app.home_language],
+                           lambda: app.open_modal("language"), "home-language", size=14)
+        fullscreen_rect = (canvas_width - 50, header_y, 34, 34)
+        canvas.button(fullscreen_rect, "", app.fullscreen, identifier="home-fullscreen",
+                      fill="b7baab", hover_fill="e0e3d2", border="292e28", rounding=0)
+        canvas.image((canvas_width - 42, header_y + 8, 18, 18), "ui/vectors/full.svg")
 
         # 先量标题文字的宽度，再把烧瓶和文字作为一组水平居中。
         title_font_size = min(104, max(44, round(canvas_width * 0.065)))
@@ -109,7 +58,9 @@ class TitleView:
             english_title_max_size = round((canvas_width - 80) / 11)
             title_font_size = min(title_font_size, english_title_max_size)
 
-        title_y = round(canvas_height * (0.13 if compact_layout else 0.19))
+        title_y = max(50, round(canvas_height * (0.13 if compact_layout else 0.19)))
+        if canvas_height < 440:
+            title_font_size = min(36, title_font_size)
         title_text = self.copy("title")
         title_text_width = (
             canvas.ctx.calc_text_size(
@@ -149,102 +100,36 @@ class TitleView:
         )
         subtitle_rect = (text_side_margin, subtitle_y, centered_text_width, 26)
 
-        canvas.text(
-            slogan_rect,
-            "Simulation is all you need",
-            30,
-            "ffffff",
-            0.5,
-            app.latin_bold_font,
+        if canvas_height >= 440:
+            canvas.text(
+                slogan_rect,
+                "Simulation is all you need",
+                30,
+                "ffffff",
+                0.5,
+                app.latin_bold_font,
+            )
+            canvas.text(
+                subtitle_rect,
+                self.copy("subtitle"),
+                17,
+                "ffffffeb",
+                0.5,
+                app.pixel_font,
+            )
+
+        button_width = min(280, canvas_width - 48)
+        button_height = 36 if canvas_height < 440 else 46
+        gap = 6 if canvas_height < 440 else 8
+        group_height = 3 * button_height + 2 * gap
+        button_x = (canvas_width - button_width) / 2
+        first_y = min(round(canvas_height * 0.56), canvas_height - 16 - group_height)
+        end_label = {"zh": "结束游戏", "zh-TW": "結束遊戲", "en": "Quit Game"}[app.home_language]
+        actions = (
+            (self.copy("start"), app.show_mode_page, "start-game"),
+            (self.copy("settings"), lambda: app.open_modal("settings"), "home-settings"),
+            (end_label, app.request_exit, "exit-game"),
         )
-        canvas.text(
-            subtitle_rect,
-            self.copy("subtitle"),
-            17,
-            "ffffffeb",
-            0.5,
-            app.pixel_font,
-        )
-
-        # 保留原场景卡片区域的尺寸，用它的上边缘定位主按钮。
-        scene_panel_side_margin = 24
-        scene_panel_bottom_margin = 24
-        scene_panel_width = min(1240, canvas_width - 2 * scene_panel_side_margin)
-        scene_card_count = 8
-        scene_card_width = (scene_panel_width - 110) / scene_card_count
-        scene_thumbnail_width = scene_card_width - 10
-        scene_thumbnail_ratio = 0.5 if compact_layout else 0.625
-        scene_thumbnail_height = scene_thumbnail_width * scene_thumbnail_ratio
-        scene_card_height = scene_thumbnail_height + 36
-        scene_panel_header_height = 50
-        scene_panel_footer_height = 80
-        scene_panel_height = (
-            scene_panel_header_height + scene_card_height + scene_panel_footer_height
-        )
-        scene_panel_y = canvas_height - scene_panel_bottom_margin - scene_panel_height
-
-        
-
-        # 两个主按钮等宽且居中，从设置按钮向上排开始按钮。
-        main_button_width = 260
-        main_button_height = 48
-        main_button_gap = 8
-        # 设置按钮底边到原场景区顶部的间距。
-        settings_button_bottom_gap = -100
-        main_button_x = (canvas_width - main_button_width) / 2
-
-        # y轴设置
-        settings_button_y = (
-            scene_panel_y - settings_button_bottom_gap - main_button_height
-        )
-        start_button_y = settings_button_y - main_button_gap - main_button_height
-        exitgame_button_y = start_button_y + main_button_gap + 2 * main_button_height + 8
-
-
-        start_button_rect = (
-            main_button_x, start_button_y, main_button_width, main_button_height
-        )
-
-        settings_button_rect = (
-            main_button_x, settings_button_y, main_button_width, main_button_height
-        )
-
-        exit_game_rect = (
-            main_button_x, exitgame_button_y,main_button_width, main_button_height
-        )
-
-        canvas.button(  # 开始游戏按钮
-            start_button_rect,
-            self.copy("start"),
-            app.show_mode_page,
-            dark=True,
-            font=app.pixel_font,
-            identifier="start-game",
-            rounding=3,
-            fill="777777",
-            border="222222",
-        )
-
-        canvas.button(  # 设置按钮
-            settings_button_rect,
-            "设置",
-            lambda: app.open_modal("settings"),
-            dark=True,
-            font=app.pixel_font,
-            identifier="home-settings",
-            rounding=3,
-            fill="777777",
-            border="222222",
-        )
-
-        canvas.button(  # 退出游戏
-            exit_game_rect,
-            "结束游戏",
-            lambda: app.request_exit(),
-            dark=True,
-            font=app.pixel_font,
-            identifier="exit-game",
-            rounding=3,
-            fill="777777",
-            border="222222",
-        )
+        for index, (label, callback, identifier) in enumerate(actions):
+            rect = (button_x, first_y + index * (button_height + gap), button_width, button_height)
+            canvas.menu_button(rect, label, callback, identifier, primary=index == 0)

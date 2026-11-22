@@ -15,6 +15,7 @@ from infernux.engine.ui import imgui_keys as K
 from .action_menu import action_menu
 from .brush_overlay import draw_brush
 from .codex_view import CodexView
+from .create_world_view import CreateWorldView
 from .discovery_codex import DiscoveryCodex
 from .material_library import MaterialLibrary
 from .probe_tooltip import draw_probe
@@ -25,6 +26,7 @@ from .workshop_style import Canvas, Images, INK, DIM
 from .mode_view import ModeView
 
 
+# 协调菜单、实验界面和玩家输入，通过运行器向模拟层发送操作。
 class WorkshopUI(InxGUIRenderable):
     MAPS = ["lab", "cave", "volcano", "gallery", "optics", "energy", "cover", "empty"]
     MAP_NAMES = [
@@ -109,9 +111,12 @@ class WorkshopUI(InxGUIRenderable):
         self.modal = ""
         self.text_focus = ""
         self.menu_scroll = 0
+        self.menu_capture = None
+        self.menu_grab = 0
 
         self.title, self.hud = TitleView(self), WorkshopHud(self)
         self.mode = ModeView(self)
+        self.create_world = CreateWorldView(self)
         self.library, self.codex_view = MaterialLibrary(self), CodexView(self)
         self.settings_view = WorkshopSettings(self)
         self.dimensions, self.widgets = (0, 0), {}
@@ -163,7 +168,15 @@ class WorkshopUI(InxGUIRenderable):
 
     # 选择模式界面
     def show_mode_page(self):
+        if self.selected_map not in self.MAPS:
+            self.select_scene(self.MAPS[0])
+        self.mode.reveal_selection = True
         self.menu_page = "mode"
+        
+    # 重置表单并切换到创建世界页，供 on_render 绘制。
+    def show_create_page(self):
+        self.create_world.reset()
+        self.menu_page = "create"
 
     # 退出
     def request_exit(self):
@@ -181,13 +194,13 @@ class WorkshopUI(InxGUIRenderable):
         self.selected_map = key
 
     # 进入实验界面并载入选定地图。
-    def start_game(self, key):
+    def start_game(self, key, *, world_name=""):
         self.close_modal()
 
         self.playing = True
 
         self.sound.enable()
-        self.load_map(key)
+        self.load_map(key, world_name=world_name)
 
     # 结束当前界面交互并切回主页背景。
     def show_title(self):
@@ -201,11 +214,15 @@ class WorkshopUI(InxGUIRenderable):
         self.send(dict(type="pause", value=False))
 
     # 请求载入地图并同步实验界面控制状态。
-    def load_map(self, key):
+    def load_map(self, key, *, world_name=""):
         self.selected_map, self.paused = key, False
         self.codex.previous = {}
 
-        self.send(dict(type="load", map=key))
+        load_action = dict(type="load", map=key)
+        # map 告诉模拟层如何构建地图，world_name 则传递玩家给这次创建的世界起的名字。
+        if world_name:
+            load_action["world_name"] = world_name
+        self.send(load_action)
         self.send(dict(type="pause", value=False))
         self.resize_view(*self.dimensions)
 
@@ -383,6 +400,7 @@ class WorkshopUI(InxGUIRenderable):
         self.focus_text("")
 
         self.modal, self.menu_scroll = name, 0
+        self.menu_capture = None
 
         # 打开面板时终止画笔状态，避免关闭后沿旧起点继续绘制
         self.drawing, self.panning, self.straight = False, False, False
@@ -392,6 +410,7 @@ class WorkshopUI(InxGUIRenderable):
     # 关闭当前面板并释放文本输入焦点。
     def close_modal(self):
         self.modal = ""
+        self.menu_capture = None
 
         self.focus_text("")
 
@@ -546,18 +565,14 @@ class WorkshopUI(InxGUIRenderable):
 
         try:
             if visible:
-                ctx.draw_image_rect(
-                    self.frontend.get_game_texture_id(),
-                    viewport_x,
-                    viewport_y,
-                    viewport_x + width,
-                    viewport_y + height,
-                )
-
                 scale = (
                     round(max(1, min(2.5, min(width / 1600, height / 900))) * 20) / 20
                 )
+                if not self.playing or self.modal == "settings":
+                    scale = min(scale, width / 320, height / 300)
                 canvas = Canvas(ctx, self, viewport_x, viewport_y, width, height, scale)
+                if not ctx.is_mouse_button_down(0):
+                    self.menu_capture = None
 
                 # 游戏视图占用活动项时仍接收同层输入，避免按钮失效
                 canvas.input_enabled = (
@@ -568,7 +583,15 @@ class WorkshopUI(InxGUIRenderable):
                 if self.editor_panel is None or Input.is_game_focused():
                     self.keyboard(ctx)
 
-                canvas.interactive = not bool(self.modal)
+                # 选择场景页自行绘制整个视口。主页和实验界面使用世界画面作底图。
+                if self.playing or self.menu_page != "mode":
+                    ctx.draw_image_rect(
+                        self.frontend.get_game_texture_id(),
+                        viewport_x, viewport_y, viewport_x + width, viewport_y + height,
+                    )
+
+                modal_before_draw = self.modal
+                canvas.interactive = not bool(modal_before_draw)
 
                 if self.playing:    # 1：游戏操作界面 0：主页
                     self.hud.render(canvas)
@@ -579,8 +602,12 @@ class WorkshopUI(InxGUIRenderable):
                 elif self.menu_page == "mode":
                     self.mode.render(canvas)
 
+                elif self.menu_page == "create":
+                    self.create_world.render(canvas)
+
                 if self.modal:
-                    canvas.interactive = True
+                    # 打开弹窗的同一次鼠标按下不能再触发新面板中的控件。
+                    canvas.interactive = bool(modal_before_draw)
 
                     self.render_modal(canvas)
 
@@ -632,6 +659,12 @@ class WorkshopUI(InxGUIRenderable):
         if ctx.is_key_pressed(K.KEY_ESCAPE):
             if self.modal == "library" and self.library.query:
                 self.library.query = ""
+
+            elif not self.modal and not self.playing and self.menu_page == "create":
+                self.show_mode_page()
+
+            elif not self.modal and not self.playing and self.menu_page == "mode":
+                self.show_title_page()
 
             else:
                 self.close_modal()
@@ -690,8 +723,21 @@ class WorkshopUI(InxGUIRenderable):
             return
 
         if not self.playing:
+            if self.menu_page == "create":
+                # 输入世界名时，回车留给输入框，避免确认中文候选词时顺带创建世界。
+                if not self.create_world.editing_name and ctx.is_key_pressed(K.KEY_ENTER):
+                    self.create_world.create()
+                return
             if ctx.is_key_pressed(K.KEY_ENTER) or ctx.is_key_pressed(K.KEY_SPACE):
-                self.start_game(self.selected_map)
+                if self.menu_page == "title":
+                    self.show_mode_page()
+                else:
+                    self.start_game(self.selected_map)
+            elif self.menu_page == "mode":
+                if ctx.is_key_pressed(K.KEY_UP_ARROW):
+                    self.mode.move_selection(-1)
+                elif ctx.is_key_pressed(K.KEY_DOWN_ARROW):
+                    self.mode.move_selection(1)
 
             return
 
@@ -857,6 +903,10 @@ class WorkshopUI(InxGUIRenderable):
     def render_modal(self, c):
         canvas = c
 
+        if self.modal == "settings":
+            self.settings_view.render(canvas)
+            return
+
         if self.modal == "library":
             self.library.render(canvas)
 
@@ -874,7 +924,6 @@ class WorkshopUI(InxGUIRenderable):
             "demos": "演示",
             "save": "存档",
             "network": "多人联机",
-            "settings": "画面设置",
             "help": "操作说明",
             "language": "语言 / Language",
             "menu": "菜单",
@@ -893,10 +942,6 @@ class WorkshopUI(InxGUIRenderable):
 
         rect = x + 20, y + 72, width - 40, height - 92
 
-        if self.modal == "settings":
-            self.settings_view.render(canvas, rect)
-
-            return
 
         if self.modal == "network":
             canvas.text(
@@ -938,7 +983,7 @@ class WorkshopUI(InxGUIRenderable):
                 for key, name in zip(self.MAPS, self.MAP_NAMES)
             ]
             items += [
-                ("重置当前场景", lambda: self.menu_load(self.selected_map)),
+                ("重置当前场景", self.reset_current_scene),
                 ("清空世界", lambda: self.save_action("clear")),
             ]
 
@@ -981,10 +1026,16 @@ class WorkshopUI(InxGUIRenderable):
 
         action_menu(canvas, self, rect, items)
 
-    # 从场景菜单进入指定实验地图。
+    # 以模拟层报告的地图为准，确保读档后重置的是当前场景。
+    def reset_current_scene(self):
+        current_map = self.current.get("map", self.selected_map)
+        self.menu_load(current_map)
+
+    # 关闭菜单并载入指定地图，重置自建空世界时沿用原名。
     def menu_load(self, key):
         self.close_modal()
-        self.load_map(key)
+        world_name = self.current.get("world_name", "") if key == "void" else ""
+        self.load_map(key, world_name=world_name)
 
     # 同步界面控制并请求播放指定演示。
     def play_demo(self, item):

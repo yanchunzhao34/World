@@ -323,13 +323,24 @@ class Simulation:
             self.stopDemo()
 
     # 载入地图并重置世界及光照历史。
-    def loadMap(self, key):
+    def loadMap(self, key, world_name=''):
         app, gpu = self.app, self.gpu
         self.sceneRevision += 1
         self.titleElapsed = 0
         app.probe, app.probePoint = dict(valid=False), None
-        cells = self.host.read_file('maps/' + key + '.cells.gz')
-        background = self.host.read_file('maps/' + key + '.bg.gz')
+        if key == 'void':
+            # 内置 empty 地图有石地板。这里按格子格式写入空气编号、环境温度和两个零状态字。
+            cell_count = app.W * app.H
+            air_cell = struct.pack('<IfII', 0, app.sim.settings.ambient, 0, 0)
+            cells = air_cell * cell_count
+            background = bytes(cell_count * 4)
+            # 丢弃上一张地图积压的模拟命令，让新建的空世界从干净的状态开始。
+            app.commands.pending.clear()
+            app.worldName = world_name
+        else:
+            cells = self.host.read_file('maps/' + key + '.cells.gz')
+            background = self.host.read_file('maps/' + key + '.bg.gz')
+            app.worldName = ''
         app.currentMap, app.currentBackground = key, background
 
         app.sim.upload(cells)
@@ -394,7 +405,7 @@ class Simulation:
 
         if action_type == 'load':
             self.stopDemo()
-            self.loadMap(action['map'])
+            self.loadMap(action['map'], action.get('world_name', ''))
 
         elif action_type == 'demo':
             self.playDemo(action['key'])
@@ -470,6 +481,7 @@ class Simulation:
                 app.settings.timeOfDay,
                 self.host.read_texture(app.sim.cells.read.id),
                 app.currentBackground,
+                world_name=app.worldName,
             )
 
         elif action_type == 'restore':
@@ -485,6 +497,8 @@ class Simulation:
 
             self.sceneRevision += 1
             app.currentMap, app.settings.timeOfDay = saved['map'], saved['time']
+            # 旧存档可能只有地图编号，缺少世界名称时仍可按原地图恢复。
+            app.worldName = saved.get('world_name', '')
 
             # 存档保存格子材料，刚体需由恢复后的格子重新建立
             app.rigid.clear()
@@ -753,6 +767,7 @@ class Simulation:
             day=render_settings.timeOfDay,
             bodies=len(app.rigid.bodies),
             map=app.currentMap,
+            world_name=app.worldName,
             title_elapsed=self.titleElapsed,
             paused=app.paused,
             probe=dict(app.probe),

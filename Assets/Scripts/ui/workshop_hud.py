@@ -29,11 +29,13 @@ class WorkshopHud:
 
             start = 150
 
-        if app.selected_map in app.MAPS:
-            label = app.MAP_NAMES[app.MAPS.index(app.selected_map)]
-
+        map_key = app.current.get("map", app.selected_map)
+        if map_key == "void":
+            label = app.current.get("world_name") or app.title.copy("worldVoid")
+        elif map_key in app.MAPS:
+            label = app.MAP_NAMES[app.MAPS.index(map_key)]
         else:
-            label = app.selected_map
+            label = map_key
 
         canvas.button(
             (start, 20, 112, 36),

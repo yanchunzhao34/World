@@ -33,7 +33,7 @@ class Storage:
         return gzip.decompress(data) if data.startswith(b"\x1f\x8b") else data
 
     # 校验世界布局并原子写入快速存档。
-    def save_state(self, map_key, time, cells, background):
+    def save_state(self, map_key, time, cells, background, *, world_name=""):
         if len(cells) != CELL_BYTES or len(background) != BACKGROUND_BYTES:
             raise ValueError("Invalid state dimensions")
 
@@ -49,18 +49,10 @@ class Storage:
                 ) as archive:
                     archive.writestr("cells.bin", cells)
                     archive.writestr("background.bin", background)
-                    archive.writestr(
-                        "info.json",
-                        json.dumps(
-                            dict(
-                                version=1,
-                                map=map_key,
-                                time=time,
-                                width=WIDTH,
-                                height=HEIGHT,
-                            )
-                        ),
-                    )
+                    info = dict(version=1, map=map_key, time=time, width=WIDTH, height=HEIGHT)
+                    if world_name:
+                        info["world_name"] = world_name
+                    archive.writestr("info.json", json.dumps(info, ensure_ascii=False))
 
                 # 持久化后再替换，降低写入中断时损坏原存档的风险
                 stream.flush()

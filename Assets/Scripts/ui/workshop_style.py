@@ -232,23 +232,98 @@ class Canvas:
         return clicked
 
     # 绘制连续值控件并交付滑动结果。
-    def slider(self, rect, value, minimum, maximum, on_change, identifier):
+    def slider(self, rect, value, minimum, maximum, on_change, identifier, *, block_style=False):
         self.regions.append(rect)
 
         self.app.widgets[identifier] = rect
         x, y, w, h = rect
 
-        self.rect((x, y + h / 2 - 3, w, 6), "e5e5eb", 3)
-
         fraction = min(1, max(0, (value - minimum) / (maximum - minimum)))
-
-        self.rect((x, y + h / 2 - 3, w * fraction, 6), ACCENT, 3)
-        self.rect((x + w * fraction - 6, y + h / 2 - 6, 12, 12), "ffffff", 6, "b7b7c0")
-
-        if self.interactive and self.hit(rect) and self.ctx.is_mouse_button_down(0):
+        if block_style:
+            self.rect((x, y + h / 2 - 3, w, 6), "171c18", border="62665b")
+            self.rect((x + 1, y + h / 2 - 2, (w - 2) * fraction, 4), "96ba66")
+            self.bevel((x + fraction * (w - 10), y + h / 2 - 8, 10, 16),
+                       "c7c7b7", "eef0dc", "727669")
+            if self.interactive and self.hit(rect) and self.ctx.is_mouse_button_clicked(0):
+                self.app.menu_capture = identifier
+            dragging = self.interactive and self.app.menu_capture == identifier
+        else:
+            self.rect((x, y + h / 2 - 3, w, 6), "e5e5eb", 3)
+            self.rect((x, y + h / 2 - 3, w * fraction, 6), ACCENT, 3)
+            self.rect((x + w * fraction - 6, y + h / 2 - 6, 12, 12), "ffffff", 6, "b7b7c0")
+            dragging = self.interactive and self.hit(rect)
+        if dragging and self.ctx.is_mouse_button_down(0):
             on_change(
                 minimum + min(1, max(0, (self.mouse[0] - x) / w)) * (maximum - minimum)
             )
+
+    def bevel(self, rect, face, light, shade):
+        """直角面板的上、左两边受光，下、右两边背光。"""
+        x, y, w, h = rect
+        self.rect(rect, "171b18")
+        self.rect((x + 1, y + 1, w - 2, h - 2), shade)
+        self.rect((x + 1, y + 1, w - 4, h - 4), light)
+        self.rect((x + 3, y + 3, w - 6, h - 6), face)
+
+    def menu_button(self, rect, label, callback, identifier, *, primary=False, size=16, enabled=True):
+        if not enabled:
+            self.regions.append(rect)
+            self.bevel(rect, "343833", "484d45", "292d27")
+            self.text(rect, label, size, "90968b", 0.5)
+            return False
+        hovered = self.interactive and self.hit(rect)
+        if primary:
+            face, light, shade = ("587d3c" if hovered else "436534"), "98b875", "2e4429"
+        else:
+            face, light, shade = ("697063" if hovered else "51574f"), "91978a", "353b34"
+        clicked = self.button(rect, "", identifier=identifier, fill="171b18", rounding=0)
+        self.bevel(rect, face, light, shade)
+        if hovered:
+            self.ctx.draw_rect(*self.bounds(rect), *color("e4edcd"), thickness=self.scale)
+        x, y, w, h = rect
+        self.text((x + 1, y + 2, w, h), label, size, "252c23", 0.5)
+        self.text(rect, label, size, "f7f7eb", 0.5)
+        if clicked:
+            callback()
+        return clicked
+
+    def menu_frame(self, title, icon, max_width, max_height):
+        """绘制窗口并返回内容区域；底部留给固定操作栏。"""
+        margin = 8 if min(self.width, self.height) < 520 else 24
+        w, h = min(max_width, self.width - 2 * margin), min(max_height, self.height - 2 * margin)
+        x, y = (self.width - w) // 2, (self.height - h) // 2
+        self.rect((0, 0, self.width, self.height), "151914bd")
+        self.rect((x + 5, y + 6, w, h), "10130fc9")
+        self.bevel((x, y, w, h), "aeafa2", "e2e3d3", "626658")
+        self.regions.append((x, y, w, h))
+        self.bevel((x + 14, y + 12, 32, 32), "c3c4b7", "737868", "d7dbca")
+        self.image((x + 18, y + 16, 24, 24), icon)
+        self.text((x + 56, y + 9, w - 70, 38), title, 22, "272d26", font=self.app.bold_font)
+        return x + 12, y + 54, w - 24, h - 114
+
+    def menu_scroll(self, rect, offset, content_height, identifier, step):
+        """滚轮或右侧滚动条都可浏览内容，返回新的像素偏移。"""
+        x, y, w, h = rect
+        maximum = max(0, content_height - h)
+        if not maximum or h < 2:
+            return 0
+        if self.interactive and self.hit(rect):
+            offset -= self.ctx.get_mouse_wheel_delta() * step
+        track = (x + w - 13, y, 13, h)
+        thumb_h = min(h - 1, max(18, h * h / content_height))
+        travel = h - thumb_h
+        offset = min(maximum, max(0, offset))
+        thumb_y = y + travel * offset / maximum
+        if self.interactive and self.hit(track) and self.ctx.is_mouse_button_clicked(0):
+            self.app.menu_capture = identifier
+            mouse_y = self.mouse[1]
+            self.app.menu_grab = mouse_y - thumb_y if thumb_y <= mouse_y < thumb_y + thumb_h else thumb_h / 2
+        if self.interactive and self.app.menu_capture == identifier and self.ctx.is_mouse_button_down(0):
+            top = min(travel, max(0, self.mouse[1] - y - self.app.menu_grab))
+            offset, thumb_y = maximum * top / travel, y + top
+        self.rect(track, "191e19")
+        self.rect((track[0] + 2, thumb_y, 9, thumb_h), "929887", border="bdc1af")
+        return offset
 
     # 绘制搜索输入区域并管理文本焦点。
     def search(self, rect, query, placeholder, identifier):
